@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <style>
+            iframe {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe id="beaconstacDashboard" src="https://dashboard.beaconstac.com/partner-sso.html"></iframe>
+        <button onclick="loginClicked()">Login to Beaconstac Dashboard</button>
+    
+        <script type="application/javascript">
+
+            const BEACONSTAC_DASHBOARD_URL = "https://dashboard.beaconstac.com"
+            const BEACONSTAC_PARTNER_SSO_URL = "https://beaconstac.mobstac.com/api/2.0/users/partner-sso/"
+            const PARTNER_SSO_TOKEN = "ENTER_TOKEN_HERE"
+
+            function loginClicked() {
+                // Make POST request to get user details
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', BEACONSTAC_PARTNER_SSO_URL, true);
+                xhr.setRequestHeader("Authorization", "Token " + PARTNER_SSO_TOKEN)
+                xhr.setRequestHeader("Content-type", "application/json");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        passDataToIframe(xhr.responseText);
+                    }
+                }
+                
+                var postData = {
+                    "email": "USER_EMAIL",
+                    "password": "USER_PASSWORD",
+                    "first_name": "USER_FIRST_NAME",
+                    "last_name": "USER_LAST_NAME"
+                };
+                xhr.send(JSON.stringify(postData));
+            }
+
+            function passDataToIframe(userData) {
+                var receiver = document.getElementById('beaconstacDashboard').contentWindow;
+                receiver.postMessage(JSON.parse(userData), 'https://dashboard.beaconstac.com/partner-sso.html');
+                goToBeaconstacDashboard();
+            }
+
+            function goToBeaconstacDashboard() {
+                window.open(BEACONSTAC_DASHBOARD_URL, '_blank');
+            }
+
+        </script>
+    </body>
+</html>
