@@ -18,6 +18,7 @@
     var receiver = document.getElementById('beaconstacDashboard').contentWindow;
     receiver.postMessage(JSON.parse(userData), 'https://dashboard.beaconstac.com/partner-sso.html');
 ```
+- The user is now logged in. Open https://dashboard.beaconstac.com to see the user specific dashboard.
 
 
 Please check the repository for a sample implementation(partner_sso.html) of the whole SSO flow. Don't forget to change the TOKEN and USER_DATA values in the file before using.
