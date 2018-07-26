@@ -3,22 +3,23 @@
 
 
 ### Steps to add Single-Sign-On(SSO) support for Beaconstac partners
-- Make a POST request on https://beaconstac.mobstac.com/api/2.0/users/partner-sso/. Ensure you make this request after the user has finished the process of buying the beacons.
-    - Add 'Authorization' header with value 'Token YOUR_TOKEN'. You can find the token in the 'Account' page on the Beaconstac dashboard.
+1. Make a POST request on https://storefrontapi.beaconstac.com/v1/users/create/. It is mandatory for you to make this request before you navigate the user to buy beacons on our store.
+    - Add 'Authorization' header with value 'BASIC YOUR_TOKEN'. Please use the token emailed by us.
     - JSON POST body with fields. All the fields are compulsory.
         - email
         - password (plaintext)
-        - first_name
-        - last_name
-- Pass the response into the Beaconstac Partner SSO html iframe.
+        - firstName
+        - lastName
+2. Insert the script below in your webpage.
 ```html
-    <iframe id="beaconstacDashboard" src="https://dashboard.beaconstac.com/partner-sso.html"></iframe>
+    <script src="static.beaconstac.com/assets/js/partner-sso.js"></script>
 ```
+3. Once the script is added. Call the following method to login the user into Beaconstac store.
+  The method expects one parameter i.e. the response object returend by the post request in step 1.
 ```javascript
-    var receiver = document.getElementById('beaconstacDashboard').contentWindow;
-    receiver.postMessage(JSON.parse(userData), 'https://dashboard.beaconstac.com/partner-sso.html');
+    signInUserToBeaconstacStore(USER_JSON_OBJECT);
 ```
-- The user is now logged in. Open https://dashboard.beaconstac.com to see the user specific dashboard.
+4. The user is now logged in to store and the plan (as specified in the partner agreement) will automatically be added to the cart. Open https://www.beaconstac.com/buy-beacons/ to take user to buy beacons from Beaconstac store.
 
 
-Please check the repository for a sample implementation(partner_sso.html) of the whole SSO flow. Don't forget to change the TOKEN and USER_DATA values in the file before using.
+Please check the repository for a sample implementation (partner_sso.html) of the whole SSO flow. Don't forget to change the TOKEN and USER_DATA values in the file before using.

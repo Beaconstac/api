@@ -1,52 +1,50 @@
 <html>
     <head>
-        <style>
-            iframe {
-                display: none;
-            }
-        </style>
+        <script src="static.beaconstac.com/assets/js/partner-sso.js"></script>
     </head>
     <body>
-        <iframe id="beaconstacDashboard" src="https://dashboard.beaconstac.com/partner-sso.html"></iframe>
-        <button onclick="loginClicked()">Login to Beaconstac Dashboard</button>
-    
         <script type="application/javascript">
 
-            const BEACONSTAC_DASHBOARD_URL = "https://dashboard.beaconstac.com"
-            const BEACONSTAC_PARTNER_SSO_URL = "https://beaconstac.mobstac.com/api/2.0/users/partner-sso/"
-            const PARTNER_SSO_TOKEN = "ENTER_TOKEN_HERE"
+            const BEACONSTAC_STORE_URL = "https://wwww.beaconstac.com/buy-beacons/";
 
-            function loginClicked() {
+            // Needs to implemented on the server. Cannot be done on website (will throw Cross Origin error).
+            // This is an example request for Javascript.
+            const BEACONSTAC_PARTNER_SSO_URL = "https://storefrontapi.beaconstac.com/v1/users/create/";
+
+            // Never place this in website as it will get exposed. 
+            const PARTNER_SSO_TOKEN = "ENTER_TOKEN_HERE";
+
+            function createUser() {
                 // Make POST request to get user details
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', BEACONSTAC_PARTNER_SSO_URL, true);
-                xhr.setRequestHeader("Authorization", "Token " + PARTNER_SSO_TOKEN)
+                xhr.setRequestHeader("Authorization", "Basic " + PARTNER_SSO_TOKEN)
                 xhr.setRequestHeader("Content-type", "application/json");
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        passDataToIframe(xhr.responseText);
+                        return xhr.responseText;
                     }
                 }
                 
                 var postData = {
                     "email": "USER_EMAIL",
                     "password": "USER_PASSWORD",
-                    "first_name": "USER_FIRST_NAME",
-                    "last_name": "USER_LAST_NAME"
+                    "firstName": "USER_FIRST_NAME",
+                    "lastName": "USER_LAST_NAME"
                 };
                 xhr.send(JSON.stringify(postData));
             }
+            // Server implementation ends here.
 
-            function passDataToIframe(userData) {
-                var receiver = document.getElementById('beaconstacDashboard').contentWindow;
-                receiver.postMessage(JSON.parse(userData), 'https://dashboard.beaconstac.com/partner-sso.html');
-                goToBeaconstacDashboard();
+            // Needs to be implemented on your website
+            function goToBeaconstacStore() {
+                window.open(BEACONSTAC_STORE_URL, '_blank');
             }
 
-            function goToBeaconstacDashboard() {
-                window.open(BEACONSTAC_DASHBOARD_URL, '_blank');
-            }
+            signInUserToBeaconstacStore(JSON_RESPONSE_RETURNED_FROM_THE_ABOVE_REQUEST);
+            goToBeaconstacStore();
+
 
         </script>
     </body>
