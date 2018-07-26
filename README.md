@@ -12,7 +12,7 @@
         - lastName
 2. Insert the script below in your webpage.
 ```html
-    <script src="static.beaconstac.com/assets/js/partner-sso.js"></script>
+    <script src="https://static.beaconstac.com/assets/js/partner-sso.js"></script>
 ```
 3. Once the script is added. Call the following method to login the user into Beaconstac store.
   The method expects one parameter i.e. the response object returend by the post request in step 1.
