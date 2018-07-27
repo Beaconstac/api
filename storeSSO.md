@@ -1,4 +1,4 @@
-## Steps to create users in the Beaconstac store via SSO
+## Steps to create a user account in the Beaconstac store via SSO
 
 1. Make a POST request on https://storefrontapi.beaconstac.com/v1/users/create/. It is mandatory for you to make this request before you navigate the user to buy beacons on our store.
     - Add 'Authorization' header with value 'BASIC YOUR_TOKEN'. Please use the token emailed by us.
