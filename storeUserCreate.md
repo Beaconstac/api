@@ -19,4 +19,4 @@
 4. The user is now logged in to store and the plan (as specified in the partner agreement) will automatically be added to the cart. Open https://www.beaconstac.com/buy-beacons/ to take user to buy beacons from Beaconstac store.
 
 
-Please check the repository for a sample implementation (partner_sso.html). Don't forget to change the TOKEN and USER_DATA values in the file.
+Please [partner_sso.html](https://github.com/Beaconstac/api/blob/master/partner_sso.html) for a sample implementation . Don't forget to change the TOKEN and USER_DATA values in the file.
