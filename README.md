@@ -4,5 +4,5 @@
 
 ### Partner API endpoints
 
-[Logging users into the Beaconstac store via SSO](https://github.com/Beaconstac/api/blob/master/storeSSO.md)
+[Creating user accounts in the Beaconstac store](https://github.com/Beaconstac/api/blob/master/storeSSO.md)
 
