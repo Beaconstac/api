@@ -105,7 +105,6 @@ Ordering fields:
 2. `created`
 3. `updated` - default
 4. `address`
-5. `beacon_count`
 
 ## Partner API endpoints
 
