@@ -18,6 +18,11 @@ You can find your developer token by using the following steps.
 
 ![Account Page](https://github.com/Beaconstac/api/blob/master/images/account_page.png)
 
+## Table of Contents
+1. [Reading the documentation](#reading-the-documentation)
+2. [Beacon](#beacon)
+3. [Place](#place)
+
 ## Reading the Documentation
 #### Filter fields
 The API supports filters on fields specified in each object collections' `List` request. To use the filter add the filter name along with the operator and then the value in the request params. 
@@ -65,6 +70,132 @@ Some of the ways you can use filtering
 2. `?ordering='-name'` Will order by name in decending order
 
 ## Core Resources
+### Beacon
+`Beacon` objects allow you to perform actions on your beacons. The API allows you to update, delete, active or deactivate your beacons. You can retrieve individual beacons as well as a list of all your beacons.
+
+#### Beacon object
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `name` | `string` |  `true` | `false`  | The name of the beacon |
+| `UUID` | `string` |  `true` | `true`  | iBeacon UUID |
+| `major` | `integer` |  `true` | `true`  | iBeacon major value |
+| `minor` | `integer` |  `true` | `true`  | iBeacon minor value |
+| `organization` | `integer` |  `true` | `true`  | Organization id |
+| `place` | `integer` |  `true` | `false`  | Place id |
+| `serial_number` | `string` |  `false` | `true`  | serial number |
+| `eddystone_nid` | `string` |  `false` | `true`  | Eddystone namespace instance |
+| `eddystone_bid` | `string` |  `false` | `true`  | Eddystone byte instance |
+| `eddystone_url` | `string` |  `false` | `true`  | Eddystone URL(Deprecated) |
+| `url` | `string` |  `false` | `true`  | Eddystone URL |
+| `state` | `string` |  `false` | `true`  | State of the beacon (`A` Active, `S` Sleeping) |
+| `place_data` | `list[object]` |  `false` | `true`  | Place data associated with place id. Only available in `List` |
+| `tags` | `list[integer]` |  `false` | `false`  | List of tag ids associated |
+| `tag_data` | `list[object]` |  `false` | `true`  | Tag data |
+| `rules` | `list[integer]` |  `false` | `false`  | List of rule ids associated |
+| `rule_data` | `list[object]` |  `false` | `true`  | Rule data |
+| `mode` | `string` |  `false` | `true`  | Mode of the beacon |
+| `tx_power` | `integer` |  `false` | `false`  | Transmission power |
+| `advertising_interval` | `integer` |  `false` | `false`  | Advertising interval |
+| `battery` | `integer` |  `false` | `false`  | Battery |
+| `temperature` | `integer` |  `false` | `false`  | Temperature |
+| `latitude` | `float` |  `false` | `false`  | Latitude |
+| `longitude` | `float` |  `false` | `false`  | Longitude |
+| `closeby_id` | `integer` |  `false` | `true`  | Closeby ID of the beacon(Deprecated) |
+| `nearby_id` | `string` |  `false` | `true`  | Proximity ID of the beacon |
+| `temperature` | `integer` |  `false` | `false`  | Temperature |
+| `proximity_status` | `string` |  `false` | `true`  | Proximity status (Deprecated) |
+| `meta` | `object` |  `false` | `false`  | Metadata associated with the beacon |
+| `deployment_meta` | `object` |  `false` | `false`  | Deployment meta |
+| `kit_type` | `object` |  `false` | `true`  | Beacon kit type (Deprecated) |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+| `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the beacon was last detected |
+| `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
+| `notifications` | `list[EddystoneNotification]` |  `false` | `false`  | `EddystoneNotification` object |
+
+#### Campaign object
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `content_type` | `integer` |  `true` | `false`  | Campaign Type (0 for 'No campaign') |
+| `custom_url` | `URL` |  `true` if `content_type` is 1 | `false`  | Custom URL |
+| `markdown_card` | `integer` |  `true` if `content_type` is 2 | `false`  | Markdown card |
+| `form` | `integer` |  `true` if `content_type` is 3 | `false`  | Form |
+| `schedule` | `integer` |  `true` if `content_type` is 4 | `false`  | Schedule |
+| `campaign_active` | `boolean` |  `false` | `true`  | Current campaign status |
+| `organization` | `integer` |  `false` | `true`  | Organization |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+
+#### Eddystone Notification object
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `language_code` | `true` |  `false` | `false`  | [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Each beacon can have only 1 language notification. |
+| `is_default` | `boolean` |  `true` | `false`  | Is default notification. Each beacon can have only one notification set as default. |
+| `title` | `string` |  `false` | `false`  | Title of the notification (max 49 characters) |
+| `description` | `string` |  `false` | `false`  | Description on the notification (max 2048 characters) |
+| `icon_url` | `URL` |  `false` | `false`  | Icon URL |
+| `app_intent` | `string` |  `false` | `false`  | App intent |
+| `banner_type` | `integer` |  `false` | `false`  | Banner type for NearBee |
+| `banner_image_url` | `string` |  `false` | `false`  | Banner Image URL for NearBee |
+| `meta` | `object` |  `false` | `false`  | Metadata |
+| `slug` | `string` |  `false` | `true`  | Slug for the notification |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+
+#### List beacons
+Returns a list of your beacons. The beacons are returned sorted by beacon `heartbeat`, with the most recent detected beacons appearing first.
+
+`GET https://beaconstac.mobstac.com/api/2.0/beacons/`
+
+Filter arguments:
+1. `name`: `exact`, `icontains`
+2. `serial_number`:  `exact`, `icontains`
+3. `place__name`: `exact`, `icontains`
+4. `tags__name`: `exact`, `icontains`
+5. `url`: `exact`
+6. `heartbeat`: `lt`, `lte`, `gt`, `gte`
+7. `campaign__content_type`: `exact` 
+8. `state`: `exact`
+
+Search Fields:
+1. `name`
+2. `serial_number`
+3. `place__name`
+4. `tags__name`
+5. `url`
+6. `campaign__content_type`
+
+Ordering fields:
+1. `name`
+2. `serial_number`
+3. `battery`
+4. `heartbeat`: default
+5. `place__name`
+6. `created`
+7. `updated`
+8. `campaign__content_type`
+9. `state`
+
+#### Retrieve a beacon
+Retrieves the details of an existing beacon. You need only supply the unique beacon identifier that was returned upon beacon listing.
+
+`GET https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}`
+
+
+#### Update beacon
+Updates the specified beacon by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Beacon object.
+
+`PUT https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}`
+
 ### Place
 Place objects allow you to view all places in your account and view beacons attached to them.
 
