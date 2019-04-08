@@ -196,6 +196,33 @@ Updates the specified beacon by setting the values of the parameters passed. Any
 
 `PUT https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}`
 
+Example:
+Changing campaign to a Markdown Card
+```json
+{
+    "id": 1189,
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner_",
+    "url": "https://eddy.pro/f78WrG",
+    "UUID": "F94DBB23-2266-7822-3782-57BEAC0952AC",
+    "major": 16,
+    "minor": 10,
+    "serial_number": "0117C53F26D6",
+    "eddystone_nid": "5DC33487F02E477D4058",
+    "eddystone_bid": "0117C53F26D6",
+    "place": 1929
+}
+```
+
 ### Place
 Place objects allow you to view all places in your account and view beacons attached to them.
 
