@@ -23,7 +23,7 @@ You can find your developer token by using the following steps.
 2. [Beacon](#beacon)
 3. [NFC Tag](#nfc%20tag)
 4. [QR Code](#qr%20code)
-5. [Geofene](#geofence)
+5. [Geofence](#geofence)
 6. [Place](#place)
 
 ## Reading the Documentation
@@ -448,7 +448,7 @@ Create a QRCOde with campaign set to a Markdown Card
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 | `notifications` | `list[CampaignNotification]` |  `false` | `false`  | `CampaignNotification` object |
 
-#### List beacons
+#### List geofences
 Returns a list of your geofences. The geofences are returned sorted by `updated`, with the most recently updated geofence appearing first.
 
 `GET https://beaconstac.mobstac.com/api/2.0/geofences/`
