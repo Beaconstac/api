@@ -402,7 +402,7 @@ Changing campaign to a Markdown Card
 #### Create a qr code
 Creates a new qr code. However, the request should contain the required fields. Please refer to the NFCTag object.
 
-`PUT https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+`POST https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
 
 Example:
 Create a QRCOde with campaign set to a Markdown Card
@@ -447,6 +447,95 @@ Create a QRCOde with campaign set to a Markdown Card
 | `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the geofence was last detected |
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 | `notifications` | `list[CampaignNotification]` |  `false` | `false`  | `CampaignNotification` object |
+
+#### List beacons
+Returns a list of your geofences. The geofences are returned sorted by `updated`, with the most recently updated geofence appearing first.
+
+`GET https://beaconstac.mobstac.com/api/2.0/geofences/`
+
+Filter arguments:
+1. `name`: `exact`, `icontains`
+2. `place__name`: `exact`, `icontains`
+3. `url`: `exact`
+4. `campaign__content_type`: `exact` 
+5. `state`: `exact`
+
+Search Fields:
+1. `name`
+2. `place__name`
+3. `url`
+4. `campaign__content_type`
+
+Ordering fields:
+1. `name`
+2. `place__name`
+3. `created`
+4. `updated` - default
+5. `campaign__content_type`
+6. `state`
+
+#### Retrieve a geofence
+Retrieves the details of an existing geofence. You need only supply the unique geofence identifier that was returned upon geofence listing.
+
+`GET https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}`
+
+
+#### Update geofence
+Updates the specified geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
+
+`PUT https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}`
+
+Example:
+Changing campaign to a Markdown Card
+```json
+{
+    "id": 1189,
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "url": "https://geo.tapnscan.me/f78WrG",
+    "place": 1929,
+    "latitude": 12.21343,
+    "longitude": 12.213132,
+    "radius": 100
+}
+```
+
+#### Create geofence
+Updates the specified geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
+
+`POST https://beaconstac.mobstac.com/api/2.0/geofences/`
+
+Example:
+Create geofence with campaign to a Markdown Card
+```json
+{
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "place": 1929,
+    "latitude": 12.21343,
+    "longitude": 12.213132,
+    "radius": 100,
+    "organization": 1234
+}
+```
 
 ### Place
 Place objects allow you to view all places in your account and view beacons attached to them.
