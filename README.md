@@ -21,7 +21,10 @@ You can find your developer token by using the following steps.
 ## Table of Contents
 1. [Reading the documentation](#reading-the-documentation)
 2. [Beacon](#beacon)
-3. [Place](#place)
+3. [NFC Tag](#nfc%20tag)
+4. [QR Code](#qr%20code)
+5. [Geofene](#geofence)
+6. [Place](#place)
 
 ## Reading the Documentation
 #### Filter fields
@@ -71,7 +74,7 @@ Some of the ways you can use filtering
 
 ## Core Resources
 ### Beacon
-`Beacon` objects allow you to perform actions on your beacons. The API allows you to update, delete, active or deactivate your beacons. You can retrieve individual beacons as well as a list of all your beacons.
+`Beacon` objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.
 
 #### Beacon object
 ***Attributes***
@@ -224,6 +227,9 @@ Changing campaign to a Markdown Card
 ```
 
 ### NFC Tag
+`NFCTag` objects allow you to perform actions on your nfc tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.
+
+#### NFC Tag object
 ***Attributes***
 
 | Field | Type | Required | Read only | Description |
@@ -246,7 +252,72 @@ Changing campaign to a Markdown Card
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 
 
+#### List nfc tags
+Returns a list of your nfc tags. The tags are returned sorted by `updated`, with the most recently updated tags appearing first.
+
+`GET https://beaconstac.mobstac.com/api/2.0/nfctags/`
+
+Filter arguments:
+1. `name`: `exact`, `icontains`
+2. `place__name`: `exact`, `icontains`
+3. `tags__name`: `exact`, `icontains`
+4. `url`: `exact`
+5. `campaign__content_type`: `exact` 
+6. `state`: `exact`
+
+Search Fields:
+1. `name`
+2. `place__name`
+3. `tags__name`
+4. `url`
+5. `campaign__content_type`
+
+Ordering fields:
+1. `name`
+2. `place__name`
+3. `created`
+4. `updated` - default
+5. `campaign__content_type`
+6. `state`
+
+#### Retrieve a nfc tag
+Retrieves the details of an existing nfc tag. You need only supply the unique nfc tag identifier that was returned upon tags listing.
+
+`GET https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}`
+
+
+#### Update a nfc tag
+Updates the specified nfc tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.
+
+`PUT https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}`
+
+Example:
+Changing campaign to a Markdown Card
+```json
+{
+    "id": 1189,
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "url": "https://nfc.tapnscan.me/f78WrG",
+    "uid": "abc",
+    "place": 1929
+}
+```
+
+
 ### QR Code
+`QRCode` objects allow you to perform actions on your qr codes. You can retrieve individual qr codes as well as a list of all your qr codes or update a qr code.
+
+#### QR Code object
 ***Attributes***
 
 | Field | Type | Required | Read only | Description |
@@ -271,6 +342,9 @@ Changing campaign to a Markdown Card
 
 
 ### Geofence
+`Geofence` objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence.
+
+#### Geofence object
 ***Attributes***
 
 | Field | Type | Required | Read only | Description |
