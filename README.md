@@ -141,7 +141,7 @@ Some of the ways you can use filtering
 | Field | Type | Required | Read only | Description |
 |---|---|---|---|---|
 | `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
-| `language_code` | `true` |  `false` | `false`  | [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Each beacon can have only 1 language notification. |
+| `language_code` | `string` |  `true` | `false`  | [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Each beacon can have only 1 language notification. |
 | `is_default` | `boolean` |  `true` | `false`  | Is default notification. Each beacon can have only one notification set as default. |
 | `title` | `string` |  `false` | `false`  | Title of the notification (max 49 characters) |
 | `description` | `string` |  `false` | `false`  | Description on the notification (max 2048 characters) |
