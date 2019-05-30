@@ -114,7 +114,7 @@ Some of the ways you can use filtering
 | `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
 | `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the beacon was last detected |
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
-| `notifications` | `list[EddystoneNotification]` |  `false` | `false`  | `EddystoneNotification` object |
+| `notifications` | `list[CampaignNotification]` |  `false` | `false`  | `CampaignNotification` object |
 
 #### Campaign object
 ***Attributes***
@@ -132,7 +132,7 @@ Some of the ways you can use filtering
 | `created` | `timestamp` |  `false` | `true`  | Created timestamp |
 | `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
 
-#### Eddystone Notification object
+#### Campaign Notification object
 ***Attributes***
 
 | Field | Type | Required | Read only | Description |
@@ -222,6 +222,77 @@ Changing campaign to a Markdown Card
     "place": 1929
 }
 ```
+
+### NFC Tag
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `name` | `string` |  `true` | `false`  | The name of the nfc tag |
+| `uid` | `string` |  `true` | `true`  | NFC tag UID |
+| `counter` | `integer` |  `false` | `true`  | NFC tag counter. Counts the number of times the tag has been read |
+| `organization` | `integer` |  `true` | `true`  | Organization id |
+| `place` | `integer` |  `true` | `false`  | Place id |
+| `url` | `string` |  `false` | `true`  | NFC Tag URL |
+| `state` | `string` |  `false` | `true`  | State of the nfc tag (`A` Active, `S` Sleeping) |
+| `place_data` | `list[object]` |  `false` | `true`  | Place data associated with place id. Only available in `List` |
+| `tags` | `list[integer]` |  `false` | `false`  | List of tag ids associated |
+| `tag_data` | `list[object]` |  `false` | `true`  | Tag data |
+| `meta` | `object` |  `false` | `false`  | Metadata associated with the nfc tag |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+| `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the nfc tag was last detected |
+| `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
+
+
+### QR Code
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `name` | `string` |  `true` | `false`  | The name of the qr code |
+| `fields_data` | `object` |  `true` | `false`  | Fields data for the QR Code |
+| `attributes` | `object` |  `true` | `false`  | Attributes data for the QR Code |
+| `qr_type` | `integer` |  `false` | `false`  | QR type (`1` Static, `2` Dynamic) |
+| `organization` | `integer` |  `true` | `true`  | Organization id |
+| `place` | `integer` |  `true` | `false`  | Place id |
+| `url` | `string` |  `false` | `true`  | QR code URL |
+| `state` | `string` |  `false` | `true`  | State of the qr code (`A` Active, `S` Sleeping) |
+| `place_data` | `list[object]` |  `false` | `true`  | Place data associated with place id. Only available in `List` |
+| `tags` | `list[integer]` |  `false` | `false`  | List of tag ids associated |
+| `tag_data` | `list[object]` |  `false` | `true`  | Tag data |
+| `meta` | `object` |  `false` | `false`  | Metadata associated with the qr code |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+| `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the qr code was last detected |
+| `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
+
+
+### Geofence
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `name` | `string` |  `true` | `false`  | The name of the geofence |
+| `latitude` | `float` |  `true` | `false`  | Latitude |
+| `longitude` | `float` |  `true` | `false`  | Longigtude |
+| `radius` | `integer` |  `true` | `false`  | Radius of the geofence |
+| `organization` | `integer` |  `true` | `true`  | Organization id |
+| `place` | `integer` |  `true` | `false`  | Place id |
+| `url` | `string` |  `false` | `true`  | Geofence URL |
+| `state` | `string` |  `false` | `true`  | State of the geofence (`A` Active, `S` Sleeping) |
+| `place_data` | `list[object]` |  `false` | `true`  | Place data associated with place id. Only available in `List` |
+| `tags` | `list[integer]` |  `false` | `false`  | List of tag ids associated |
+| `tag_data` | `list[object]` |  `false` | `true`  | Tag data |
+| `meta` | `object` |  `false` | `false`  | Metadata associated with the geofence |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+| `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the geofence was last detected |
+| `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
+| `notifications` | `list[CampaignNotification]` |  `false` | `false`  | `CampaignNotification` object |
 
 ### Place
 Place objects allow you to view all places in your account and view beacons attached to them.
