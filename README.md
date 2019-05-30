@@ -340,6 +340,86 @@ Changing campaign to a Markdown Card
 | `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the qr code was last detected |
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 
+#### List qr codes
+Returns a list of your qr codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
+
+`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/`
+
+Filter arguments:
+1. `name`: `exact`, `icontains`
+2. `place__name`: `exact`, `icontains`
+3. `tags__name`: `exact`, `icontains`
+4. `url`: `exact`
+5. `campaign__content_type`: `exact` 
+6. `state`: `exact`
+
+Search Fields:
+1. `name`
+2. `place__name`
+3. `tags__name`
+4. `url`
+5. `campaign__content_type`
+
+Ordering fields:
+1. `name`
+2. `place__name`
+3. `created`
+4. `updated` - default
+5. `campaign__content_type`
+6. `state`
+
+#### Retrieve a qr code
+Retrieves the details of an existing qr code. You need only supply the unique qr code identifier that was returned upon qr codes listing.
+
+`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+
+#### Update a qr code
+Updates the specified qr code by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the QRCode object.
+
+`PUT https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+
+Example:
+Changing campaign to a Markdown Card
+```json
+{
+    "id": 1189,
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "url": "https://qr.tapnscan.me/f78WrG",
+    "place": 1929
+}
+```
+
+#### Create a qr code
+Creates a new qr code. However, the request should contain the required fields. Please refer to the NFCTag object.
+
+`PUT https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+
+Example:
+Create a QRCOde with campaign set to a Markdown Card
+```json
+{
+    "attributes": {
+        "color": "#000000",
+        "margin": "",
+        "backgroundImage": "",
+        "logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/calender.svg"
+    },
+    "name": "test 3",
+    "qr_type": 2,
+    "organization": 1284,
+    "place": 23
+}
+```
 
 ### Geofence
 `Geofence` objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence.
