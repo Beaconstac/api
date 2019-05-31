@@ -405,7 +405,7 @@ Creates a new qr code. However, the request should contain the required fields. 
 `POST https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
 
 Example:
-Create a QRCOde with campaign set to a Markdown Card
+Create a QRCode with campaign set to a Markdown Card
 ```json
 {
     "attributes": {
@@ -420,6 +420,22 @@ Create a QRCOde with campaign set to a Markdown Card
     "place": 23
 }
 ```
+
+#### Download a QR code
+Download a QR code in a particular size and image format. Image types supported are PNG, JPEG, SVG and PDF.
+If no canvas type is sent in the parameters, the QRCode would be generated in all image types supported.
+
+`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}/download/?size={size}&canvas_type={canvas_type}`
+
+Example:
+Download the QRCode of size 1024x1024 pixels in SVG format.
+`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/100/download/?size=1024&canvas_type=svg`
+```json
+{
+    "svg": "url.svg"
+}
+```
+
 
 ### Geofence
 `Geofence` objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence.
