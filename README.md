@@ -21,8 +21,8 @@ You can find your developer token by using the following steps.
 ## Table of Contents
 1. [Reading the documentation](#reading-the-documentation)
 2. [Beacon](#beacon)
-3. [NFC Tag](#nfc%20tag)
-4. [QR Code](#qr%20code)
+3. [NFC Tag](#nfc-tag)
+4. [QR Code](#qr-code)
 5. [Geofence](#geofence)
 6. [Place](#place)
 
