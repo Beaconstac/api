@@ -50,6 +50,34 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 
 # Beaconstac
 
+## Campaign
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***content_type***	`integer`	`required`	<p> Campaign Type (0 for 'No campaign') </p> |
+| ***custom_url***	`URL`	`true if content_type is 1`	<p> User configured URL associated with the campaign </p> |
+| ***markdown_card***	`integer`	`true if content_type is 2`	<p> Markdown card associated with the campaign </p> |
+| ***form***	`integer`	`true if content_type is 3`	<p> Form associated with the campaign </p> |
+| ***schedule***	`integer`	`true if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***campaign_active***	`boolean`	`read only`	<p> Current campaign status </p> |
+| ***organization*** `integer` `required` `read only` <p> Id of the organization to which the campaign belongs to </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the campaign </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the campaign </p> |
+
+## Campaign Notification
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***language_code***	`string`	`required` <p> [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Each beacon can have only 1 language notification. </p> |
+| ***is_default***	`boolean`	`required`	<p> Is default notification. Each beacon can have only one notification set as default. </p> |
+| ***title*** `string` <p> The title of the campaign notification (max 49 characters) <p> |
+| ***description*** `string` <p> The description of the campaign notification (max 2048 characters) <p> |
+| ***icon_url***	`URL`	<p> The icon url of the campaign notification </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the campaign notification </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the campaign notification </p> |
+
 ## Beacon
 
 Beacon objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.
@@ -57,7 +85,7 @@ Beacon objects allow you to perform actions on your beacons. You can retrieve in
 | **Attributes** |
 |---|
 | ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
-| ***name*** `string` `required` <p> The name of the beacon, read write <p> |
+| ***name*** `string` `required` <p> The name of the beacon <p> |
 | ***UUID*** `string` `required` `read only` <p> UUID of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
 | ***major*** `integer` `required` `read only` <p> Major value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
 | ***minor*** `integer` `required` `read only` <p> Minor value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
