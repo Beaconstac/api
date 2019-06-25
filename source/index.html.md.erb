@@ -56,7 +56,7 @@ Beacon objects allow you to perform actions on your beacons. You can retrieve in
 
 | **Attributes** |
 |---|
-| ***id*** `integer``read only` <p> Unique identifier of the object </p> |
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
 | ***name*** `string` `required` <p> The name of the beacon, read write <p> |
 | ***UUID*** `string` `required` `read only` <p> UUID of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
 | ***major*** `integer` `required` `read only` <p> Major value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
@@ -505,7 +505,7 @@ NFCTag objects allow you to perform actions on your nfc tags. You can retrieve i
 | ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the nfc tag belongs to </p> |
 | ***place*** `integer` `required` `read only` <p>  Id of the place where the nfc tag is deployed </p> |
 | ***url***	`string` `read only`	<p> URL configured on the hardware nfc tag </p> |
-| ***state***	`string` `read only` <p> State of the nfc tag (A Active, S Sleeping) </p> |
+| ***state***	`string` `read only` <p> State of the nfc tag (`A` Active, `S` Sleeping) </p> |
 | ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
 | ***tags*** `list[integer]` <p> List of associated tag ids </p> |
 | ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
@@ -742,6 +742,26 @@ Updates the specified nfc tag by setting the values of the parameters passed. An
 ## QR Code
 
 QRCode objects allow you to perform actions on your qr codes. You can retrieve individual qr codes as well as a list of all your qr codes or update a qr code.
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the QR Code </p> |
+| ***name***	`string` `required`	<p>	The name of the qr code </p> |
+| ***fields_data***	`object`	`required`	<p> Fields data for the QR Code </p> |
+| ***attributes***	`object`	`required`	<p>	Attributes data for the QR Code </p> |
+| ***qr_type***	`integer`	<p> QR type (`1` Static, `2` Dynamic) </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the qr code belongs to </p> |
+| ***place*** `integer` `required` `read only` <p>  Id of the place where the qr code is deployed </p> |
+| ***url***	`string` `read only`	<p> URL configured on the hardware qr code </p> |
+| ***state***	`string` `read only` <p> State of the qr code (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
+| ***meta*** `object` <p> Metadata associated with the qr code </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the qr code </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the qr code </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the qr code was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the qr code </p>|
 
 
 ### Get all QR codes
@@ -1081,6 +1101,28 @@ Download a QR code in a particular size and image format. Image types supported 
 ## Geofence
 
 Geofence objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the Geofence </p> |
+| ***name***	`string` `required`	<p>	The name of the geofence </p> |
+| ***latitude***	`float`	`required` <p> Latitude of the geofence </p> |
+| ***longitude***	`float`	`required` <p> Longitude of the geofence </p> |
+| ***radius***	`float`	`required` <p> Radius of the geofence </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the geofence belongs to </p> |
+| ***place*** `integer` `required` <p>  Id of the place where the geofence is configured </p> |
+| ***url***	`string` `read only`	<p> URL configured for the geofence </p> |
+| ***state***	`string` `read only` <p> State of the geofence (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` `read only` <p> Tag data associated with attached tag ids. </p> |
+| ***meta*** `object` <p> Metadata associated with the geofence </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the geofence </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the geofence </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the goefence was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the geofence </p>|
+| ***notifications*** `list[CampaignNotification]` <p> `CampaignNotification` object associated with the geofence based on configured language(s) </p> |
+
 
 ### Get all geofences
 
@@ -1438,6 +1480,24 @@ You can create the geofence by giving it a `name`, `latitude`, `longitude`, `rad
 ## Place
 
 Place objects allow you to view all places in your account and view beacons attached to them.
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the Place </p> |
+| ***name***	`string` `required`	<p>	The name of the place </p> |
+| ***latitude***	`float`	`required` <p> Latitude of the place </p> |
+| ***longitude***	`float`	`required` <p> Longitude of the place </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the place belongs to </p> |
+| ***place_id*** `integer` `required` <p>  Google Place ID of the place </p> |
+| ***address***	`string` <p> Google Place Address of the place </p> |
+| ***beacons***	`list[object]` `read only` <p> Beacon data associated with place id. </p> |
+| ***beacon_count***	`integer`	`read only`	<p> Number of beacons associated with the place </p> |
+| ***default_place***	`boolean`	`read only`	<p> Indicated whether the place is a default place </p> |
+| ***business_icon_url***	`string` <p> Business Icon URL (Used in NearBee) </p> |
+| ***business_cover_url***	`string` <p> Business Cover URL (Used in NearBee) </p> |
+| ***business_color***	`string` <p> Business Color (Used in NearBee) </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the place </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the place </p> |
 
 ### Get all places
 
