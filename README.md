@@ -16,7 +16,7 @@ You can find your developer token by using the following steps.
 3. In the 'Account Details' section, copy the 'Developer Token' value.
 4. Add a header field with key `Authorization` and value as `Token <YOUR_TOKEN>`
 
-![Account Page](https://github.com/Beaconstac/api/blob/master/images/account_page.png)
+![Account Page](https://github.com/Beaconstac/api/blob/master/Older/images/account_page.png)
 
 ## Table of Contents
 1. [Reading the documentation](#reading-the-documentation)

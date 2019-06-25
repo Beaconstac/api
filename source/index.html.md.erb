@@ -1,0 +1,1884 @@
+---
+title: API Reference
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+
+includes:
+  - errors
+
+search: true
+---
+
+# Introduction
+
+The Beaconstac API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). Our API has predictable resource-oriented URLs, accepts [form-encoded](https://en.wikipedia.org/wiki/POST_(HTTP)#Use_for_submitting_web_forms) request bodies, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.
+
+# Authentication
+
+> To authorize, use this code:
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://beaconstac.mobstac.com/api/2.0/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> Make sure to replace `YOUR_TOKEN` with your API key.
+
+The Beaconstac API uses API key to authenticate requests.
+
+Your API key carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.
+
+All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+
+You can find your developer token by using the following steps.
+
+1. Login to the [Beaconstac dashboard](https://dashboard.beaconstac.com/).
+2. Go to your 'Account' section using the drop-down on the top-right.
+3. In the 'Account Details' section, copy the 'Developer Token' value.
+
+![Account Page](account_page.png)
+
+Beaconstac expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: Token YOUR_TOKEN`
+
+<aside class="notice">
+You must replace <code>YOUR_TOKEN</code> with your personal API key.
+</aside>
+
+# Beaconstac
+
+## Campaign
+
+Campaign is type of marketing strategy which can in the form of custom url, markdown card, form and schedule.
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***content_type***	`integer`	`required`	<p> Campaign Type (0 for 'No campaign') </p> |
+| ***custom_url***	`URL`	`true if content_type is 1`	<p> User configured URL associated with the campaign </p> |
+| ***markdown_card***	`integer`	`true if content_type is 2`	<p> Markdown card associated with the campaign </p> |
+| ***form***	`integer`	`true if content_type is 3`	<p> Form associated with the campaign </p> |
+| ***schedule***	`integer`	`true if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***campaign_active***	`boolean`	`read only`	<p> Current campaign status </p> |
+| ***organization*** `integer` `required` `read only` <p> Id of the organization to which the campaign belongs to </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the campaign </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the campaign </p> |
+
+## Campaign Notification
+
+Campaign notification is the brief overview of the campaign, used to alert the user. This can only be used with beacon and geofence objects.
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***language_code***	`string`	`required` <p> [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Each beacon can have only 1 language notification. </p> |
+| ***is_default***	`boolean`	`required`	<p> Is default notification. Each beacon can have only one notification set as default. </p> |
+| ***title*** `string` <p> The title of the campaign notification (max 49 characters) <p> |
+| ***description*** `string` <p> The description of the campaign notification (max 2048 characters) <p> |
+| ***icon_url***	`URL`	<p> The icon url of the campaign notification </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the campaign notification </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the campaign notification </p> |
+
+## Beacon
+
+Beacon objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***name*** `string` `required` <p> The name of the beacon <p> |
+| ***UUID*** `string` `required` `read only` <p> UUID of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
+| ***major*** `integer` `required` `read only` <p> Major value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
+| ***minor*** `integer` `required` `read only` <p> Minor value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
+| ***organization*** `integer` `required` `read only` <p> Id of the organization to which the beacon belongs to </p> |
+| ***place*** `integer` `required` `read only` <p>  Id of the place where the beacon is deployed </p> |
+| ***serial_number*** `string` `read only` <p>  Serial number of the hardware </p> |
+| ***eddystone_nid*** `string` `read only` <p> Namespace of the beacon associated with the Eddystone protocol, configured on the hardware </p> |
+| ***eddystone_bid*** `string` `read only` <p> Instance of the beacon associated with the Eddystone protocol, configured on the hardware  </p> |
+| ***eddystone_url*** `string` `read only` <p> URL(Deprecated) configured on the hardware |
+| ***url*** `string` `read only` <p> URL configured on the hardware </p> |
+| ***state*** `string` `read only` <p> State of the beacon (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
+| ***rules*** `list[integer]` <p> List of associated rule ids </p> |
+| ***rule_data*** `list[object]` <p> Rule data associated with attached rule ids </p> |
+| ***mode*** `string` `read only` <p> Mode of the beacon </p> |
+| ***tx_power*** `integer` <p> Transmission power configured on the hardware </p> |
+| ***advertising_interval*** `integer` <p> Advertising interval configured on the hardware </p> |
+| ***battery*** `integer` <p> Battery reported by the hardware </p> |
+| ***temperature*** `integer` <p> Temperature, reported by the hardware </p> |
+| ***latitude*** `float` <p> Latitude </p> |
+| ***longitude*** `float` <p> Longitude </p> |
+| ***closeby_id*** `integer` `read only` <p> Closeby ID of the beacon(Deprecated) </p> |
+| ***nearby_id*** `string` <p> Proximity ID of the beacon </p> |
+| ***proximity_status*** `string` `read only` <p> Proximity status (Deprecated) </p> |
+| ***meta*** `object` <p> Metadata associated with the beacon </p> |
+| ***deployment_meta*** `object` <p> Deployment meta associated with the beacon </p> |
+| ***kit_type*** `object` `read only` <p> Beacon kit type (Deprecated) </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the beacon </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the beacon </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the beacon was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the beacon </p>|
+| ***notifications*** `list[CampaignNotification]` <p> `CampaignNotification` object associated with the beacon based on configured language(s) </p> |
+
+### Get all beacons
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/beacons/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 8072,
+      "meta": {
+        "hardware_type": 1
+      },
+      "deployment_meta": {},
+      "kit_type": {
+        "types": [
+          "AK",
+          "SK"
+        ]
+      },
+      "place_data": {
+        "id": 8361,
+        "name": "KIA Bengaluru"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 3335,
+        "name": "Ola - Scooter taxi",
+        "custom_url": "https://www.tiny.cc/gmymry",
+        "content_type": 2,
+        "campaign_active": true,
+        "created": "2017-09-01T05:22:20.318082Z",
+        "updated": "2019-05-28T08:43:13.826580Z",
+        "organization": 1697,
+        "markdown_card": 9572,
+        "form": 12406,
+        "schedule": 28
+      },
+      "proximity_status": 0,
+      "eddystone_url": "https://eddy.pro/vLkeTm",
+      "name": "0117C5978008",
+      "url": "https://eddy.pro/vLkeTm",
+      "state": "A",
+      "heartbeat": "2019-06-24T06:19:24.245871Z",
+      "created": "2017-09-01T05:22:19.967161Z",
+      "updated": "2019-06-24T06:19:24.246013Z",
+      "UUID": "F94DBB23-2266-7822-3782-57BEAC0952AC",
+      "major": 58460,
+      "minor": 21851,
+      "latitude": 12.9818683,
+      "longitude": 77.6404922,
+      "temperature": 19,
+      "battery": 99,
+      "advertising_interval": 211,
+      "tx_power": 4,
+      "mode": "IL",
+      "serial_number": "0117C5978008",
+      "eddystone_nid": "5DC33487F02E477D4058",
+      "eddystone_bid": "0117C5978008",
+      "closeby_id": 731031,
+      "nearby_id": "beacons/3!5dc33487f02e477d40580117c5978008",
+      "organization": 1697,
+      "place": 8361,
+      "tags": []
+    },
+    {
+      "id": 20017,
+      "meta": {
+        "hardware_type": 4
+      },
+      "deployment_meta": {},
+      "kit_type": {
+        "types": [
+          "AK",
+          "SK"
+        ]
+      },
+      "place_data": {
+        "id": 2888,
+        "name": "Times Square"
+      },
+      "tag_data": [
+        {
+          "id": 1076,
+          "name": "Footwear"
+        }
+      ],
+      "campaign": {
+        "id": 14395,
+        "name": "Vipin Schedule Test",
+        "custom_url": "https://www.google.com",
+        "content_type": 4,
+        "campaign_active": true,
+        "created": "2018-09-17T07:29:28.674926Z",
+        "updated": "2019-04-18T09:49:37.916926Z",
+        "organization": 1697,
+        "markdown_card": 10790,
+        "form": 11805,
+        "schedule": 4586
+      },
+      "proximity_status": 0,
+      "eddystone_url": "https://eddy.pro/uREvlU",
+      "name": "AC233F25A31B",
+      "url": "https://eddy.pro/uREvlU",
+      "state": "A",
+      "heartbeat": "2019-06-24T06:11:59.475411Z",
+      "created": "2018-09-17T07:29:28.649751Z",
+      "updated": "2019-06-24T06:11:59.475541Z",
+      "UUID": "F94DBB23-2266-7822-3782-57BEAC0952AC",
+      "major": 46468,
+      "minor": 13497,
+      "latitude": 40.758895,
+      "longitude": -73.985131,
+      "temperature": 22,
+      "battery": 100,
+      "advertising_interval": 200,
+      "tx_power": -8,
+      "mode": "IL",
+      "serial_number": "AC233F25A31B",
+      "eddystone_nid": "5DC33487F02E477D4058",
+      "eddystone_bid": "AC233F25A31B",
+      "closeby_id": 16278664,
+      "nearby_id": "beacons/3!5dc33487f02e477d4058ac233f25a31b",
+      "organization": 1697,
+      "place": 2888,
+      "tags": [
+        1076
+      ]
+    }
+  ]
+}
+```
+
+Returns a list of your beacons. The beacons are returned sorted by beacon heartbeat, with the most recent detected beacons appearing first.
+
+Filter arguments:
+
+1. `name`: `exact`, `icontains`
+2. `serial_number`:  `exact`, `icontains`
+3. `place__name`: `exact`, `icontains`
+4. `tags__name`: `exact`, `icontains`
+5. `url`: `exact`
+6. `heartbeat`: `lt`, `lte`, `gt`, `gte`
+7. `campaign__content_type`: `exact`
+8. `state`: `exact`
+
+Search Fields:
+
+1. `name`
+2. `serial_number`
+3. `place__name`
+4. `tags__name`
+5. `url`
+6. `campaign__content_type`
+
+Ordering fields:
+
+1. `name`
+2. `serial_number`
+3. `battery`
+4. `heartbeat`: default
+5. `place__name`
+6. `created`
+7. `updated`
+8. `campaign__content_type`
+9. `state`
+
+
+### Retrieve a beacon
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 15646,
+  "meta": {
+    "hardware_type": 3
+  },
+  "place_data": {
+    "id": 7466,
+    "name": "Times Square"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 10130,
+    "name": "Half Price, Happy Hour",
+    "custom_url": "https://www.google.com",
+    "content_type": 2,
+    "campaign_active": true,
+    "created": "2018-06-01T10:47:21.785384Z",
+    "updated": "2019-06-05T20:39:35.266185Z",
+    "organization": 3935,
+    "markdown_card": 11653,
+    "form": 12422,
+    "schedule": 4399
+  },
+  "deployment_meta": {},
+  "kit_type": {
+    "types": [
+      "AK",
+      "SK"
+    ]
+  },
+  "rules": [],
+  "rule_data": [],
+  "notifications": [
+    {
+      "id": 1323950,
+      "meta": {
+        "closeby": {},
+        "nearby": {}
+      },
+      "title": "轉數快：隨時隨地，跨行即時過數！",
+      "description": null,
+      "icon_url": "https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08",
+      "banner_type": 1,
+      "banner_image_url": null,
+      "app_intent": null,
+      "is_default": false,
+      "slug": "轉數快隨時隨地跨行即時過數",
+      "created": "2018-09-17T10:15:33.082052Z",
+      "updated": "2019-05-02T11:48:55.626906Z",
+      "language_code": "en"
+    },
+    {
+      "id": 1383027,
+      "meta": {
+        "closeby": {},
+        "nearby": {}
+      },
+      "title": "轉數快：隨時隨地，跨行即時過數！",
+      "description": "",
+      "icon_url": "https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08",
+      "banner_type": 1,
+      "banner_image_url": null,
+      "app_intent": null,
+      "is_default": true,
+      "slug": "轉數快隨時隨地跨行即時過數",
+      "created": "2018-10-30T08:12:21.938128Z",
+      "updated": "2019-05-02T11:48:55.640839Z",
+      "language_code": "zh"
+    }
+  ],
+  "proximity_status": 0,
+  "eddystone_url": "https://eddy.pro/CKEc5X",
+  "name": "The Coffeeshop",
+  "url": "https://eddy.pro/CKEc5X",
+  "state": "A",
+  "heartbeat": "2018-09-17T10:15:59.184415Z",
+  "created": "2018-06-01T10:47:21.744035Z",
+  "updated": "2019-06-05T20:39:35.299706Z",
+  "UUID": "F94DBB23-2266-7822-3782-57BEAC0952AC",
+  "major": 54222,
+  "minor": 60051,
+  "latitude": null,
+  "longitude": null,
+  "temperature": 0,
+  "battery": 0,
+  "advertising_interval": 200,
+  "tx_power": -8,
+  "mode": "IL",
+  "serial_number": "AC233F251546",
+  "eddystone_nid": "5DC33487F02E477D4058",
+  "eddystone_bid": "AC233F251546",
+  "closeby_id": 11348073,
+  "nearby_id": "beacons/3!5dc33487f02e477d4058ac233f251546",
+  "organization": 3935,
+  "place": 7466,
+  "tags": []
+}
+```
+
+Retrieves the details of an existing beacon. You need only supply the unique beacon identifier that was returned upon beacon listing
+
+### Update Beacon
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}"
+  -X PUT
+  -H "Authorization: Token YOUR_TOKEN"
+  -d "{'id':beacon_id, 'campaign':{'id':campaign_id}}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 15646,
+  "meta": {
+    "hardware_type": 3
+  },
+  "place_data": {
+    "id": 7466,
+    "name": "Times Square"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 10130,
+    "name": "Customer satisfaction survey",
+    "custom_url": "https://www.google.com",
+    "content_type": 3,
+    "campaign_active": true,
+    "created": "2018-06-01T10:47:21.785384Z",
+    "updated": "2019-06-24T08:47:29.158541Z",
+    "organization": 3935,
+    "markdown_card": 11653,
+    "form": 12422,
+    "schedule": 4399
+  },
+  "deployment_meta": {},
+  "kit_type": {
+    "types": [
+      "AK",
+      "SK"
+    ]
+  },
+  "rules": [],
+  "rule_data": [],
+  "notifications": [
+    {
+      "id": 1323950,
+      "meta": {
+        "closeby": {},
+        "nearby": {}
+      },
+      "title": "轉數快：隨時隨地，跨行即時過數！",
+      "description": "轉數快：隨時隨地",
+      "icon_url": "https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08",
+      "banner_type": 1,
+      "banner_image_url": null,
+      "app_intent": null,
+      "is_default": false,
+      "slug": "轉數快隨時隨地跨行即時過數",
+      "created": "2018-09-17T10:15:33.082052Z",
+      "updated": "2019-06-24T08:47:29.139565Z",
+      "language_code": "en"
+    },
+    {
+      "id": 1383027,
+      "meta": {
+        "closeby": {},
+        "nearby": {}
+      },
+      "title": "轉數快：隨時隨地，跨行即時過數！",
+      "description": "",
+      "icon_url": "https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08",
+      "banner_type": 1,
+      "banner_image_url": null,
+      "app_intent": null,
+      "is_default": true,
+      "slug": "轉數快隨時隨地跨行即時過數",
+      "created": "2018-10-30T08:12:21.938128Z",
+      "updated": "2019-06-24T08:47:29.152753Z",
+      "language_code": "zh"
+    }
+  ],
+  "proximity_status": 0,
+  "eddystone_url": "https://eddy.pro/CKEc5X",
+  "name": "The Coffeeshop",
+  "url": "https://eddy.pro/CKEc5X",
+  "state": "A",
+  "heartbeat": "2018-09-17T10:15:59.184415Z",
+  "created": "2018-06-01T10:47:21.744035Z",
+  "updated": "2019-06-24T08:47:29.095082Z",
+  "UUID": "F94DBB23-2266-7822-3782-57BEAC0952AC",
+  "major": 54222,
+  "minor": 60051,
+  "latitude": null,
+  "longitude": null,
+  "temperature": 0,
+  "battery": 0,
+  "advertising_interval": 200,
+  "tx_power": -8,
+  "mode": "IL",
+  "serial_number": "AC233F251546",
+  "eddystone_nid": "5DC33487F02E477D4058",
+  "eddystone_bid": "AC233F251546",
+  "closeby_id": 11348073,
+  "nearby_id": "beacons/3!5dc33487f02e477d4058ac233f251546",
+  "organization": 3935,
+  "place": 7466,
+  "tags": []
+}
+```
+
+Updates the specified beacon by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Beacon object.
+
+## NFC Tag
+
+NFCTag objects allow you to perform actions on your nfc tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the NFC tag </p> |
+| ***name***	`string` `required`	<p>	The name of the nfc tag </p> |
+| ***uid*** `string`	`required`	`read only`	<p> UID of the hardware </p> |
+| ***counter***	`integer`	`read only`	<p> NFC tag counter. Counts the number of times the hardware tag has been read </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the nfc tag belongs to </p> |
+| ***place*** `integer` `required` `read only` <p>  Id of the place where the nfc tag is deployed </p> |
+| ***url***	`string` `read only`	<p> URL configured on the hardware nfc tag </p> |
+| ***state***	`string` `read only` <p> State of the nfc tag (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
+| ***meta*** `object` <p> Metadata associated with the nfc tag </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the nfc tag </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the nfc tag </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the nfc tag was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the nfc tag </p>|
+
+
+### Get all NFC tags
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/nfctags/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1329,
+      "name": "04DA184A096180",
+      "uid": "04DA184A096180",
+      "counter": 8,
+      "meta": {
+        "activationTimestamp": 1552469890
+      },
+      "place_data": {
+        "id": 2888,
+        "name": "Times Square"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 22398,
+        "name": "Christmas Special",
+        "custom_url": "https://www.google.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "created": "2019-03-13T09:38:08.416096Z",
+        "updated": "2019-03-13T09:38:08.416111Z",
+        "organization": 1697,
+        "markdown_card": 1708,
+        "form": 4377,
+        "schedule": 28
+      },
+      "url": "https://nfc.tapnscan.me/1xdthy",
+      "state": "A",
+      "heartbeat": "2019-06-17T11:05:35.788514Z",
+      "created": "2019-02-26T05:56:07.426902Z",
+      "updated": "2019-06-17T11:05:35.788643Z",
+      "encrypted_hardware_key": "o3N6+fKRkCSRaJZJ86xvm6pVEaUmX/+mlfv7RgZfw3bgQdPFE6M0zt4jpx9KiWa0",
+      "organization": 1697,
+      "place": 2888,
+      "tags": []
+    },
+    {
+      "id": 1151,
+      "name": "046974ca714d81",
+      "uid": "046974ca714d81",
+      "counter": 129,
+      "meta": {
+        "activationTimestamp": 1552298188
+      },
+      "place_data": {
+        "id": 2888,
+        "name": "Times Square"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 22295,
+        "name": "Christmas Special",
+        "custom_url": "https://www.google.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "created": "2019-03-11T09:56:27.705916Z",
+        "updated": "2019-03-11T09:56:27.705930Z",
+        "organization": 1697,
+        "markdown_card": 1708,
+        "form": 4377,
+        "schedule": 28
+      },
+      "url": "https://nfc.tapnscan.me/5dkm0C",
+      "state": "A",
+      "heartbeat": "2019-06-03T07:12:25.247399Z",
+      "created": "2019-02-26T05:56:06.109631Z",
+      "updated": "2019-06-03T07:12:25.247588Z",
+      "encrypted_hardware_key": "qmK1WNHrq30BGSooKHDmFJoWYNz0CnOXXqdAOWlQ19OHqkL63cagPgsersM+Ma6t",
+      "organization": 1697,
+      "place": 2888,
+      "tags": []
+    }
+  ]
+}
+```
+
+Returns a list of your nfc tags. The tags are returned sorted by updated, with the most recently updated tags appearing first.
+
+Filter arguments:
+
+1. `name`: `exact`, `icontains`
+2. `place__name`: `exact`, `icontains`
+3. `tags__name`: `exact`, `icontains`
+4. `url`: `exact`
+5. `campaign__content_type`: `exact`
+6. `state`: `exact`
+
+Search Fields:
+
+1. `name`
+2. `place__name`
+3. `tags__name`
+4. `url`
+5. `campaign__content_type`
+
+Ordering fields:
+
+1. `name`
+2. `place__name`
+3. `created`
+4. `updated` - default
+5. `campaign__content_type`
+6. `state`
+
+
+### Retrieve a NFC tag
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 3,
+  "name": "04DA184A096180",
+  "uid": "04DA184A096180",
+  "counter": 0,
+  "meta": {
+    "hardware_type": 8,
+    "activationTimestamp": 1552891519
+  },
+  "place_data": {
+    "id": 1430,
+    "name": "MobStac"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 20019,
+    "name": "Looking for Shoes?",
+    "custom_url": "https://www.google.com",
+    "content_type": 2,
+    "campaign_active": true,
+    "created": "2019-03-18T06:45:16.989177",
+    "updated": "2019-03-18T06:45:16.989196",
+    "organization": 949,
+    "markdown_card": 135,
+    "form": 137,
+    "schedule": 4
+  },
+  "url": "https://q.nfc.tapnscan.me/xHfUUg",
+  "state": "A",
+  "heartbeat": "2019-06-11T12:12:56.184672Z",
+  "created": "2019-03-18T06:44:26.671110Z",
+  "updated": "2019-06-11T12:12:56.184869Z",
+  "encrypted_hardware_key": "YMjBG8wNhvWCWqJCBJ4Sn7eLPRxrPom91nNuT2cIoog3jr8rIKTnVEOMfFLrviMt",
+  "organization": 949,
+  "place": 1430,
+  "tags": []
+}
+```
+
+Retrieves the details of an existing nfc tag. You need only supply the unique nfc tag identifier that was returned upon tags listing.
+
+### Update NFC tag
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}"
+  -X PUT
+  -H "Authorization: Token YOUR_TOKEN"
+  -d "{'id':nfctag_id, 'campaign':{'id':campaign_id}}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1329,
+  "name": "04DA184A096180",
+  "uid": "04DA184A096180",
+  "counter": 8,
+  "meta": {
+    "activationTimestamp": 1552469890
+  },
+  "place_data": {
+    "id": 2888,
+    "name": "Times Square"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 22398,
+    "name": "Customer Satisfaction Survey",
+    "custom_url": "https://www.google.com",
+    "content_type": 3,
+    "campaign_active": true,
+    "created": "2019-03-13T09:38:08.416096Z",
+    "updated": "2019-06-24T09:15:36.134285Z",
+    "organization": 1697,
+    "markdown_card": 1708,
+    "form": 7912,
+    "schedule": 28
+  },
+  "url": "https://nfc.tapnscan.me/1xdthy",
+  "state": "A",
+  "heartbeat": "2019-06-17T11:05:35.788514Z",
+  "created": "2019-02-26T05:56:07.426902Z",
+  "updated": "2019-06-24T09:15:36.166303Z",
+  "encrypted_hardware_key": "gl6AECZ4HlF4KgCAFztNxXezG1lAKkeHGL1H8CWopbHVb/vhI4d8mPTxHv+GsTu0",
+  "organization": 1697,
+  "place": 2888,
+  "tags": []
+}
+```
+
+Updates the specified nfc tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.
+
+## QR Code
+
+QRCode objects allow you to perform actions on your qr codes. You can retrieve individual qr codes as well as a list of all your qr codes or update a qr code.
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the QR Code </p> |
+| ***name***	`string` `required`	<p>	The name of the qr code </p> |
+| ***fields_data***	`object`	`required`	<p> Fields data for the QR Code </p> |
+| ***attributes***	`object`	`required`	<p>	Attributes data for the QR Code </p> |
+| ***qr_type***	`integer`	<p> QR type (`1` Static, `2` Dynamic) </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the qr code belongs to </p> |
+| ***place*** `integer` `required` `read only` <p>  Id of the place where the qr code is deployed </p> |
+| ***url***	`string` `read only`	<p> URL configured on the hardware qr code </p> |
+| ***state***	`string` `read only` <p> State of the qr code (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
+| ***meta*** `object` <p> Metadata associated with the qr code </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the qr code </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the qr code </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the qr code was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the qr code </p>|
+
+
+### Get all QR codes
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 224,
+      "meta": {
+        "notes": "",
+        "activationTimestamp": 1557387845
+      },
+      "place_data": {
+        "id": 8361,
+        "name": "KIA Bengaluru"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 23258,
+        "name": "Dynamic QR code demo",
+        "custom_url": "https://www.example.com",
+        "content_type": 4,
+        "campaign_active": true,
+        "created": "2019-05-09T07:44:03.544150Z",
+        "updated": "2019-05-09T07:44:03.544165Z",
+        "organization": 1697,
+        "markdown_card": 13988,
+        "form": 13620,
+        "schedule": 4744
+      },
+      "fields_data": {},
+      "attributes": {
+        "color": "#000000",
+        "margin": "",
+        "backgroundImage": "",
+        "logoImage": ""
+      },
+      "url": "https://qr.tapnscan.me/sycwbi",
+      "name": "Dynamic QR code demo",
+      "state": "A",
+      "heartbeat": "2019-06-24T04:42:16.236105Z",
+      "created": "2019-05-09T07:44:03.517097Z",
+      "updated": "2019-06-24T04:42:16.236238Z",
+      "qr_type": 2,
+      "organization": 1697,
+      "place": 8361,
+      "tags": []
+    },
+    {
+      "id": 42,
+      "meta": {
+        "notes": "",
+        "activationTimestamp": 1552334973,
+        "dynamic_sub_campaign": "landing_page"
+      },
+      "place_data": {
+        "id": 8281,
+        "name": "San Marco Square"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 22303,
+        "name": "Half Price, Happy Hour",
+        "custom_url": "https://google.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "created": "2019-03-11T20:09:31.142375Z",
+        "updated": "2019-06-20T17:12:54.248951Z",
+        "organization": 3568,
+        "markdown_card": 9533,
+        "form": 11531,
+        "schedule": 1075
+      },
+      "fields_data": {},
+      "attributes": {
+        "color": "#000000",
+        "backgroundImage": "",
+        "margin": "",
+        "logoImage": ""
+      },
+      "url": "https://qr.tapnscan.me/byonegetonefree",
+      "name": "Coffee Shop Offer",
+      "state": "A",
+      "heartbeat": "2019-06-14T14:48:31.407835Z",
+      "created": "2019-03-11T20:09:31.126677Z",
+      "updated": "2019-06-20T17:12:54.272483Z",
+      "qr_type": 2,
+      "organization": 3568,
+      "place": 8281,
+      "tags": []
+    }
+  ]
+}
+```
+
+Returns a list of your qr codes. The tags are returned sorted by updated, with the most recently updated qr codes appearing first.
+
+Filter arguments:
+
+1. `name`: `exact`, `icontains`
+2. `place__name`: `exact`, `icontains`
+3. `tags__name`: `exact`, `icontains`
+4. `url`: `exact`
+5. `campaign__content_type`: `exact`
+6. `state`: `exact`
+
+Search Fields:
+
+1. `name`
+2. `place__name`
+3. `tags__name`
+4. `url`
+5. `campaign__content_type`
+
+Ordering fields:
+
+1. `name`
+2. `place__name`
+3. `created`
+4. `updated` - default
+5. `campaign__content_type`
+6. `state`
+
+### Retrieve a QR code
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 224,
+  "meta": {
+    "notes": "",
+    "activationTimestamp": 1557387845
+  },
+  "place_data": {
+    "id": 8361,
+    "name": "KIA Bengaluru"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 23258,
+    "name": "Dynamic QR code demo",
+    "custom_url": "https://www.example.com",
+    "content_type": 4,
+    "campaign_active": true,
+    "created": "2019-05-09T07:44:03.544150Z",
+    "updated": "2019-05-09T07:44:03.544165Z",
+    "organization": 1697,
+    "markdown_card": 13988,
+    "form": 13620,
+    "schedule": 4744
+  },
+  "fields_data": {},
+  "attributes": {
+    "color": "#000000",
+    "margin": "",
+    "backgroundImage": "",
+    "logoImage": ""
+  },
+  "url": "https://qr.tapnscan.me/sycwbi",
+  "name": "Dynamic QR code demo",
+  "state": "A",
+  "heartbeat": "2019-06-24T04:42:16.236105Z",
+  "created": "2019-05-09T07:44:03.517097Z",
+  "updated": "2019-06-24T04:42:16.236238Z",
+  "qr_type": 2,
+  "organization": 1697,
+  "place": 8361,
+  "tags": []
+}
+```
+
+Retrieves the details of an existing qr code. You need only supply the unique qr code identifier that was returned upon qr codes listing.
+
+### Update QR code
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"
+  -X PUT
+  -H "Authorization: Token YOUR_TOKEN"
+  -d "{'id':qrcode_id, 'campaign':{'id':campaign_id}}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 224,
+  "meta": {
+    "notes": "",
+    "activationTimestamp": 1557387845,
+    "dynamic_sub_campaign": "feedback_form"
+  },
+  "place_data": {
+    "id": 8361,
+    "name": "KIA Bengaluru"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 23258,
+    "name": "Customer Satisfaction Survey",
+    "custom_url": "https://www.example.com",
+    "content_type": 3,
+    "campaign_active": true,
+    "created": "2019-05-09T07:44:03.544150Z",
+    "updated": "2019-06-24T09:41:59.015809Z",
+    "organization": 1697,
+    "markdown_card": 13988,
+    "form": 7912,
+    "schedule": 4744
+  },
+  "fields_data": {},
+  "attributes": {
+    "color": "#000000",
+    "backgroundImage": "",
+    "margin": "",
+    "logoImage": ""
+  },
+  "url": "https://qr.tapnscan.me/sycwbi",
+  "name": "Dynamic QR code demo",
+  "state": "A",
+  "heartbeat": "2019-06-24T04:42:16.236105Z",
+  "created": "2019-05-09T07:44:03.517097Z",
+  "updated": "2019-06-24T09:41:59.045695Z",
+  "qr_type": 2,
+  "organization": 1697,
+  "place": 8361,
+  "tags": []
+}
+```
+
+Updates the specified qr code by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the QRCode object.
+
+### Create QR code
+
+curl -X POST \
+  https://beaconstac.mobstac.com/api/2.0/qrcodes/ \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"attributes": {
+        "color": "#000000",
+        "margin": "",
+        "backgroundImage": "",
+        "logoImage": ""
+    },
+    "name": "test 3",
+    "qr_type": 2,
+    "organization": {organization_id},
+    "place": {place_id}
+}'
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 224,
+  "meta": {
+    "notes": "",
+    "activationTimestamp": 1557387845,
+    "dynamic_sub_campaign": "feedback_form"
+  },
+  "place_data": {
+    "id": 8361,
+    "name": "KIA Bengaluru"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 23258,
+    "name": "Customer Satisfaction Survey",
+    "custom_url": "https://www.example.com",
+    "content_type": 3,
+    "campaign_active": true,
+    "created": "2019-05-09T07:44:03.544150Z",
+    "updated": "2019-06-24T09:41:59.015809Z",
+    "organization": 1697,
+    "markdown_card": 13988,
+    "form": 7912,
+    "schedule": 4744
+  },
+  "fields_data": {},
+  "attributes": {
+    "color": "#000000",
+    "backgroundImage": "",
+    "margin": "",
+    "logoImage": ""
+  },
+  "url": "https://qr.tapnscan.me/sycwbi",
+  "name": "test 3",
+  "state": "A",
+  "heartbeat": "2019-06-24T04:42:16.236105Z",
+  "created": "2019-05-09T07:44:03.517097Z",
+  "updated": "2019-06-24T09:41:59.045695Z",
+  "qr_type": 2,
+  "organization": 1697,
+  "place": 8361,
+  "tags": []
+}
+```
+
+Creates a new qr code. However, the request should contain the required fields.
+
+### Download a QR code
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}/?size={size}&canvas_type={canvas_type}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "urls": {
+    "svg": "https://beaconstac-content.s3.amazonaws.com/1697/qr-codes/224/svg/aHR0cHM6Ly9xci50YXBuc2Nhbi5tZS9zeWN3Ymk%3D-1024.svg"
+  }
+}
+```
+
+Download a QR code in a particular size and image format. Image types supported are PNG, JPEG, SVG and PDF. If no canvas type is sent in the parameters, the QRCode would be generated in all image types supported.
+
+## Geofence
+
+Geofence objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the Geofence </p> |
+| ***name***	`string` `required`	<p>	The name of the geofence </p> |
+| ***latitude***	`float`	`required` <p> Latitude of the geofence </p> |
+| ***longitude***	`float`	`required` <p> Longitude of the geofence </p> |
+| ***radius***	`float`	`required` <p> Radius of the geofence </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the geofence belongs to </p> |
+| ***place*** `integer` `required` <p>  Id of the place where the geofence is configured </p> |
+| ***url***	`string` `read only`	<p> URL configured for the geofence </p> |
+| ***state***	`string` `read only` <p> State of the geofence (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` `read only` <p> Tag data associated with attached tag ids. </p> |
+| ***meta*** `object` <p> Metadata associated with the geofence </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the geofence </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the geofence </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the goefence was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the geofence </p>|
+| ***notifications*** `list[CampaignNotification]` <p> `CampaignNotification` object associated with the geofence based on configured language(s) </p> |
+
+
+### Get all geofences
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/geofences/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 5,
+      "meta": {
+        "notes": ""
+      },
+      "place_data": {
+        "id": 1258,
+        "name": "Montreal, QC, Canada"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 20144,
+        "name": "Looking for Shoes?",
+        "custom_url": "https://www.example.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "created": "2019-06-09T06:03:10.894882",
+        "updated": "2019-06-13T07:06:23.806157",
+        "organization": 949,
+        "markdown_card": 135,
+        "form": 137,
+        "schedule": 4
+      },
+      "url": "https://geo.tapnscan.me/b6Pt2C",
+      "notifications": [
+        {
+          "id": 451,
+          "meta": {
+            "closeby": {},
+            "nearby": {}
+          },
+          "title": "Ola Prime welcomes you to Bengaluru 8",
+          "description": "Enjoy your favourite music on the way home",
+          "icon_url": "https://s3.amazonaws.com/beaconstac-content-qa/949/22a9aefb67034f1998551b97f34d6c4b",
+          "banner_type": 1,
+          "banner_image_url": null,
+          "app_intent": null,
+          "is_default": true,
+          "slug": "ola-prime-welcomes-you-to-bengaluru-8",
+          "created": "2019-06-12T11:03:10.908622Z",
+          "updated": "2019-06-13T07:06:23.801249Z",
+          "language_code": "en"
+        }
+      ],
+      "name": "Test",
+      "state": "A",
+      "heartbeat": "2019-06-18T06:57:38.752214Z",
+      "created": "2019-06-12T11:03:10.878086Z",
+      "updated": "2019-06-18T06:57:38.752444Z",
+      "latitude": "12.981900",
+      "longitude": "77.640500",
+      "radius": 1001,
+      "organization": 949,
+      "place": 1258,
+      "tags": []
+    },
+    {
+      "id": 7,
+      "meta": {
+        "notes": ""
+      },
+      "place_data": {
+        "id": 1504,
+        "name": "India"
+      },
+      "tag_data": [],
+      "campaign": {
+        "id": 20146,
+        "name": "Looking for Shoes?",
+        "custom_url": "https://www.example.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "created": "2019-06-17T06:48:36.820377",
+        "updated": "2019-06-17T06:48:36.820395",
+        "organization": 949,
+        "markdown_card": 135,
+        "form": 1111,
+        "schedule": 28
+      },
+      "url": "https://geo.tapnscan.me/Cie705",
+      "notifications": [
+        {
+          "id": 453,
+          "meta": {
+            "closeby": {},
+            "nearby": {}
+          },
+          "title": "Decorate your foot!!!",
+          "description": "The best shoe you will ever find in this universe",
+          "icon_url": "https://s3.amazonaws.com/beaconstac-content-qa/949/d15803855cf14f468d52613666767a33",
+          "banner_type": 1,
+          "banner_image_url": null,
+          "app_intent": null,
+          "is_default": true,
+          "slug": "decorate-your-foot",
+          "created": "2019-06-17T06:48:36.836419Z",
+          "updated": "2019-06-17T06:48:36.836439Z",
+          "language_code": "en"
+        }
+      ],
+      "name": "My Loc",
+      "state": "A",
+      "heartbeat": "2019-06-18T06:57:38.750112Z",
+      "created": "2019-06-17T06:48:36.809354Z",
+      "updated": "2019-06-18T06:57:38.750294Z",
+      "latitude": "12.981900",
+      "longitude": "77.640500",
+      "radius": 500,
+      "organization": 949,
+      "place": 1504,
+      "tags": []
+    }
+  ]
+}
+```
+
+Filter arguments:
+
+1. `name`: `exact`, `icontains`
+2. `place__name`: `exact`, `icontains`
+3. `tags__name`: `exact`, `icontains`
+4. `url`: `exact`
+5. `campaign__content_type`: `exact`
+6. `state`: `exact`
+
+Search Fields:
+
+1. `name`
+2. `place__name`
+3. `tags__name`
+4. `url`
+5. `campaign__content_type`
+
+Ordering fields:
+
+1. `name`
+2. `place__name`
+3. `created`
+4. `updated` - default
+5. `campaign__content_type`
+6. `state`
+
+Returns a list of your geofences. The geofences are returned sorted by updated, with the most recently updated geofence appearing first.
+
+### Retrieve a Geofence
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 5,
+  "meta": {
+    "notes": ""
+  },
+  "place_data": {
+    "id": 1258,
+    "name": "Montreal, QC, Canada"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 20144,
+    "name": "Looking for Shoes?",
+    "custom_url": "https://www.example.com",
+    "content_type": 2,
+    "campaign_active": true,
+    "created": "2019-06-09T06:03:10.894882",
+    "updated": "2019-06-13T07:06:23.806157",
+    "organization": 949,
+    "markdown_card": 135,
+    "form": 137,
+    "schedule": 4
+  },
+  "url": "https://geo.tapnscan.me/b6Pt2C",
+  "notifications": [
+    {
+      "id": 451,
+      "meta": {
+        "closeby": {},
+        "nearby": {}
+      },
+      "title": "Ola Prime welcomes you to Bengaluru 8",
+      "description": "Enjoy your favourite music on the way home",
+      "icon_url": "https://s3.amazonaws.com/beaconstac-content-qa/949/22a9aefb67034f1998551b97f34d6c4b",
+      "banner_type": 1,
+      "banner_image_url": null,
+      "app_intent": null,
+      "is_default": true,
+      "slug": "ola-prime-welcomes-you-to-bengaluru-8",
+      "created": "2019-06-12T11:03:10.908622Z",
+      "updated": "2019-06-13T07:06:23.801249Z",
+      "language_code": "en"
+    }
+  ],
+  "name": "Test",
+  "state": "A",
+  "heartbeat": "2019-06-18T06:57:38.752214Z",
+  "created": "2019-06-12T11:03:10.878086Z",
+  "updated": "2019-06-18T06:57:38.752444Z",
+  "latitude": "12.981900",
+  "longitude": "77.640500",
+  "radius": 1001,
+  "organization": 949,
+  "place": 1258,
+  "tags": []
+}
+```
+
+Retrieves the details of an existing geofence. You need only supply the unique geofence identifier that was returned upon geofence listing.
+
+### Update Geofence
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}"
+  -X PUT
+  -H "Authorization: Token YOUR_TOKEN"
+  -d "{'id':geofence_id, 'campaign':{'id':campaign_id}}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 5,
+  "meta": {
+    "notes": ""
+  },
+  "place_data": {
+    "id": 1258,
+    "name": "Montreal, QC, Canada"
+  },
+  "tag_data": [],
+  "campaign": {
+    "id": 20144,
+    "name": "Customer Satisfaction Survey",
+    "custom_url": "https://www.example.com",
+    "content_type": 3,
+    "campaign_active": true,
+    "created": "2019-06-09T06:03:10.894882",
+    "updated": "2019-06-24T09:28:08.905138Z",
+    "organization": 949,
+    "markdown_card": 135,
+    "form": 137,
+    "schedule": 4
+  },
+  "url": "https://geo.tapnscan.me/b6Pt2C",
+  "notifications": [
+    {
+      "id": 451,
+      "meta": {
+        "closeby": {},
+        "nearby": {}
+      },
+      "title": "Ola Prime welcomes you to Bengaluru 8",
+      "description": "Enjoy your favourite music on the way home",
+      "icon_url": "https://s3.amazonaws.com/beaconstac-content-qa/949/22a9aefb67034f1998551b97f34d6c4b",
+      "banner_type": 1,
+      "banner_image_url": null,
+      "app_intent": null,
+      "is_default": true,
+      "slug": "ola-prime-welcomes-you-to-bengaluru-8",
+      "created": "2019-06-12T11:03:10.908622Z",
+      "updated": "2019-06-24T09:28:08.901039Z",
+      "language_code": "en"
+    }
+  ],
+  "name": "Test",
+  "state": "A",
+  "heartbeat": "2019-06-18T06:57:38.752214Z",
+  "created": "2019-06-12T11:03:10.878086Z",
+  "updated": "2019-06-24T09:28:08.930559Z",
+  "latitude": "12.981900",
+  "longitude": "77.640500",
+  "radius": 1001,
+  "organization": 949,
+  "place": 1258,
+  "tags": []
+}
+```
+
+Updates the specified geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
+
+### Create Geofence
+
+```shell
+curl -X POST \
+  https://beaconstac.mobstac.com/api/2.0/geofences/ \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "place": 1929,
+    "latitude": 12.21343,
+    "longitude": 12.213132,
+    "radius": 100,
+    "organization": 1234
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 4
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "place": 1929,
+    "latitude": 12.21343,
+    "longitude": 12.213132,
+    "radius": 100,
+    "organization": 1234
+}
+```
+
+You can create the geofence by giving it a `name`, `latitude`, `longitude`, `radius` and a `campaign`.
+
+## Place
+
+Place objects allow you to view all places in your account and view beacons attached to them.
+
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the Place </p> |
+| ***name***	`string` `required`	<p>	The name of the place </p> |
+| ***latitude***	`float`	`required` <p> Latitude of the place </p> |
+| ***longitude***	`float`	`required` <p> Longitude of the place </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the place belongs to </p> |
+| ***place_id*** `integer` `required` <p>  Google Place ID of the place </p> |
+| ***address***	`string` <p> Google Place Address of the place </p> |
+| ***beacons***	`list[object]` `read only` <p> Beacon data associated with place id. </p> |
+| ***beacon_count***	`integer`	`read only`	<p> Number of beacons associated with the place </p> |
+| ***default_place***	`boolean`	`read only`	<p> Indicated whether the place is a default place </p> |
+| ***business_icon_url***	`string` <p> Business Icon URL (Used in NearBee) </p> |
+| ***business_cover_url***	`string` <p> Business Cover URL (Used in NearBee) </p> |
+| ***business_color***	`string` <p> Business Color (Used in NearBee) </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the place </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the place </p> |
+
+### Get all places
+
+```shell
+curl "https://beaconstac.mobstac.com/api/2.0/places/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 8361,
+      "beacons": [
+        {
+          "id": 8072,
+          "name": "0117C5978008",
+          "heartbeat": "2019-06-24T09:57:05.970926Z",
+          "state": "A"
+        }
+      ],
+      "beacon_count": 1,
+      "default_place": null,
+      "name": "KIA Bengaluru",
+      "latitude": 13.1986348,
+      "longitude": 77.7065928,
+      "place_id": "ChIJZWJEdf4crjsRjkEpoelwbCk",
+      "address": "Kempegowda International Airport Bengaluru,KIAL Rd, Devanahalli, Bengaluru, Karnataka 560300, India",
+      "business_icon_url": "https://d1bqobzsowu5wu.cloudfront.net/1697/e5356e8bde3c4afc92e48d64c898e721",
+      "business_cover_url": "https://d1bqobzsowu5wu.cloudfront.net/1697/9cffaa07236e4ccea144fd4ee0f17804",
+      "business_color": "145eb0",
+      "created": "2019-04-08T13:51:35.963177Z",
+      "updated": "2019-05-02T09:34:48.149451Z",
+      "organization": 1697
+    },
+    {
+      "id": 5511,
+      "beacons": [],
+      "beacon_count": 0,
+      "default_place": null,
+      "name": "Central Park",
+      "latitude": 40.7828647,
+      "longitude": -73.9653551,
+      "place_id": "ChIJ4zGFAZpYwokRGUGph3Mf37k",
+      "address": "Central Park,New York, NY, USA",
+      "business_icon_url": null,
+      "business_cover_url": null,
+      "business_color": null,
+      "created": "2018-06-05T07:22:49.722062Z",
+      "updated": "2018-06-05T07:22:49.722086Z",
+      "organization": 1697
+    }
+  ]
+}
+```
+
+Returns a list of your places.
+
+Filter arguments:
+
+1. `name`: `exact`, `icontains`
+
+Search Fields:
+
+1. `name`
+
+Ordering fields:
+
+1. `name`
+2. `created`
+3. `updated` - default
+4. `address`
+
+# Analytics
+
+## Product
+Product types:
+
+1. beacon
+2. nfc
+3. qr
+4. geofence
+
+from, to parameters should be in EPOCH milliseconds.
+
+## Product overview
+
+```shell
+curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getOverview"
+  -H "Authorization: Token YOUR_TOKEN"
+  -d '{
+          "product_type": {type},
+          "from": 1560796200000,
+          "to": 1561401000000
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "points": [
+    [
+      20017,
+      "AC233F25A31B(Times Square)",
+      152,
+      2
+    ],
+    [
+      8072,
+      "0117C5978008(KIA Bengaluru)",
+      231,
+      0
+    ]
+  ],
+  "columns": [
+    [
+      "product_id",
+      "product_name",
+      "notification_count",
+      "impression_count"
+    ]
+  ]
+}
+```
+
+Get analytics overview for the product type over the time interval.
+
+## Product performance
+
+```shell
+curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getPerformance"
+  -H "Authorization: Token YOUR_TOKEN"
+  -d '{
+          "product_type": {type},
+          "product_id": {id},
+          "from": 1560796200000,
+          "to": 1561401000000,
+          "interval": "1d",
+          "timezone": "UTC"
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "points": [
+        8072,
+        "0117C5978008",
+        "0117C5978008",
+        231,
+        0,
+        0,
+        8361,
+        "KIA Bengaluru",
+        [
+            [
+                1560816000000,
+                73,
+                0,
+                0
+            ],
+            [
+                1560902400000,
+                58,
+                0,
+                0
+            ],
+            [
+                1560988800000,
+                35,
+                0,
+                0
+            ],
+            [
+                1561075200000,
+                33,
+                0,
+                0
+            ],
+            [
+                1561161600000,
+                0,
+                0,
+                0
+            ],
+            [
+                1561248000000,
+                0,
+                0,
+                0
+            ],
+            [
+                1561334400000,
+                32,
+                0,
+                0
+            ]
+        ]
+    ],
+    "columns": [
+        "product_id",
+        "product_name",
+        "product_identifier",
+        "total_notification_count",
+        "total_impression_count",
+        "total_ctr",
+        "place_id",
+        "place_name",
+        [
+            [
+                "epoch_date",
+                "notification_count",
+                "impression_count",
+                "ctr"
+            ]
+        ]
+    ]
+}
+```
+
+Get analytics performace for the product.
+
+## Product impression detail
+
+```shell
+curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDetail"
+  -H "Authorization: Token YOUR_TOKEN"
+  -d '{
+          "product_type": {type},
+          "place": {place_id},
+          "from": 1560796200000,
+          "to": 1561401000000
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "points": [
+        [
+            "15611148064w64ye",
+            2888,
+            "Times Square",
+            20017,
+            "AC233F25A31B",
+            "AC233F25A31B",
+            "2019-06-21T11:11:41.523Z",
+            "49.207.48.13",
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1"
+        ],
+        [
+            "15611148064w64ye",
+            2888,
+            "Times Square",
+            20017,
+            "AC233F25A31B",
+            "AC233F25A31B",
+            "2019-06-21T11:00:06.757Z",
+            "49.207.48.13",
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1"
+        ]
+    ],
+    "columns": [
+        "cookie_id",
+        "place_id",
+        "place_name",
+        "product_id",
+        "product_name",
+        "product_identifier",
+        "iso_date",
+        "ip_address",
+        "user_agent"
+    ]
+}
+```
+
+Get impressions details generated by the product. If no `place` is provided data will be returned for all products of the product type specified in the organization.
+
+## Product impression distribution
+
+```shell
+curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution"
+  -H "Authorization: Token YOUR_TOKEN"
+  -d '{
+          "product_type": {type},
+          "place": {place_id},
+          "from": 1560796200000,
+          "to": 1561401000000
+      }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "points": [
+        [
+            2888,
+            "Times Square",
+            [
+                20017,
+                "AC233F25A31B",
+                "AC233F25A31B",
+                2,
+                0,
+                2,
+                0
+            ]
+        ]
+    ],
+    "columns": [
+        "place_id",
+        "place_name",
+        [
+            "product_id",
+            "product_name",
+            "product_identifier",
+            "impression_count",
+            "custom_impression",
+            "card_impression",
+            "form_impression"
+        ]
+    ]
+}
+```
+
+Get impression distribution generated by the product. If no `place` is provided data will be returned for all products of the product type specified in the organization.
+
+## Generate product CSV data
+
+```shell
+curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Csv.getProductData"
+  -H "Authorization: Token YOUR_TOKEN"
+  -d '{
+          "product_type": {type},
+          "organization_ids": [organization_id_1, organization_id_2],
+          "product_ids": [product_id_1, prodcut_id_2],
+          "from": 1559273172,
+          "to": 1559283172,
+          "timezone": "UTC"
+      }'
+```
+
+Generate a detailed CSV report for products in the specified organizations. The report will be emailed to the user email mentioned in the POST body. If not email is specified it would be emailed to the user making the request.
