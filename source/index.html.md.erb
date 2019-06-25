@@ -54,6 +54,45 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 
 Beacon objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.
 
+| **Attributes** |
+|---|
+| ***id*** `integer``read only` <p> Unique identifier of the object </p> |
+| ***name*** `string` `required` <p> The name of the beacon, read write <p> |
+| ***UUID*** `string` `required` `read only` <p> UUID of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
+| ***major*** `integer` `required` `read only` <p> Major value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
+| ***minor*** `integer` `required` `read only` <p> Minor value of the beacon associated with the iBeacon protocol, configured on the hardware </p> |
+| ***organization*** `integer` `required` `read only` <p> Id of the organization to which the beacon belongs to </p> |
+| ***place*** `integer` `required` `read only` <p>  Id of the place where the beacon is deployed </p> |
+| ***serial_number*** `string` `read only` <p>  Serial number of the hardware </p> |
+| ***eddystone_nid*** `string` `read only` <p> Namespace of the beacon associated with the Eddystone protocol, configured on the hardware </p> |
+| ***eddystone_bid*** `string` `read only` <p> Instance of the beacon associated with the Eddystone protocol, configured on the hardware  </p> |
+| ***eddystone_url*** `string` `read only` <p> URL(Deprecated) configured on the hardware |
+| ***url*** `string` `read only` <p> URL configured on the hardware </p> |
+| ***state*** `string` `read only` <p> State of the beacon (`A` Active, `S` Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
+| ***rules*** `list[integer]` <p> List of associated rule ids </p> |
+| ***rule_data*** `list[object]` <p> Rule data associated with attached rule ids </p> |
+| ***mode*** `string` `read only` <p> Mode of the beacon </p> |
+| ***tx_power*** `integer` <p> Transmission power configured on the hardware </p> |
+| ***advertising_interval*** `integer` <p> Advertising interval configured on the hardware </p> |
+| ***battery*** `integer` <p> Battery reported by the hardware </p> |
+| ***temperature*** `integer` <p> Temperature, reported by the hardware </p> |
+| ***latitude*** `float` <p> Latitude </p> |
+| ***longitude*** `float` <p> Longitude </p> |
+| ***closeby_id*** `integer` `read only` <p> Closeby ID of the beacon(Deprecated) </p> |
+| ***nearby_id*** `string` <p> Proximity ID of the beacon </p> |
+| ***proximity_status*** `string` `read only` <p> Proximity status (Deprecated) </p> |
+| ***meta*** `object` <p> Metadata associated with the beacon </p> |
+| ***deployment_meta*** `object` <p> Deployment meta associated with the beacon </p> |
+| ***kit_type*** `object` `read only` <p> Beacon kit type (Deprecated) </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the beacon </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the beacon </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the beacon was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the beacon </p>|
+| ***notifications*** `list[CampaignNotification]` <p> `CampaignNotification` object associated with the beacon based on configured language(s) </p> |
+
 ### Get all beacons
 
 ```shell
@@ -227,6 +266,7 @@ Ordering fields:
 7. `updated`
 8. `campaign__content_type`
 9. `state`
+
 
 ### Retrieve a beacon
 
