@@ -496,6 +496,26 @@ Updates the specified beacon by setting the values of the parameters passed. Any
 
 NFCTag objects allow you to perform actions on your nfc tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.
 
+| **Attributes** |
+|---|
+| ***id***	`integer` `read only`	<p> Unique identifier of the NFC tag </p> |
+| ***name***	`string` `required`	<p>	The name of the nfc tag </p> |
+| ***uid*** `string`	`required`	`read only`	<p> UID of the hardware </p> |
+| ***counter***	`integer`	`read only`	<p> NFC tag counter. Counts the number of times the hardware tag has been read </p> |
+| ***organization***	`integer`	`required`	`read only`	<p> Id of the organization to which the nfc tag belongs to </p> |
+| ***place*** `integer` `required` `read only` <p>  Id of the place where the nfc tag is deployed </p> |
+| ***url***	`string` `read only`	<p> URL configured on the hardware nfc tag </p> |
+| ***state***	`string` `read only` <p> State of the nfc tag (A Active, S Sleeping) </p> |
+| ***place_data*** `list[object]` `read only` <p> Place data associated with place id. </p> |
+| ***tags*** `list[integer]` <p> List of associated tag ids </p> |
+| ***tag_data*** `list[object]` <p> Tag data associated with attached tag ids. </p> |
+| ***meta*** `object` <p> Metadata associated with the nfc tag </p> |
+| ***created*** `timestamp` `read only` <p> Created timestamp of the nfc tag </p> |
+| ***updated*** `timestamp` `read only` <p> Last updated timestamp of the nfc tag </p> |
+| ***heartbeat*** `timestamp` `read only` <p> Timestamp when the nfc tag was last detected </p> |
+| ***campaign*** `Campaign` <p> `Campaign` object associated with the nfc tag </p>|
+
+
 ### Get all NFC tags
 
 ```shell
