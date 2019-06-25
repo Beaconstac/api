@@ -228,6 +228,12 @@
             <a href="#beaconstac" class="toc-h1 toc-link" data-title="Beaconstac">Beaconstac</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#campaign" class="toc-h2 toc-link" data-title="Campaign">Campaign</a>
+                  </li>
+                  <li>
+                    <a href="#campaign-notification" class="toc-h2 toc-link" data-title="Campaign Notification">Campaign Notification</a>
+                  </li>
+                  <li>
                     <a href="#beacon" class="toc-h2 toc-link" data-title="Beacon">Beacon</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -370,8 +376,195 @@ curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/"</span>
 <aside class="notice">
 You must replace <code>YOUR_TOKEN</code> with your personal API key.
 </aside>
-<h1 id='beaconstac'>Beaconstac</h1><h2 id='beacon'>Beacon</h2>
+<h1 id='beaconstac'>Beaconstac</h1><h2 id='campaign'>Campaign</h2>
+<p>Campaign is type of marketing strategy which can in the form of custom url, markdown card, form and schedule.</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong> <code>integer</code> <code>read only</code> <p> Unique identifier of the object </p></td>
+</tr>
+<tr>
+<td><strong><em>content_type</em></strong>    <code>integer</code>   <code>required</code>  <p> Campaign Type (0 for &#39;No campaign&#39;) </p></td>
+</tr>
+<tr>
+<td><strong><em>custom_url</em></strong>  <code>URL</code>   <code>true if content_type is 1</code> <p> User configured URL associated with the campaign </p></td>
+</tr>
+<tr>
+<td><strong><em>markdown_card</em></strong>   <code>integer</code>   <code>true if content_type is 2</code> <p> Markdown card associated with the campaign </p></td>
+</tr>
+<tr>
+<td><strong><em>form</em></strong>    <code>integer</code>   <code>true if content_type is 3</code> <p> Form associated with the campaign </p></td>
+</tr>
+<tr>
+<td><strong><em>schedule</em></strong>    <code>integer</code>   <code>true if content_type is 4</code> <p> Schedule associated with the campaign </p></td>
+</tr>
+<tr>
+<td><strong><em>campaign_active</em></strong> <code>boolean</code>   <code>read only</code> <p> Current campaign status </p></td>
+</tr>
+<tr>
+<td><strong><em>organization</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p> Id of the organization to which the campaign belongs to </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the campaign </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the campaign </p></td>
+</tr>
+</tbody></table>
+<h2 id='campaign-notification'>Campaign Notification</h2>
+<p>Campaign notification is the brief overview of the campaign, used to alert the user. This can only be used with beacon and geofence objects.</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong> <code>integer</code> <code>read only</code> <p> Unique identifier of the object </p></td>
+</tr>
+<tr>
+<td><strong><em>language_code</em></strong>   <code>string</code>    <code>required</code> <p> <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> language code. Each beacon can have only 1 language notification. </p></td>
+</tr>
+<tr>
+<td><strong><em>is_default</em></strong>  <code>boolean</code>   <code>required</code>  <p> Is default notification. Each beacon can have only one notification set as default. </p></td>
+</tr>
+<tr>
+<td><strong><em>title</em></strong> <code>string</code> <p> The title of the campaign notification (max 49 characters) <p></td>
+</tr>
+<tr>
+<td><strong><em>description</em></strong> <code>string</code> <p> The description of the campaign notification (max 2048 characters) <p></td>
+</tr>
+<tr>
+<td><strong><em>icon_url</em></strong>    <code>URL</code>   <p> The icon url of the campaign notification </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the campaign notification </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the campaign notification </p></td>
+</tr>
+</tbody></table>
+<h2 id='beacon'>Beacon</h2>
 <p>Beacon objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong> <code>integer</code> <code>read only</code> <p> Unique identifier of the object </p></td>
+</tr>
+<tr>
+<td><strong><em>name</em></strong> <code>string</code> <code>required</code> <p> The name of the beacon <p></td>
+</tr>
+<tr>
+<td><strong><em>UUID</em></strong> <code>string</code> <code>required</code> <code>read only</code> <p> UUID of the beacon associated with the iBeacon protocol, configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>major</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p> Major value of the beacon associated with the iBeacon protocol, configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>minor</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p> Minor value of the beacon associated with the iBeacon protocol, configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>organization</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p> Id of the organization to which the beacon belongs to </p></td>
+</tr>
+<tr>
+<td><strong><em>place</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p>  Id of the place where the beacon is deployed </p></td>
+</tr>
+<tr>
+<td><strong><em>serial_number</em></strong> <code>string</code> <code>read only</code> <p>  Serial number of the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>eddystone_nid</em></strong> <code>string</code> <code>read only</code> <p> Namespace of the beacon associated with the Eddystone protocol, configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>eddystone_bid</em></strong> <code>string</code> <code>read only</code> <p> Instance of the beacon associated with the Eddystone protocol, configured on the hardware  </p></td>
+</tr>
+<tr>
+<td><strong><em>eddystone_url</em></strong> <code>string</code> <code>read only</code> <p> URL(Deprecated) configured on the hardware</td>
+</tr>
+<tr>
+<td><strong><em>url</em></strong> <code>string</code> <code>read only</code> <p> URL configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>state</em></strong> <code>string</code> <code>read only</code> <p> State of the beacon (<code>A</code> Active, <code>S</code> Sleeping) </p></td>
+</tr>
+<tr>
+<td><strong><em>place_data</em></strong> <code>list[object]</code> <code>read only</code> <p> Place data associated with place id. </p></td>
+</tr>
+<tr>
+<td><strong><em>tags</em></strong> <code>list[integer]</code> <p> List of associated tag ids </p></td>
+</tr>
+<tr>
+<td><strong><em>tag_data</em></strong> <code>list[object]</code> <p> Tag data associated with attached tag ids. </p></td>
+</tr>
+<tr>
+<td><strong><em>rules</em></strong> <code>list[integer]</code> <p> List of associated rule ids </p></td>
+</tr>
+<tr>
+<td><strong><em>rule_data</em></strong> <code>list[object]</code> <p> Rule data associated with attached rule ids </p></td>
+</tr>
+<tr>
+<td><strong><em>mode</em></strong> <code>string</code> <code>read only</code> <p> Mode of the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>tx_power</em></strong> <code>integer</code> <p> Transmission power configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>advertising_interval</em></strong> <code>integer</code> <p> Advertising interval configured on the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>battery</em></strong> <code>integer</code> <p> Battery reported by the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>temperature</em></strong> <code>integer</code> <p> Temperature, reported by the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>latitude</em></strong> <code>float</code> <p> Latitude </p></td>
+</tr>
+<tr>
+<td><strong><em>longitude</em></strong> <code>float</code> <p> Longitude </p></td>
+</tr>
+<tr>
+<td><strong><em>closeby_id</em></strong> <code>integer</code> <code>read only</code> <p> Closeby ID of the beacon(Deprecated) </p></td>
+</tr>
+<tr>
+<td><strong><em>nearby_id</em></strong> <code>string</code> <p> Proximity ID of the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>proximity_status</em></strong> <code>string</code> <code>read only</code> <p> Proximity status (Deprecated) </p></td>
+</tr>
+<tr>
+<td><strong><em>meta</em></strong> <code>object</code> <p> Metadata associated with the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>deployment_meta</em></strong> <code>object</code> <p> Deployment meta associated with the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>kit_type</em></strong> <code>object</code> <code>read only</code> <p> Beacon kit type (Deprecated) </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>heartbeat</em></strong> <code>timestamp</code> <code>read only</code> <p> Timestamp when the beacon was last detected </p></td>
+</tr>
+<tr>
+<td><strong><em>campaign</em></strong> <code>Campaign</code> <p> <code>Campaign</code> object associated with the beacon </p></td>
+</tr>
+<tr>
+<td><strong><em>notifications</em></strong> <code>list[CampaignNotification]</code> <p> <code>CampaignNotification</code> object associated with the beacon based on configured language(s) </p></td>
+</tr>
+</tbody></table>
 <h3 id='get-all-beacons'>Get all beacons</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/beacons/"</span>
   -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
 </code></pre>
@@ -760,6 +953,61 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 <p>Updates the specified beacon by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Beacon object.</p>
 <h2 id='nfc-tag'>NFC Tag</h2>
 <p>NFCTag objects allow you to perform actions on your nfc tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong>  <code>integer</code> <code>read only</code>   <p> Unique identifier of the NFC tag </p></td>
+</tr>
+<tr>
+<td><strong><em>name</em></strong>    <code>string</code> <code>required</code> <p> The name of the nfc tag </p></td>
+</tr>
+<tr>
+<td><strong><em>uid</em></strong> <code>string</code>    <code>required</code>  <code>read only</code> <p> UID of the hardware </p></td>
+</tr>
+<tr>
+<td><strong><em>counter</em></strong> <code>integer</code>   <code>read only</code> <p> NFC tag counter. Counts the number of times the hardware tag has been read </p></td>
+</tr>
+<tr>
+<td><strong><em>organization</em></strong>    <code>integer</code>   <code>required</code>  <code>read only</code> <p> Id of the organization to which the nfc tag belongs to </p></td>
+</tr>
+<tr>
+<td><strong><em>place</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p>  Id of the place where the nfc tag is deployed </p></td>
+</tr>
+<tr>
+<td><strong><em>url</em></strong> <code>string</code> <code>read only</code>    <p> URL configured on the hardware nfc tag </p></td>
+</tr>
+<tr>
+<td><strong><em>state</em></strong>   <code>string</code> <code>read only</code> <p> State of the nfc tag (<code>A</code> Active, <code>S</code> Sleeping) </p></td>
+</tr>
+<tr>
+<td><strong><em>place_data</em></strong> <code>list[object]</code> <code>read only</code> <p> Place data associated with place id. </p></td>
+</tr>
+<tr>
+<td><strong><em>tags</em></strong> <code>list[integer]</code> <p> List of associated tag ids </p></td>
+</tr>
+<tr>
+<td><strong><em>tag_data</em></strong> <code>list[object]</code> <p> Tag data associated with attached tag ids. </p></td>
+</tr>
+<tr>
+<td><strong><em>meta</em></strong> <code>object</code> <p> Metadata associated with the nfc tag </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the nfc tag </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the nfc tag </p></td>
+</tr>
+<tr>
+<td><strong><em>heartbeat</em></strong> <code>timestamp</code> <code>read only</code> <p> Timestamp when the nfc tag was last detected </p></td>
+</tr>
+<tr>
+<td><strong><em>campaign</em></strong> <code>Campaign</code> <p> <code>Campaign</code> object associated with the nfc tag </p></td>
+</tr>
+</tbody></table>
 <h3 id='get-all-nfc-tags'>Get all NFC tags</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/nfctags/"</span>
   -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
 </code></pre>
@@ -972,6 +1220,64 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 <p>Updates the specified nfc tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.</p>
 <h2 id='qr-code'>QR Code</h2>
 <p>QRCode objects allow you to perform actions on your qr codes. You can retrieve individual qr codes as well as a list of all your qr codes or update a qr code.</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong>  <code>integer</code> <code>read only</code>   <p> Unique identifier of the QR Code </p></td>
+</tr>
+<tr>
+<td><strong><em>name</em></strong>    <code>string</code> <code>required</code> <p> The name of the qr code </p></td>
+</tr>
+<tr>
+<td><strong><em>fields_data</em></strong> <code>object</code>    <code>required</code>  <p> Fields data for the QR Code </p></td>
+</tr>
+<tr>
+<td><strong><em>attributes</em></strong>  <code>object</code>    <code>required</code>  <p> Attributes data for the QR Code </p></td>
+</tr>
+<tr>
+<td><strong><em>qr_type</em></strong> <code>integer</code>   <p> QR type (<code>1</code> Static, <code>2</code> Dynamic) </p></td>
+</tr>
+<tr>
+<td><strong><em>organization</em></strong>    <code>integer</code>   <code>required</code>  <code>read only</code> <p> Id of the organization to which the qr code belongs to </p></td>
+</tr>
+<tr>
+<td><strong><em>place</em></strong> <code>integer</code> <code>required</code> <code>read only</code> <p>  Id of the place where the qr code is deployed </p></td>
+</tr>
+<tr>
+<td><strong><em>url</em></strong> <code>string</code> <code>read only</code>    <p> URL configured on the hardware qr code </p></td>
+</tr>
+<tr>
+<td><strong><em>state</em></strong>   <code>string</code> <code>read only</code> <p> State of the qr code (<code>A</code> Active, <code>S</code> Sleeping) </p></td>
+</tr>
+<tr>
+<td><strong><em>place_data</em></strong> <code>list[object]</code> <code>read only</code> <p> Place data associated with place id. </p></td>
+</tr>
+<tr>
+<td><strong><em>tags</em></strong> <code>list[integer]</code> <p> List of associated tag ids </p></td>
+</tr>
+<tr>
+<td><strong><em>tag_data</em></strong> <code>list[object]</code> <p> Tag data associated with attached tag ids. </p></td>
+</tr>
+<tr>
+<td><strong><em>meta</em></strong> <code>object</code> <p> Metadata associated with the qr code </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the qr code </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the qr code </p></td>
+</tr>
+<tr>
+<td><strong><em>heartbeat</em></strong> <code>timestamp</code> <code>read only</code> <p> Timestamp when the qr code was last detected </p></td>
+</tr>
+<tr>
+<td><strong><em>campaign</em></strong> <code>Campaign</code> <p> <code>Campaign</code> object associated with the qr code </p></td>
+</tr>
+</tbody></table>
 <h3 id='get-all-qr-codes'>Get all QR codes</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/qrcodes/"</span>
   -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
 </code></pre>
@@ -1287,6 +1593,67 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 <p>Download a QR code in a particular size and image format. Image types supported are PNG, JPEG, SVG and PDF. If no canvas type is sent in the parameters, the QRCode would be generated in all image types supported.</p>
 <h2 id='geofence'>Geofence</h2>
 <p>Geofence objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong>  <code>integer</code> <code>read only</code>   <p> Unique identifier of the Geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>name</em></strong>    <code>string</code> <code>required</code> <p> The name of the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>latitude</em></strong>    <code>float</code> <code>required</code> <p> Latitude of the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>longitude</em></strong>   <code>float</code> <code>required</code> <p> Longitude of the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>radius</em></strong>  <code>float</code> <code>required</code> <p> Radius of the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>organization</em></strong>    <code>integer</code>   <code>required</code>  <code>read only</code> <p> Id of the organization to which the geofence belongs to </p></td>
+</tr>
+<tr>
+<td><strong><em>place</em></strong> <code>integer</code> <code>required</code> <p>  Id of the place where the geofence is configured </p></td>
+</tr>
+<tr>
+<td><strong><em>url</em></strong> <code>string</code> <code>read only</code>    <p> URL configured for the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>state</em></strong>   <code>string</code> <code>read only</code> <p> State of the geofence (<code>A</code> Active, <code>S</code> Sleeping) </p></td>
+</tr>
+<tr>
+<td><strong><em>place_data</em></strong> <code>list[object]</code> <code>read only</code> <p> Place data associated with place id. </p></td>
+</tr>
+<tr>
+<td><strong><em>tags</em></strong> <code>list[integer]</code> <p> List of associated tag ids </p></td>
+</tr>
+<tr>
+<td><strong><em>tag_data</em></strong> <code>list[object]</code> <code>read only</code> <p> Tag data associated with attached tag ids. </p></td>
+</tr>
+<tr>
+<td><strong><em>meta</em></strong> <code>object</code> <p> Metadata associated with the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>heartbeat</em></strong> <code>timestamp</code> <code>read only</code> <p> Timestamp when the goefence was last detected </p></td>
+</tr>
+<tr>
+<td><strong><em>campaign</em></strong> <code>Campaign</code> <p> <code>Campaign</code> object associated with the geofence </p></td>
+</tr>
+<tr>
+<td><strong><em>notifications</em></strong> <code>list[CampaignNotification]</code> <p> <code>CampaignNotification</code> object associated with the geofence based on configured language(s) </p></td>
+</tr>
+</tbody></table>
 <h3 id='get-all-geofences'>Get all geofences</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/geofences/"</span>
   -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
 </code></pre>
@@ -1624,6 +1991,58 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 <p>You can create the geofence by giving it a <code>name</code>, <code>latitude</code>, <code>longitude</code>, <code>radius</code> and a <code>campaign</code>.</p>
 <h2 id='place'>Place</h2>
 <p>Place objects allow you to view all places in your account and view beacons attached to them.</p>
+
+<table><thead>
+<tr>
+<th><strong>Attributes</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong><em>id</em></strong>  <code>integer</code> <code>read only</code>   <p> Unique identifier of the Place </p></td>
+</tr>
+<tr>
+<td><strong><em>name</em></strong>    <code>string</code> <code>required</code> <p> The name of the place </p></td>
+</tr>
+<tr>
+<td><strong><em>latitude</em></strong>    <code>float</code> <code>required</code> <p> Latitude of the place </p></td>
+</tr>
+<tr>
+<td><strong><em>longitude</em></strong>   <code>float</code> <code>required</code> <p> Longitude of the place </p></td>
+</tr>
+<tr>
+<td><strong><em>organization</em></strong>    <code>integer</code>   <code>required</code>  <code>read only</code> <p> Id of the organization to which the place belongs to </p></td>
+</tr>
+<tr>
+<td><strong><em>place_id</em></strong> <code>integer</code> <code>required</code> <p>  Google Place ID of the place </p></td>
+</tr>
+<tr>
+<td><strong><em>address</em></strong> <code>string</code> <p> Google Place Address of the place </p></td>
+</tr>
+<tr>
+<td><strong><em>beacons</em></strong> <code>list[object]</code> <code>read only</code> <p> Beacon data associated with place id. </p></td>
+</tr>
+<tr>
+<td><strong><em>beacon_count</em></strong>    <code>integer</code>   <code>read only</code> <p> Number of beacons associated with the place </p></td>
+</tr>
+<tr>
+<td><strong><em>default_place</em></strong>   <code>boolean</code>   <code>read only</code> <p> Indicated whether the place is a default place </p></td>
+</tr>
+<tr>
+<td><strong><em>business_icon_url</em></strong>   <code>string</code> <p> Business Icon URL (Used in NearBee) </p></td>
+</tr>
+<tr>
+<td><strong><em>business_cover_url</em></strong>  <code>string</code> <p> Business Cover URL (Used in NearBee) </p></td>
+</tr>
+<tr>
+<td><strong><em>business_color</em></strong>  <code>string</code> <p> Business Color (Used in NearBee) </p></td>
+</tr>
+<tr>
+<td><strong><em>created</em></strong> <code>timestamp</code> <code>read only</code> <p> Created timestamp of the place </p></td>
+</tr>
+<tr>
+<td><strong><em>updated</em></strong> <code>timestamp</code> <code>read only</code> <p> Last updated timestamp of the place </p></td>
+</tr>
+</tbody></table>
 <h3 id='get-all-places'>Get all places</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/places/"</span>
   -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
 </code></pre>
