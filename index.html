@@ -1,0 +1,2012 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#beaconstac" class="toc-h1 toc-link" data-title="Beaconstac">Beaconstac</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#beacon" class="toc-h2 toc-link" data-title="Beacon">Beacon</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#get-all-beacons" class="toc-h3 toc-link" data-title="Get all beacons">Get all beacons</a>
+                          </li>
+                          <li>
+                            <a href="#retrieve-a-beacon" class="toc-h3 toc-link" data-title="Retrieve a beacon">Retrieve a beacon</a>
+                          </li>
+                          <li>
+                            <a href="#update-beacon" class="toc-h3 toc-link" data-title="Update Beacon">Update Beacon</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#nfc-tag" class="toc-h2 toc-link" data-title="NFC Tag">NFC Tag</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#get-all-nfc-tags" class="toc-h3 toc-link" data-title="Get all NFC tags">Get all NFC tags</a>
+                          </li>
+                          <li>
+                            <a href="#retrieve-a-nfc-tag" class="toc-h3 toc-link" data-title="Retrieve a NFC tag">Retrieve a NFC tag</a>
+                          </li>
+                          <li>
+                            <a href="#update-nfc-tag" class="toc-h3 toc-link" data-title="Update NFC tag">Update NFC tag</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#qr-code" class="toc-h2 toc-link" data-title="QR Code">QR Code</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#get-all-qr-codes" class="toc-h3 toc-link" data-title="Get all QR codes">Get all QR codes</a>
+                          </li>
+                          <li>
+                            <a href="#retrieve-a-qr-code" class="toc-h3 toc-link" data-title="Retrieve a QR code">Retrieve a QR code</a>
+                          </li>
+                          <li>
+                            <a href="#update-qr-code" class="toc-h3 toc-link" data-title="Update QR code">Update QR code</a>
+                          </li>
+                          <li>
+                            <a href="#create-qr-code" class="toc-h3 toc-link" data-title="Create QR code">Create QR code</a>
+                          </li>
+                          <li>
+                            <a href="#download-a-qr-code" class="toc-h3 toc-link" data-title="Download a QR code">Download a QR code</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#geofence" class="toc-h2 toc-link" data-title="Geofence">Geofence</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#get-all-geofences" class="toc-h3 toc-link" data-title="Get all geofences">Get all geofences</a>
+                          </li>
+                          <li>
+                            <a href="#retrieve-a-geofence" class="toc-h3 toc-link" data-title="Retrieve a Geofence">Retrieve a Geofence</a>
+                          </li>
+                          <li>
+                            <a href="#update-geofence" class="toc-h3 toc-link" data-title="Update Geofence">Update Geofence</a>
+                          </li>
+                          <li>
+                            <a href="#create-geofence" class="toc-h3 toc-link" data-title="Create Geofence">Create Geofence</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                    <a href="#place" class="toc-h2 toc-link" data-title="Place">Place</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#get-all-places" class="toc-h3 toc-link" data-title="Get all places">Get all places</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#analytics" class="toc-h1 toc-link" data-title="Analytics">Analytics</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#product" class="toc-h2 toc-link" data-title="Product">Product</a>
+                  </li>
+                  <li>
+                    <a href="#product-overview" class="toc-h2 toc-link" data-title="Product overview">Product overview</a>
+                  </li>
+                  <li>
+                    <a href="#product-performance" class="toc-h2 toc-link" data-title="Product performance">Product performance</a>
+                  </li>
+                  <li>
+                    <a href="#product-impression-detail" class="toc-h2 toc-link" data-title="Product impression detail">Product impression detail</a>
+                  </li>
+                  <li>
+                    <a href="#product-impression-distribution" class="toc-h2 toc-link" data-title="Product impression distribution">Product impression distribution</a>
+                  </li>
+                  <li>
+                    <a href="#generate-product-csv-data" class="toc-h2 toc-link" data-title="Generate product CSV data">Generate product CSV data</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>The Beaconstac API is organized around <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>. Our API has predictable resource-oriented URLs, accepts <a href="https://en.wikipedia.org/wiki/POST_(HTTP)#Use_for_submitting_web_forms">form-encoded</a> request bodies, returns <a href="http://www.json.org/">JSON-encoded</a> responses, and uses standard HTTP response codes, authentication, and verbs.</p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>YOUR_TOKEN</code> with your API key.</p>
+</blockquote>
+
+<p>The Beaconstac API uses API key to authenticate requests.</p>
+
+<p>Your API key carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.</p>
+
+<p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
+
+<p>You can find your developer token by using the following steps.</p>
+
+<ol>
+<li>Login to the <a href="https://dashboard.beaconstac.com/">Beaconstac dashboard</a>.</li>
+<li>Go to your &#39;Account&#39; section using the drop-down on the top-right.</li>
+<li>In the &#39;Account Details&#39; section, copy the &#39;Developer Token&#39; value.</li>
+</ol>
+
+<p><img src="images/account_page.png" alt="Account Page" /></p>
+
+<p>Beaconstac expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>Authorization: Token YOUR_TOKEN</code></p>
+
+<aside class="notice">
+You must replace <code>YOUR_TOKEN</code> with your personal API key.
+</aside>
+<h1 id='beaconstac'>Beaconstac</h1><h2 id='beacon'>Beacon</h2>
+<p>Beacon objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.</p>
+<h3 id='get-all-beacons'>Get all beacons</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/beacons/"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8072</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"hardware_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"deployment_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="s2">"kit_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"AK"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"SK"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KIA Bengaluru"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3335</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ola - Scooter taxi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.tiny.cc/gmymry"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-01T05:22:20.318082Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-28T08:43:13.826580Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">9572</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">12406</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"proximity_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eddystone_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/vLkeTm"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0117C5978008"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/vLkeTm"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T06:19:24.245871Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-01T05:22:19.967161Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T06:19:24.246013Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"UUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F94DBB23-2266-7822-3782-57BEAC0952AC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"major"</span><span class="p">:</span><span class="w"> </span><span class="mi">58460</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"minor"</span><span class="p">:</span><span class="w"> </span><span class="mi">21851</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.9818683</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.6404922</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"battery"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"advertising_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">211</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tx_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0117C5978008"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eddystone_nid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5DC33487F02E477D4058"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eddystone_bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0117C5978008"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"closeby_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">731031</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nearby_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beacons/3!5dc33487f02e477d40580117c5978008"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20017</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"hardware_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"deployment_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="s2">"kit_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"AK"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"SK"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1076</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Footwear"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14395</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vipin Schedule Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T07:29:28.674926Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T09:49:37.916926Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">10790</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">11805</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4586</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"proximity_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eddystone_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/uREvlU"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/uREvlU"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T06:11:59.475411Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T07:29:28.649751Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T06:11:59.475541Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"UUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F94DBB23-2266-7822-3782-57BEAC0952AC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"major"</span><span class="p">:</span><span class="w"> </span><span class="mi">46468</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"minor"</span><span class="p">:</span><span class="w"> </span><span class="mi">13497</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.758895</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-73.985131</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"battery"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"advertising_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tx_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">-8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eddystone_nid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5DC33487F02E477D4058"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eddystone_bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"closeby_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16278664</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nearby_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beacons/3!5dc33487f02e477d4058ac233f25a31b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1076</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of your beacons. The beacons are returned sorted by beacon heartbeat, with the most recent detected beacons appearing first.</p>
+
+<p>Filter arguments:</p>
+
+<ol>
+<li><code>name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>serial_number</code>:  <code>exact</code>, <code>icontains</code></li>
+<li><code>place__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>tags__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>url</code>: <code>exact</code></li>
+<li><code>heartbeat</code>: <code>lt</code>, <code>lte</code>, <code>gt</code>, <code>gte</code></li>
+<li><code>campaign__content_type</code>: <code>exact</code></li>
+<li><code>state</code>: <code>exact</code></li>
+</ol>
+
+<p>Search Fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>serial_number</code></li>
+<li><code>place__name</code></li>
+<li><code>tags__name</code></li>
+<li><code>url</code></li>
+<li><code>campaign__content_type</code></li>
+</ol>
+
+<p>Ordering fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>serial_number</code></li>
+<li><code>battery</code></li>
+<li><code>heartbeat</code>: default</li>
+<li><code>place__name</code></li>
+<li><code>created</code></li>
+<li><code>updated</code></li>
+<li><code>campaign__content_type</code></li>
+<li><code>state</code></li>
+</ol>
+<h3 id='retrieve-a-beacon'>Retrieve a beacon</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15646</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"hardware_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7466</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10130</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Half Price, Happy Hour"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-01T10:47:21.785384Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-05T20:39:35.266185Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">3935</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">11653</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">12422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4399</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"deployment_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"kit_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"AK"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"SK"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"rule_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1323950</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快：隨時隨地，跨行即時過數！"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快隨時隨地跨行即時過數"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T10:15:33.082052Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T11:48:55.626906Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1383027</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快：隨時隨地，跨行即時過數！"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快隨時隨地跨行即時過數"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-30T08:12:21.938128Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T11:48:55.640839Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"proximity_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eddystone_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/CKEc5X"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Coffeeshop"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/CKEc5X"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T10:15:59.184415Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-01T10:47:21.744035Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-05T20:39:35.299706Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"UUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F94DBB23-2266-7822-3782-57BEAC0952AC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"major"</span><span class="p">:</span><span class="w"> </span><span class="mi">54222</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"minor"</span><span class="p">:</span><span class="w"> </span><span class="mi">60051</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"battery"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"advertising_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tx_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">-8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F251546"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eddystone_nid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5DC33487F02E477D4058"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eddystone_bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F251546"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"closeby_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11348073</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nearby_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beacons/3!5dc33487f02e477d4058ac233f251546"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">3935</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">7466</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the details of an existing beacon. You need only supply the unique beacon identifier that was returned upon beacon listing</p>
+<h3 id='update-beacon'>Update Beacon</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s2">"{'id':beacon_id, 'campaign':{'id':campaign_id}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15646</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"hardware_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7466</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10130</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer satisfaction survey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-01T10:47:21.785384Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T08:47:29.158541Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">3935</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">11653</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">12422</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4399</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"deployment_meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"kit_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"AK"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"SK"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"rule_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1323950</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快：隨時隨地，跨行即時過數！"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快：隨時隨地"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快隨時隨地跨行即時過數"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T10:15:33.082052Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T08:47:29.139565Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1383027</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快：隨時隨地，跨行即時過數！"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d1bqobzsowu5wu.cloudfront.net/3568/a7fbe7d8f0d84595ac0dfa75c31f9a08"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"轉數快隨時隨地跨行即時過數"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-30T08:12:21.938128Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T08:47:29.152753Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"proximity_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eddystone_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/CKEc5X"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Coffeeshop"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://eddy.pro/CKEc5X"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T10:15:59.184415Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-01T10:47:21.744035Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T08:47:29.095082Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"UUID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F94DBB23-2266-7822-3782-57BEAC0952AC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"major"</span><span class="p">:</span><span class="w"> </span><span class="mi">54222</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"minor"</span><span class="p">:</span><span class="w"> </span><span class="mi">60051</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"battery"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"advertising_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tx_power"</span><span class="p">:</span><span class="w"> </span><span class="mi">-8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F251546"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eddystone_nid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5DC33487F02E477D4058"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"eddystone_bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC233F251546"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"closeby_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11348073</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nearby_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beacons/3!5dc33487f02e477d4058ac233f251546"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">3935</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">7466</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the specified beacon by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Beacon object.</p>
+<h2 id='nfc-tag'>NFC Tag</h2>
+<p>NFCTag objects allow you to perform actions on your nfc tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.</p>
+<h3 id='get-all-nfc-tags'>Get all NFC tags</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/nfctags/"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1329</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04DA184A096180"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04DA184A096180"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"counter"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1552469890</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22398</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Christmas Special"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T09:38:08.416096Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T09:38:08.416111Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">1708</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">4377</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nfc.tapnscan.me/1xdthy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T11:05:35.788514Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-26T05:56:07.426902Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T11:05:35.788643Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"encrypted_hardware_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"o3N6+fKRkCSRaJZJ86xvm6pVEaUmX/+mlfv7RgZfw3bgQdPFE6M0zt4jpx9KiWa0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1151</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"046974ca714d81"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"046974ca714d81"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"counter"</span><span class="p">:</span><span class="w"> </span><span class="mi">129</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1552298188</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22295</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Christmas Special"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-11T09:56:27.705916Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-11T09:56:27.705930Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">1708</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">4377</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nfc.tapnscan.me/5dkm0C"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-03T07:12:25.247399Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-26T05:56:06.109631Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-03T07:12:25.247588Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"encrypted_hardware_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qmK1WNHrq30BGSooKHDmFJoWYNz0CnOXXqdAOWlQ19OHqkL63cagPgsersM+Ma6t"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of your nfc tags. The tags are returned sorted by updated, with the most recently updated tags appearing first.</p>
+
+<p>Filter arguments:</p>
+
+<ol>
+<li><code>name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>place__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>tags__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>url</code>: <code>exact</code></li>
+<li><code>campaign__content_type</code>: <code>exact</code></li>
+<li><code>state</code>: <code>exact</code></li>
+</ol>
+
+<p>Search Fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>place__name</code></li>
+<li><code>tags__name</code></li>
+<li><code>url</code></li>
+<li><code>campaign__content_type</code></li>
+</ol>
+
+<p>Ordering fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>place__name</code></li>
+<li><code>created</code></li>
+<li><code>updated</code> - default</li>
+<li><code>campaign__content_type</code></li>
+<li><code>state</code></li>
+</ol>
+<h3 id='retrieve-a-nfc-tag'>Retrieve a NFC tag</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04DA184A096180"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04DA184A096180"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"counter"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"hardware_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1552891519</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1430</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MobStac"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20019</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looking for Shoes?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-18T06:45:16.989177"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-18T06:45:16.989196"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">137</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://q.nfc.tapnscan.me/xHfUUg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-11T12:12:56.184672Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-18T06:44:26.671110Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-11T12:12:56.184869Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"encrypted_hardware_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YMjBG8wNhvWCWqJCBJ4Sn7eLPRxrPom91nNuT2cIoog3jr8rIKTnVEOMfFLrviMt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">1430</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the details of an existing nfc tag. You need only supply the unique nfc tag identifier that was returned upon tags listing.</p>
+<h3 id='update-nfc-tag'>Update NFC tag</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s2">"{'id':nfctag_id, 'campaign':{'id':campaign_id}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1329</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04DA184A096180"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04DA184A096180"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"counter"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1552469890</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Times Square"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22398</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Satisfaction Survey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T09:38:08.416096Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:15:36.134285Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">1708</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">7912</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nfc.tapnscan.me/1xdthy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T11:05:35.788514Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-26T05:56:07.426902Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:15:36.166303Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"encrypted_hardware_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gl6AECZ4HlF4KgCAFztNxXezG1lAKkeHGL1H8CWopbHVb/vhI4d8mPTxHv+GsTu0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the specified nfc tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.</p>
+<h2 id='qr-code'>QR Code</h2>
+<p>QRCode objects allow you to perform actions on your qr codes. You can retrieve individual qr codes as well as a list of all your qr codes or update a qr code.</p>
+<h3 id='get-all-qr-codes'>Get all QR codes</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/qrcodes/"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">224</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557387845</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KIA Bengaluru"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23258</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dynamic QR code demo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.544150Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.544165Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">13988</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">13620</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4744</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"fields_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"backgroundImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logoImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qr.tapnscan.me/sycwbi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dynamic QR code demo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T04:42:16.236105Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.517097Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T04:42:16.236238Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"qr_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1552334973</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dynamic_sub_campaign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"landing_page"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8281</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Marco Square"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22303</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Half Price, Happy Hour"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://google.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-11T20:09:31.142375Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-20T17:12:54.248951Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">3568</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">9533</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">11531</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">1075</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"fields_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"backgroundImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logoImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qr.tapnscan.me/byonegetonefree"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coffee Shop Offer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-14T14:48:31.407835Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-11T20:09:31.126677Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-20T17:12:54.272483Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"qr_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">3568</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">8281</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of your qr codes. The tags are returned sorted by updated, with the most recently updated qr codes appearing first.</p>
+
+<p>Filter arguments:</p>
+
+<ol>
+<li><code>name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>place__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>tags__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>url</code>: <code>exact</code></li>
+<li><code>campaign__content_type</code>: <code>exact</code></li>
+<li><code>state</code>: <code>exact</code></li>
+</ol>
+
+<p>Search Fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>place__name</code></li>
+<li><code>tags__name</code></li>
+<li><code>url</code></li>
+<li><code>campaign__content_type</code></li>
+</ol>
+
+<p>Ordering fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>place__name</code></li>
+<li><code>created</code></li>
+<li><code>updated</code> - default</li>
+<li><code>campaign__content_type</code></li>
+<li><code>state</code></li>
+</ol>
+<h3 id='retrieve-a-qr-code'>Retrieve a QR code</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">224</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557387845</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KIA Bengaluru"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23258</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dynamic QR code demo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.544150Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.544165Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">13988</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">13620</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4744</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fields_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"backgroundImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logoImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qr.tapnscan.me/sycwbi"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dynamic QR code demo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T04:42:16.236105Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.517097Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T04:42:16.236238Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"qr_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the details of an existing qr code. You need only supply the unique qr code identifier that was returned upon qr codes listing.</p>
+<h3 id='update-qr-code'>Update QR code</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s2">"{'id':qrcode_id, 'campaign':{'id':campaign_id}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">224</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557387845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dynamic_sub_campaign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feedback_form"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KIA Bengaluru"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23258</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Satisfaction Survey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.544150Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:41:59.015809Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">13988</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">7912</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4744</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fields_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"backgroundImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logoImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qr.tapnscan.me/sycwbi"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dynamic QR code demo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T04:42:16.236105Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.517097Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:41:59.045695Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"qr_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the specified qr code by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the QRCode object.</p>
+<h3 id='create-qr-code'>Create QR code</h3>
+<p>curl -X POST \
+  https://beaconstac.mobstac.com/api/2.0/qrcodes/ \
+  -H &#39;Content-Type: application/json&#39; \
+  -d &#39;{
+    &quot;attributes&quot;: {
+        &quot;color&quot;: &quot;#000000&quot;,
+        &quot;margin&quot;: &quot;&quot;,
+        &quot;backgroundImage&quot;: &quot;&quot;,
+        &quot;logoImage&quot;: &quot;&quot;
+    },
+    &quot;name&quot;: &quot;test 3&quot;,
+    &quot;qr_type&quot;: 2,
+    &quot;organization&quot;: {organization_id},
+    &quot;place&quot;: {place_id}
+}&#39;</p>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">224</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"activationTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1557387845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dynamic_sub_campaign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feedback_form"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KIA Bengaluru"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23258</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Satisfaction Survey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.544150Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:41:59.015809Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">13988</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">7912</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4744</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"fields_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"backgroundImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logoImage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qr.tapnscan.me/sycwbi"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test 3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T04:42:16.236105Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-09T07:44:03.517097Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:41:59.045695Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"qr_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates a new qr code. However, the request should contain the required fields.</p>
+<h3 id='download-a-qr-code'>Download a QR code</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}/?size={size}&amp;canvas_type={canvas_type}"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"svg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://beaconstac-content.s3.amazonaws.com/1697/qr-codes/224/svg/aHR0cHM6Ly9xci50YXBuc2Nhbi5tZS9zeWN3Ymk%3D-1024.svg"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Download a QR code in a particular size and image format. Image types supported are PNG, JPEG, SVG and PDF. If no canvas type is sent in the parameters, the QRCode would be generated in all image types supported.</p>
+<h2 id='geofence'>Geofence</h2>
+<p>Geofence objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence</p>
+<h3 id='get-all-geofences'>Get all geofences</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/geofences/"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1258</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Montreal, QC, Canada"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20144</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looking for Shoes?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-09T06:03:10.894882"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-13T07:06:23.806157"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">137</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://geo.tapnscan.me/b6Pt2C"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">451</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ola Prime welcomes you to Bengaluru 8"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enjoy your favourite music on the way home"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/beaconstac-content-qa/949/22a9aefb67034f1998551b97f34d6c4b"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ola-prime-welcomes-you-to-bengaluru-8"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-12T11:03:10.908622Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-13T07:06:23.801249Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.752214Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-12T11:03:10.878086Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.752444Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.981900"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77.640500"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"radius"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">1258</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1504</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20146</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looking for Shoes?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T06:48:36.820377"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T06:48:36.820395"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://geo.tapnscan.me/Cie705"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">453</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decorate your foot!!!"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The best shoe you will ever find in this universe"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/beaconstac-content-qa/949/d15803855cf14f468d52613666767a33"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decorate-your-foot"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T06:48:36.836419Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T06:48:36.836439Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Loc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.750112Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T06:48:36.809354Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.750294Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.981900"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77.640500"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"radius"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">1504</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Filter arguments:</p>
+
+<ol>
+<li><code>name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>place__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>tags__name</code>: <code>exact</code>, <code>icontains</code></li>
+<li><code>url</code>: <code>exact</code></li>
+<li><code>campaign__content_type</code>: <code>exact</code></li>
+<li><code>state</code>: <code>exact</code></li>
+</ol>
+
+<p>Search Fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>place__name</code></li>
+<li><code>tags__name</code></li>
+<li><code>url</code></li>
+<li><code>campaign__content_type</code></li>
+</ol>
+
+<p>Ordering fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>place__name</code></li>
+<li><code>created</code></li>
+<li><code>updated</code> - default</li>
+<li><code>campaign__content_type</code></li>
+<li><code>state</code></li>
+</ol>
+
+<p>Returns a list of your geofences. The geofences are returned sorted by updated, with the most recently updated geofence appearing first.</p>
+<h3 id='retrieve-a-geofence'>Retrieve a Geofence</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1258</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Montreal, QC, Canada"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20144</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looking for Shoes?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-09T06:03:10.894882"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-13T07:06:23.806157"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">137</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://geo.tapnscan.me/b6Pt2C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">451</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ola Prime welcomes you to Bengaluru 8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enjoy your favourite music on the way home"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/beaconstac-content-qa/949/22a9aefb67034f1998551b97f34d6c4b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ola-prime-welcomes-you-to-bengaluru-8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-12T11:03:10.908622Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-13T07:06:23.801249Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.752214Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-12T11:03:10.878086Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.752444Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.981900"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77.640500"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"radius"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">1258</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the details of an existing geofence. You need only supply the unique geofence identifier that was returned upon geofence listing.</p>
+<h3 id='update-geofence'>Update Geofence</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s2">"{'id':geofence_id, 'campaign':{'id':campaign_id}}"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1258</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Montreal, QC, Canada"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tag_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20144</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Satisfaction Survey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-09T06:03:10.894882"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:28:08.905138Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">137</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://geo.tapnscan.me/b6Pt2C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">451</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"closeby"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"nearby"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ola Prime welcomes you to Bengaluru 8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enjoy your favourite music on the way home"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/beaconstac-content-qa/949/22a9aefb67034f1998551b97f34d6c4b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner_image_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"app_intent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ola-prime-welcomes-you-to-bengaluru-8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-12T11:03:10.908622Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:28:08.901039Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-18T06:57:38.752214Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-12T11:03:10.878086Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:28:08.930559Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.981900"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77.640500"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"radius"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">1258</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the specified geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.</p>
+<h3 id='create-geofence'>Create Geofence</h3><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://beaconstac.mobstac.com/api/2.0/geofences/ <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "campaign": {
+        "id": 223,
+        "custom_url": "https://beaconstac.com",
+        "content_type": 2,
+        "campaign_active": true,
+        "organization": 1284,
+        "markdown_card": 434,
+        "form": 7099,
+        "schedule": null
+    },
+    "name": "Corner",
+    "place": 1929,
+    "latitude": 12.21343,
+    "longitude": 12.213132,
+    "radius": 100,
+    "organization": 1234
+}'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">223</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://beaconstac.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaign_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1284</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"markdown_card"</span><span class="p">:</span><span class="w"> </span><span class="mi">434</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="mi">7099</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Corner"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">1929</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.21343</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.213132</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"radius"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You can create the geofence by giving it a <code>name</code>, <code>latitude</code>, <code>longitude</code>, <code>radius</code> and a <code>campaign</code>.</p>
+<h2 id='place'>Place</h2>
+<p>Place objects allow you to view all places in your account and view beacons attached to them.</p>
+<h3 id='get-all-places'>Get all places</h3><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/api/2.0/places/"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"beacons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8072</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0117C5978008"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-24T09:57:05.970926Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"beacon_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"default_place"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KIA Bengaluru"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1986348</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.7065928</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJZWJEdf4crjsRjkEpoelwbCk"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kempegowda International Airport Bengaluru,KIAL Rd, Devanahalli, Bengaluru, Karnataka 560300, India"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"business_icon_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d1bqobzsowu5wu.cloudfront.net/1697/e5356e8bde3c4afc92e48d64c898e721"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"business_cover_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d1bqobzsowu5wu.cloudfront.net/1697/9cffaa07236e4ccea144fd4ee0f17804"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"business_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"145eb0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-08T13:51:35.963177Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-02T09:34:48.149451Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5511</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"beacons"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"beacon_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"default_place"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Central Park"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.7828647</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-73.9653551</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ4zGFAZpYwokRGUGph3Mf37k"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Central Park,New York, NY, USA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"business_icon_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"business_cover_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"business_color"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-05T07:22:49.722062Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-05T07:22:49.722086Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="mi">1697</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a list of your places.</p>
+
+<p>Filter arguments:</p>
+
+<ol>
+<li><code>name</code>: <code>exact</code>, <code>icontains</code></li>
+</ol>
+
+<p>Search Fields:</p>
+
+<ol>
+<li><code>name</code></li>
+</ol>
+
+<p>Ordering fields:</p>
+
+<ol>
+<li><code>name</code></li>
+<li><code>created</code></li>
+<li><code>updated</code> - default</li>
+<li><code>address</code></li>
+</ol>
+<h1 id='analytics'>Analytics</h1><h2 id='product'>Product</h2>
+<p>Product types:</p>
+
+<ol>
+<li>beacon</li>
+<li>nfc</li>
+<li>qr</li>
+<li>geofence</li>
+</ol>
+
+<p>from, to parameters should be in EPOCH milliseconds.</p>
+<h2 id='product-overview'>Product overview</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&amp;method=Products.getOverview"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s1">'{
+          "product_type": {type},
+          "from": 1560796200000,
+          "to": 1561401000000
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mi">20017</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"AC233F25A31B(Times Square)"</span><span class="p">,</span><span class="w">
+      </span><span class="mi">152</span><span class="p">,</span><span class="w">
+      </span><span class="mi">2</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mi">8072</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"0117C5978008(KIA Bengaluru)"</span><span class="p">,</span><span class="w">
+      </span><span class="mi">231</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_name"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notification_count"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"impression_count"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get analytics overview for the product type over the time interval.</p>
+<h2 id='product-performance'>Product performance</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&amp;method=Products.getPerformance"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s1">'{
+          "product_type": {type},
+          "product_id": {id},
+          "from": 1560796200000,
+          "to": 1561401000000,
+          "interval": "1d",
+          "timezone": "UTC"
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">8072</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"0117C5978008"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"0117C5978008"</span><span class="p">,</span><span class="w">
+        </span><span class="mi">231</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="mi">8361</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"KIA Bengaluru"</span><span class="p">,</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1560816000000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">73</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1560902400000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">58</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1560988800000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">35</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1561075200000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">33</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1561161600000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1561248000000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">1561334400000</span><span class="p">,</span><span class="w">
+                </span><span class="mi">32</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_identifier"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_notification_count"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_impression_count"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_ctr"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">,</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"epoch_date"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"notification_count"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"impression_count"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ctr"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get analytics performace for the product.</p>
+<h2 id='product-impression-detail'>Product impression detail</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&amp;method=Products.getImpressionDetail"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s1">'{
+          "product_type": {type},
+          "place": {place_id},
+          "from": 1560796200000,
+          "to": 1561401000000
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"15611148064w64ye"</span><span class="p">,</span><span class="w">
+            </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Times Square"</span><span class="p">,</span><span class="w">
+            </span><span class="mi">20017</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"2019-06-21T11:11:41.523Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"49.207.48.13"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"15611148064w64ye"</span><span class="p">,</span><span class="w">
+            </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Times Square"</span><span class="p">,</span><span class="w">
+            </span><span class="mi">20017</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"2019-06-21T11:00:06.757Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"49.207.48.13"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"cookie_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_identifier"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"iso_date"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ip_address"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_agent"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get impressions details generated by the product. If no <code>place</code> is provided data will be returned for all products of the product type specified in the organization.</p>
+<h2 id='product-impression-distribution'>Product impression distribution</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&amp;method=Products.getImpressionDistribution"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s1">'{
+          "product_type": {type},
+          "place": {place_id},
+          "from": 1560796200000,
+          "to": 1561401000000
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="mi">2888</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Times Square"</span><span class="p">,</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">20017</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"AC233F25A31B"</span><span class="p">,</span><span class="w">
+                </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="mi">0</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">,</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"product_id"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_name"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product_identifier"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impression_count"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"custom_impression"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"card_impression"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"form_impression"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get impression distribution generated by the product. If no <code>place</code> is provided data will be returned for all products of the product type specified in the organization.</p>
+<h2 id='generate-product-csv-data'>Generate product CSV data</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&amp;method=Csv.getProductData"</span>
+  -H <span class="s2">"Authorization: Token YOUR_TOKEN"</span>
+  -d <span class="s1">'{
+          "product_type": {type},
+          "organization_ids": [organization_id_1, organization_id_2],
+          "product_ids": [product_id_1, prodcut_id_2],
+          "from": 1559273172,
+          "to": 1559283172,
+          "timezone": "UTC"
+      }'</span>
+</code></pre>
+<p>Generate a detailed CSV report for products in the specified organizations. The report will be emailed to the user email mentioned in the POST body. If not email is specified it would be emailed to the user making the request.</p>
+<h1 id='errors'>Errors</h1>
+<p>The Beaconstac API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified object could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many resources! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
