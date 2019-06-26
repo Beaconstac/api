@@ -58,10 +58,10 @@ Campaign is type of marketing strategy which can in the form of custom url, mark
 |---|
 | ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
 | ***content_type***	`integer`	`required`	<p> Campaign Type (0 for 'No campaign') </p> |
-| ***custom_url***	`URL`	`true if content_type is 1`	<p> User configured URL associated with the campaign </p> |
-| ***markdown_card***	`integer`	`true if content_type is 2`	<p> Markdown card associated with the campaign </p> |
-| ***form***	`integer`	`true if content_type is 3`	<p> Form associated with the campaign </p> |
-| ***schedule***	`integer`	`true if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***custom_url***	`URL`	`required if content_type is 1`	<p> User configured URL associated with the campaign </p> |
+| ***markdown_card***	`integer`	`required if content_type is 2`	<p> Markdown card associated with the campaign </p> |
+| ***form***	`integer`	`required if content_type is 3`	<p> Form associated with the campaign </p> |
+| ***schedule***	`integer`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
 | ***campaign_active***	`boolean`	`read only`	<p> Current campaign status </p> |
 | ***organization*** `integer` `required` `read only` <p> Id of the organization to which the campaign belongs to </p> |
 | ***created*** `timestamp` `read only` <p> Created timestamp of the campaign </p> |
