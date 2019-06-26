@@ -391,16 +391,16 @@ You must replace <code>YOUR_TOKEN</code> with your personal API key.
 <td><strong><em>content_type</em></strong>    <code>integer</code>   <code>required</code>  <p> Campaign Type (0 for &#39;No campaign&#39;) </p></td>
 </tr>
 <tr>
-<td><strong><em>custom_url</em></strong>  <code>URL</code>   <code>true if content_type is 1</code> <p> User configured URL associated with the campaign </p></td>
+<td><strong><em>custom_url</em></strong>  <code>URL</code>   <code>required if content_type is 1</code> <p> User configured URL associated with the campaign </p></td>
 </tr>
 <tr>
-<td><strong><em>markdown_card</em></strong>   <code>integer</code>   <code>true if content_type is 2</code> <p> Markdown card associated with the campaign </p></td>
+<td><strong><em>markdown_card</em></strong>   <code>integer</code>   <code>required if content_type is 2</code> <p> Markdown card associated with the campaign </p></td>
 </tr>
 <tr>
-<td><strong><em>form</em></strong>    <code>integer</code>   <code>true if content_type is 3</code> <p> Form associated with the campaign </p></td>
+<td><strong><em>form</em></strong>    <code>integer</code>   <code>required if content_type is 3</code> <p> Form associated with the campaign </p></td>
 </tr>
 <tr>
-<td><strong><em>schedule</em></strong>    <code>integer</code>   <code>true if content_type is 4</code> <p> Schedule associated with the campaign </p></td>
+<td><strong><em>schedule</em></strong>    <code>integer</code>   <code>required if content_type is 4</code> <p> Schedule associated with the campaign </p></td>
 </tr>
 <tr>
 <td><strong><em>campaign_active</em></strong> <code>boolean</code>   <code>read only</code> <p> Current campaign status </p></td>
