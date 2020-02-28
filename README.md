@@ -228,7 +228,7 @@ Changing campaign to a Markdown Card
 ```
 
 ### NFC Tag
-`NFCTag` objects allow you to perform actions on your nfc tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.
+`NFCTag` objects allow you to perform actions on your NFC Tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.
 
 #### NFC Tag object
 ***Attributes***
@@ -236,25 +236,25 @@ Changing campaign to a Markdown Card
 | Field | Type | Required | Read only | Description |
 |---|---|---|---|---|
 | `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
-| `name` | `string` |  `true` | `false`  | The name of the nfc tag |
-| `uid` | `string` |  `true` | `true`  | NFC tag UID |
-| `counter` | `integer` |  `false` | `true`  | NFC tag counter. Counts the number of times the tag has been read |
+| `name` | `string` |  `true` | `false`  | The name of the NFC Tag |
+| `uid` | `string` |  `true` | `true`  | NFC Tag UID |
+| `counter` | `integer` |  `false` | `true`  | NFC Tag counter. Counts the number of times the tag has been read |
 | `organization` | `integer` |  `true` | `true`  | Organization id |
 | `place` | `integer` |  `true` | `false`  | Place id |
 | `url` | `string` |  `false` | `true`  | NFC Tag URL |
-| `state` | `string` |  `false` | `true`  | State of the nfc tag (`A` Active, `S` Sleeping) |
+| `state` | `string` |  `false` | `true`  | State of the NFC Tag (`A` Active, `S` Sleeping) |
 | `place_data` | `list[object]` |  `false` | `true`  | Place data associated with place id. Only available in `List` |
 | `tags` | `list[integer]` |  `false` | `false`  | List of tag ids associated |
 | `tag_data` | `list[object]` |  `false` | `true`  | Tag data |
-| `meta` | `object` |  `false` | `false`  | Metadata associated with the nfc tag |
+| `meta` | `object` |  `false` | `false`  | Metadata associated with the NFC Tag |
 | `created` | `timestamp` |  `false` | `true`  | Created timestamp |
 | `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
-| `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the nfc tag was last detected |
+| `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the NFC Tag was last detected |
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 
 
-#### List nfc tags
-Returns a list of your nfc tags. The tags are returned sorted by `updated`, with the most recently updated tags appearing first.
+#### List NFC Tags
+Returns a list of your NFC Tags. The tags are returned sorted by `updated`, with the most recently updated tags appearing first.
 
 `GET https://beaconstac.mobstac.com/api/2.0/nfctags/`
 
@@ -281,14 +281,14 @@ Ordering fields:
 5. `campaign__content_type`
 6. `state`
 
-#### Retrieve a nfc tag
-Retrieves the details of an existing nfc tag. You need only supply the unique nfc tag identifier that was returned upon tags listing.
+#### Retrieve an NFC Tag
+Retrieves the details of an existing NFC Tag. You need only supply the unique NFC Tag identifier that was returned upon tags listing.
 
 `GET https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}`
 
 
-#### Update a nfc tag
-Updates the specified nfc tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.
+#### Update an NFC Tag
+Updates the specified NFC Tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.
 
 `PUT https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}`
 
@@ -316,7 +316,7 @@ Changing campaign to a Markdown Card
 
 
 ### QR Code
-`QRCode` objects allow you to perform actions on your qr codes. You can retrieve individual qr codes as well as a list of all your qr codes or update a qr code.
+`QRCode` objects allow you to perform actions on your QR Codes. You can retrieve individual QR Codes as well as a list of all your qr codes or update a QR Code.
 
 #### QR Code object
 ***Attributes***
@@ -331,18 +331,18 @@ Changing campaign to a Markdown Card
 | `organization` | `integer` |  `true` | `true`  | Organization id |
 | `place` | `integer` |  `true` | `false`  | Place id |
 | `url` | `string` |  `false` | `true`  | QR code URL |
-| `state` | `string` |  `false` | `true`  | State of the qr code (`A` Active, `S` Sleeping) |
+| `state` | `string` |  `false` | `true`  | State of the QR Code (`A` Active, `S` Sleeping) |
 | `place_data` | `list[object]` |  `false` | `true`  | Place data associated with place id. Only available in `List` |
 | `tags` | `list[integer]` |  `false` | `false`  | List of tag ids associated |
 | `tag_data` | `list[object]` |  `false` | `true`  | Tag data |
-| `meta` | `object` |  `false` | `false`  | Metadata associated with the qr code |
+| `meta` | `object` |  `false` | `false`  | Metadata associated with the QR Code |
 | `created` | `timestamp` |  `false` | `true`  | Created timestamp |
 | `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
 | `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the qr code was last detected |
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 
 #### List QR Codes
-Returns a list of your qr codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
+Returns a list of your QR Codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
 
 `GET https://beaconstac.mobstac.com/api/2.0/qrcodes/`
 
@@ -467,8 +467,8 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 | `notifications` | `list[CampaignNotification]` |  `false` | `false`  | `CampaignNotification` object |
 
-#### List geofences
-Returns a list of your geofences. The geofences are returned sorted by `updated`, with the most recently updated geofence appearing first.
+#### List Geofences
+Returns a list of your Geofences. The Geofences are returned sorted by `updated`, with the most recently updated Geofence appearing first.
 
 `GET https://beaconstac.mobstac.com/api/2.0/geofences/`
 
@@ -493,14 +493,14 @@ Ordering fields:
 5. `campaign__content_type`
 6. `state`
 
-#### Retrieve a geofence
-Retrieves the details of an existing geofence. You need only supply the unique geofence identifier that was returned upon geofence listing.
+#### Retrieve a Geofence
+Retrieves the details of an existing Geofence. You need only supply the unique Geofence identifier that was returned upon Geofence listing.
 
 `GET https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}`
 
 
-#### Update geofence
-Updates the specified geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
+#### Update Geofence
+Updates the specified Geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
 
 `PUT https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}`
 
@@ -528,13 +528,13 @@ Changing campaign to a Markdown Card
 }
 ```
 
-#### Create geofence
-Updates the specified geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
+#### Create Geofence
+Creates a new geofence by setting the values of the parameters passed. The request should contain the required fields. Please refer to the Geofence object.
 
 `POST https://beaconstac.mobstac.com/api/2.0/geofences/`
 
 Example:
-Create geofence with campaign to a Markdown Card
+Create Geofence with campaign to a Markdown Card
 ```json
 {
     "campaign": {
@@ -598,6 +598,48 @@ Ordering fields:
 4. `address`
 
 
+#### Retrieve a Place
+Retrieves the details of an existing Place. You need only supply the unique Place identifier that was returned upon Place listing.
+
+`GET https://beaconstac.mobstac.com/api/2.0/places/{place_id}`
+
+
+#### Update Place
+Updates the specified Place by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Place object.
+
+`PUT https://beaconstac.mobstac.com/api/2.0/places/{place_id}`
+
+Example:
+Update an existing place based on ID of the place
+```json
+{
+	"organization": 1234,
+	"name": "Mobstac, New York",
+	"address": "450 Lexington Avenue, 4th Floor New York, NY 10017",
+	"latitude": "40.73",
+	"longitude": "-73.94"
+}
+```
+
+#### Create Place
+Creates a new place in your account by setting the values of the parameters passed. The request should contain the required fields. Please refer to the Place object.
+
+`POST https://beaconstac.mobstac.com/api/2.0/places/`
+
+Example:
+Create a new Place
+```json
+{
+    "organization": 1234,
+    "name": "Mobstac, Bangalore",
+    "address": "MobStac,2nd floor, Mayfair Building, Karnataka, 316, 100 Feet Rd, Binnamangala, Stage 1, Indiranagar, Bengaluru, Karnataka 560038, India",
+    "latitude": 12.9818683,
+    "longitude": 77.6404921999999
+}
+```
+
+
+
 
 ### User
 User objects allow you to perform actions on the users in your account. You can list of all your users, retrieve individual users, create a user or update a user.
@@ -612,8 +654,6 @@ User objects allow you to perform actions on the users in your account. You can 
 | `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
 | `username` | `string` |  `true` | `false`  | The username used to login |
 | `organization` | `integer` |  `true` | `true`  | Organization id |
-| `latitude` | `float` |  `false` | `false`  | Latitude |
-| `longitude` | `float` |  `false` | `false`  | Longitude |
 | `first_name` | `string` |  `false` | `false`  | First name of the user |
 | `last_name` | `string` |  `false` | `false`  | Last name of the user |
 | `email` | `string` |  `false` | `false`  | email of the user |
@@ -680,15 +720,15 @@ Example:
 Create a new user User in an organization.
 ```json
 {
-    "username": "sample_user",
-	"customer_plan": "PR",
-    "first_name": "Sample",
-    "last_name": "User",
-    "email": "sample_user@beaconstac.com",
-    "billing_email": "billing@beaconstac.com",
-	"organization": 1284,
-    "profile_picture": "https://d1bqobzsowu5wu.cloudfront.net/720/93f7199471e64ddb9ad4e8bb888bb1ce",
-    "password": "testPassword123"
+      "username": "sample_user",
+      "customer_plan": "PR",
+      "first_name": "Sample",
+      "last_name": "User",
+      "email": "sample_user@beaconstac.com",
+      "billing_email": "billing@beaconstac.com",
+      "organization": 1284,
+      "profile_picture": "https://d1bqobzsowu5wu.cloudfront.net/720/93f7199471e64ddb9ad4e8bb888bb1ce",
+      "password": "testPassword123"
 }
 ```
 
@@ -705,9 +745,9 @@ Create a new user User in an organization.
 ```json
 {
     "first_name": "John",
-	"last_name": "Doe",
+    "last_name": "Doe",
     "profile_picture": "https://d1bqobzsowu5wu.cloudfront.net/2934/cf50e4abe1724089a7dd8bc60dbe8977",
-	"organization": 1284
+    "organization": 1284
 }
 ```
 
@@ -845,5 +885,26 @@ Request body:
     "from": 1559273172,
     "to": 1559283172,
     "timezone": "UTC"
+}
+```
+
+
+#### Get analytics overview for a given period
+Get analytics overview (product count, notification count, impression count, conversion percentage) of your product based on product type being passed. The total number of unique visitors is also given in the response. 
+
+`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Overview.getPeriodOverview`
+
+Example:
+Generate analytics overview of all products over a period of time.
+
+`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Overview.getPeriodOverview`
+
+Request body:
+```json
+{
+	"from": "1567535400000",
+	"to": "1582482600000",
+	"product_type": "geofence",
+	"organization": 1234
 }
 ```
