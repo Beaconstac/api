@@ -25,6 +25,7 @@ You can find your developer token by using the following steps.
 4. [QR Code](#qr-code)
 5. [Geofence](#geofence)
 6. [Place](#place)
+7. [User](#user)
 
 ## Reading the Documentation
 #### Filter fields
@@ -340,7 +341,7 @@ Changing campaign to a Markdown Card
 | `heartbeat` | `timestamp` |  `false` | `true`  | Timestamp when the qr code was last detected |
 | `campaign` | `Campaign` |  `false` | `false`  | `Campaign` object |
 
-#### List qr codes
+#### List QR Codes
 Returns a list of your qr codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
 
 `GET https://beaconstac.mobstac.com/api/2.0/qrcodes/`
@@ -368,12 +369,12 @@ Ordering fields:
 5. `campaign__content_type`
 6. `state`
 
-#### Retrieve a qr code
+#### Retrieve a QR Code
 Retrieves the details of an existing qr code. You need only supply the unique qr code identifier that was returned upon qr codes listing.
 
 `GET https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
 
-#### Update a qr code
+#### Update a QR Code
 Updates the specified qr code by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the QRCode object.
 
 `PUT https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
@@ -399,7 +400,7 @@ Changing campaign to a Markdown Card
 }
 ```
 
-#### Create a qr code
+#### Create a QR Code
 Creates a new qr code. However, the request should contain the required fields. Please refer to the NFCTag object.
 
 `POST https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
@@ -435,6 +436,8 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
     "svg": "url.svg"
 }
 ```
+
+( For detailed QR Code API documentation please refer: https://www.beaconstac.com/qr-code-generator-api )
 
 
 ### Geofence
@@ -593,6 +596,122 @@ Ordering fields:
 2. `created`
 3. `updated` - default
 4. `address`
+
+
+
+### User
+User objects allow you to perform actions on the users in your account. You can list of all your users, retrieve individual users, create a user or update a user.
+
+(Note: Creation of Users is supported only on Reseller plan and above)
+
+#### User object
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `username` | `string` |  `true` | `false`  | The username used to login |
+| `organization` | `integer` |  `true` | `true`  | Organization id |
+| `latitude` | `float` |  `false` | `false`  | Latitude |
+| `longitude` | `float` |  `false` | `false`  | Longitude |
+| `first_name` | `string` |  `false` | `false`  | First name of the user |
+| `last_name` | `string` |  `false` | `false`  | Last name of the user |
+| `email` | `string` |  `false` | `false`  | email of the user |
+| `customer_plan` | `string` |  `false` | `false`  | Customer Plan the User is subscribed to (`ST` Starter, `LT` Lite, `BA` Basic, `PR` Premium, `RE` Reseller, `WL` Whitelabel, `EN` Enterprise)|
+| `subscription_state` | `string` |  `false` | `false`  | Subscription state of the user (`A` Active, `E` Expired, `R` Removed)|
+| `user_group` | `string` |  `false` | `false`  | User group the user belongs to (`OW` Owner, `AD` Admin, `RO` Read-Only)|
+| `profile_picture` | `string` |  `false` | `false`  | URL to the User's profile picture |
+| `billing_email` | `string` |  `false` | `false`  | User email used for billing |
+| `firebase_token` | `string` |  `false` | `false`  | User firebase token used to send Notifications |
+| `is_active` | `boolean` |  `false` | `true`  | User active status |
+| `is_superuser` | `boolean` |  `false` | `true`  | Superuser status |
+| `stripe_id` | `string` |  `false` | `false`  | Stripe ID of the user |
+| `shopify_id` | `integer` |  `false` | `false`  | Shopify ID for the user |
+| `date_joined` | `timestamp` |  `false` | `true`  | Date joined timestamp |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+
+(Note: Stripe ID and Shopify ID will be null for all users with user groups AD and RO)
+
+#### List Users
+Returns a list of all Users. The users are returned sorted by date joined, with the most recently joined users appearing first.
+
+`GET https://beaconstac.mobstac.com/api/2.0/users/`
+
+Filter arguments:
+1. `first_name`: `exact`, `icontains`
+2. `last_name`:  `exact`, `icontains`
+3. `username`: `exact`, `icontains`
+4. `email`: `exact`, `icontains`
+5. `organization id`: `exact`
+6. `date_joined`: `lt`, `lte`, `gt`, `gte`
+7. `customer_plan`: `exact` 
+8. `subscription_state`: `exact`
+
+
+Search Fields:
+1. `username`
+1. `email`
+1. `user_group`
+1. `first_name`
+1. `last_name`
+
+Ordering fields:
+1. `username`
+2. `email`
+3. `date_joined` - default
+4. `user_group`
+5. `first_name`
+6. `last_name`
+
+#### Retrieve a User
+Retrieves the details of an existing user. You need to supply the unique user identifier that was returned upon listing.
+
+`GET https://beaconstac.mobstac.com/api/2.0/users/{user_id}`
+
+
+
+#### Create a new User
+Creates a new user. However, the request should contain the required fields. New users can be created only by users having customer
+
+`POST https://beaconstac.mobstac.com/api/2.0/users/`
+
+Example:
+Create a new user User in an organization.
+```json
+{
+    "username": "sample_user",
+	"customer_plan": "PR",
+    "first_name": "Sample",
+    "last_name": "User",
+    "email": "sample_user@beaconstac.com",
+    "billing_email": "billing@beaconstac.com",
+	"organization": 1284,
+    "profile_picture": "https://d1bqobzsowu5wu.cloudfront.net/720/93f7199471e64ddb9ad4e8bb888bb1ce",
+    "password": "testPassword123"
+}
+```
+
+(Note: User password is set to default password if no password is passed)
+
+
+#### Update an existing User
+Creates a new user. However, the request should contain the required fields. New users can be created only by users having customer
+
+`POST https://beaconstac.mobstac.com/api/2.0/users/{user_id}`
+
+Example:
+Create a new user User in an organization.
+```json
+{
+    "first_name": "John",
+	"last_name": "Doe",
+    "profile_picture": "https://d1bqobzsowu5wu.cloudfront.net/2934/cf50e4abe1724089a7dd8bc60dbe8977",
+	"organization": 1284
+}
+```
+
+
 
 ## Partner API endpoints
 
