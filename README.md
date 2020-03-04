@@ -16,7 +16,7 @@ You can find your developer token by using the following steps.
 3. In the 'Account Details' section, copy the 'Developer Token' value.
 4. Add a header field with key `Authorization` and value as `Token <YOUR_TOKEN>`
 
-![Account Page](https://github.com/Beaconstac/api/blob/master/Older/images/account_page.png)
+![Account Page](https://github.com/Beaconstac/api/blob/master/older/images/account_page.png)
 
 ## Table of Contents
 1. [Reading the documentation](#reading-the-documentation)
@@ -158,7 +158,7 @@ Some of the ways you can use filtering
 #### List beacons
 Returns a list of your beacons. The beacons are returned sorted by beacon `heartbeat`, with the most recent detected beacons appearing first.
 
-`GET https://beaconstac.mobstac.com/api/2.0/beacons/`
+`GET https://api.beaconstac.com/api/2.0/beacons/`
 
 Filter arguments:
 1. `name`: `exact`, `icontains`
@@ -192,13 +192,13 @@ Ordering fields:
 #### Retrieve a beacon
 Retrieves the details of an existing beacon. You need only supply the unique beacon identifier that was returned upon beacon listing.
 
-`GET https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}`
+`GET https://api.beaconstac.com/api/2.0/beacons/{beacon_id}`
 
 
 #### Update beacon
 Updates the specified beacon by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Beacon object.
 
-`PUT https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}`
+`PUT https://api.beaconstac.com/api/2.0/beacons/{beacon_id}`
 
 Example:
 Changing campaign to a Markdown Card
@@ -256,7 +256,7 @@ Changing campaign to a Markdown Card
 #### List NFC Tags
 Returns a list of your NFC Tags. The tags are returned sorted by `updated`, with the most recently updated tags appearing first.
 
-`GET https://beaconstac.mobstac.com/api/2.0/nfctags/`
+`GET https://api.beaconstac.com/api/2.0/nfctags/`
 
 Filter arguments:
 1. `name`: `exact`, `icontains`
@@ -284,13 +284,13 @@ Ordering fields:
 #### Retrieve an NFC Tag
 Retrieves the details of an existing NFC Tag. You need only supply the unique NFC Tag identifier that was returned upon tags listing.
 
-`GET https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}`
+`GET https://api.beaconstac.com/api/2.0/nfctags/{nfctag_id}`
 
 
 #### Update an NFC Tag
 Updates the specified NFC Tag by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the NFCTag object.
 
-`PUT https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}`
+`PUT https://api.beaconstac.com/api/2.0/nfctags/{nfctag_id}`
 
 Example:
 Changing campaign to a Markdown Card
@@ -344,7 +344,7 @@ Changing campaign to a Markdown Card
 #### List QR Codes
 Returns a list of your QR Codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
 
-`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/`
+`GET https://api.beaconstac.com/api/2.0/qrcodes/`
 
 Filter arguments:
 1. `name`: `exact`, `icontains`
@@ -372,12 +372,12 @@ Ordering fields:
 #### Retrieve a QR Code
 Retrieves the details of an existing qr code. You need only supply the unique qr code identifier that was returned upon qr codes listing.
 
-`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+`GET https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}`
 
 #### Update a QR Code
 Updates the specified qr code by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the QRCode object.
 
-`PUT https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+`PUT https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}`
 
 Example:
 Changing campaign to a Markdown Card
@@ -403,7 +403,7 @@ Changing campaign to a Markdown Card
 #### Create a QR Code
 Creates a new qr code. However, the request should contain the required fields. Please refer to the NFCTag object.
 
-`POST https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}`
+`POST https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}`
 
 Example:
 Create a QRCode with campaign set to a Markdown Card
@@ -426,11 +426,11 @@ Create a QRCode with campaign set to a Markdown Card
 Download a QR code in a particular size and image format. Image types supported are PNG, JPEG, SVG and PDF.
 If no canvas type is sent in the parameters, the QRCode would be generated in all image types supported.
 
-`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}/download/?size={size}&canvas_type={canvas_type}`
+`GET https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}/download/?size={size}&canvas_type={canvas_type}`
 
 Example:
 Download the QRCode of size 1024x1024 pixels in SVG format.
-`GET https://beaconstac.mobstac.com/api/2.0/qrcodes/100/download/?size=1024&canvas_type=svg`
+`GET https://api.beaconstac.com/api/2.0/qrcodes/100/download/?size=1024&canvas_type=svg`
 ```json
 {
     "svg": "url.svg"
@@ -470,7 +470,7 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 #### List Geofences
 Returns a list of your Geofences. The Geofences are returned sorted by `updated`, with the most recently updated Geofence appearing first.
 
-`GET https://beaconstac.mobstac.com/api/2.0/geofences/`
+`GET https://api.beaconstac.com/api/2.0/geofences/`
 
 Filter arguments:
 1. `name`: `exact`, `icontains`
@@ -496,13 +496,13 @@ Ordering fields:
 #### Retrieve a Geofence
 Retrieves the details of an existing Geofence. You need only supply the unique Geofence identifier that was returned upon Geofence listing.
 
-`GET https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}`
+`GET https://api.beaconstac.com/api/2.0/geofences/{geofence_id}`
 
 
 #### Update Geofence
 Updates the specified Geofence by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Geofence object.
 
-`PUT https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}`
+`PUT https://api.beaconstac.com/api/2.0/geofences/{geofence_id}`
 
 Example:
 Changing campaign to a Markdown Card
@@ -531,7 +531,7 @@ Changing campaign to a Markdown Card
 #### Create Geofence
 Creates a new geofence by setting the values of the parameters passed. The request should contain the required fields. Please refer to the Geofence object.
 
-`POST https://beaconstac.mobstac.com/api/2.0/geofences/`
+`POST https://api.beaconstac.com/api/2.0/geofences/`
 
 Example:
 Create Geofence with campaign to a Markdown Card
@@ -583,7 +583,7 @@ Place objects allow you to view all places in your account and view beacons atta
 #### List Places
 Returns a list of your beacons. The beacons are returned sorted by beacon heartbeat, with the most recent detected beacons appearing first.
 
-`GET https://beaconstac.mobstac.com/api/2.0/places/`
+`GET https://api.beaconstac.com/api/2.0/places/`
 
 Filter arguments:
 1. `name`: `exact`, `icontains`
@@ -601,13 +601,13 @@ Ordering fields:
 #### Retrieve a Place
 Retrieves the details of an existing Place. You need only supply the unique Place identifier that was returned upon Place listing.
 
-`GET https://beaconstac.mobstac.com/api/2.0/places/{place_id}`
+`GET https://api.beaconstac.com/api/2.0/places/{place_id}`
 
 
 #### Update Place
 Updates the specified Place by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Place object.
 
-`PUT https://beaconstac.mobstac.com/api/2.0/places/{place_id}`
+`PUT https://api.beaconstac.com/api/2.0/places/{place_id}`
 
 Example:
 Update an existing place based on ID of the place
@@ -624,7 +624,7 @@ Update an existing place based on ID of the place
 #### Create Place
 Creates a new place in your account by setting the values of the parameters passed. The request should contain the required fields. Please refer to the Place object.
 
-`POST https://beaconstac.mobstac.com/api/2.0/places/`
+`POST https://api.beaconstac.com/api/2.0/places/`
 
 Example:
 Create a new Place
@@ -676,7 +676,7 @@ User objects allow you to perform actions on the users in your account. You can 
 #### List Users
 Returns a list of all Users. The users are returned sorted by date joined, with the most recently joined users appearing first.
 
-`GET https://beaconstac.mobstac.com/api/2.0/users/`
+`GET https://api.beaconstac.com/api/2.0/users/`
 
 Filter arguments:
 1. `first_name`: `exact`, `icontains`
@@ -707,14 +707,14 @@ Ordering fields:
 #### Retrieve a User
 Retrieves the details of an existing user. You need to supply the unique user identifier that was returned upon listing.
 
-`GET https://beaconstac.mobstac.com/api/2.0/users/{user_id}`
+`GET https://api.beaconstac.com/api/2.0/users/{user_id}`
 
 
 
 #### Create a new User
 Creates a new user. However, the request should contain the required fields. New users can be created only by users having customer
 
-`POST https://beaconstac.mobstac.com/api/2.0/users/`
+`POST https://api.beaconstac.com/api/2.0/users/`
 
 Example:
 Create a new user User in an organization.
@@ -738,7 +738,7 @@ Create a new user User in an organization.
 #### Update an existing User
 Creates a new user. However, the request should contain the required fields. New users can be created only by users having customer
 
-`POST https://beaconstac.mobstac.com/api/2.0/users/{user_id}`
+`POST https://api.beaconstac.com/api/2.0/users/{user_id}`
 
 Example:
 Create a new user User in an organization.
@@ -755,7 +755,7 @@ Create a new user User in an organization.
 
 ## Partner API endpoints
 
-[Creating user accounts in the Beaconstac store](https://github.com/Beaconstac/api/blob/master/storeUserCreate.md)
+[Creating user accounts in the Beaconstac store](https://github.com/Beaconstac/api/blob/master/older/storeUserCreate.md)
 
 ## Beaconstac Analytics
 
@@ -771,11 +771,11 @@ from, to parameters should be in EPOCH milliseconds.
 #### Product overview
 Get analytics overview for the product type over the time interval.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getOverview`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getOverview`
 
 Example:
 Get performance for all beacons in organization ID 23
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization=23&method=Products.getOverview`
+`POST https://api.beaconstac.com/reporting/2.0/?organization=23&method=Products.getOverview`
 
 Request body:
 ```json
@@ -789,11 +789,11 @@ Request body:
 #### Product performance
 Get analytics performace for the product.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getPerformance`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getPerformance`
 
 Example:
 Get performance for nfc tag
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization=23&method=Products.getPerformance`
+`POST https://api.beaconstac.com/reporting/2.0/?organization=23&method=Products.getPerformance`
 
 Request body:
 ```json
@@ -811,11 +811,11 @@ Request body:
 #### Product impressions
 Get impressions generated by the product. If no `place` is provided data will be returned for all products of the product type specified in the organization.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressions`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressions`
 
 Example:
 Get impression for all qr codes in place id 12
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization=23&method=Products.getImpressions`
+`POST https://api.beaconstac.com/reporting/2.0/?organization=23&method=Products.getImpressions`
 
 Request body:
 ```json
@@ -832,11 +832,11 @@ Request body:
 #### Product impression detail
 Get impressions details generated by the product. If no `place` is provided data will be returned for all products of the product type specified in the organization.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDetail`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDetail`
 
 Example:
 Get impression details for all qr codes in place id 12
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization=23&method=Products.getImpressionDetail`
+`POST https://api.beaconstac.com/reporting/2.0/?organization=23&method=Products.getImpressionDetail`
 
 Request body:
 ```json
@@ -851,11 +851,11 @@ Request body:
 #### Product impression distribution
 Get impression distribution generated by the product. If no `place` is provided data will be returned for all products of the product type specified in the organization.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution`
 
 Example:
 Get impression distribution for all qr codes in place id 12
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization=23&method=Products.getImpressionDistribution`
+`POST https://api.beaconstac.com/reporting/2.0/?organization=23&method=Products.getImpressionDistribution`
 
 Request body:
 ```json
@@ -870,11 +870,11 @@ Request body:
 #### Generate product CSV data
 Generate a detailed CSV report for products in the specified organizations. The report will be emailed to the user email mentioned in the POST body. If not email is specified it would be emailed to the user making the request.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution`
 
 Example:
 Generate CS impression distribution for qr codes 23 and 43 in organizations 1 and 2.
-`POST https://beaconstac.mobstac.com/reporting/2.0/?method=Csv.getProductData`
+`POST https://api.beaconstac.com/reporting/2.0/?method=Csv.getProductData`
 
 Request body:
 ```json
@@ -892,12 +892,12 @@ Request body:
 #### Get analytics overview for a given period
 Get analytics overview (product count, notification count, impression count, conversion percentage) of your product based on product type being passed. The total number of unique visitors is also given in the response. 
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Overview.getPeriodOverview`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Overview.getPeriodOverview`
 
 Example:
 Generate analytics overview of all products over a period of time.
 
-`POST https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Overview.getPeriodOverview`
+`POST https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Overview.getPeriodOverview`
 
 Request body:
 ```json
