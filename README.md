@@ -440,6 +440,95 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 ( For detailed QR Code API documentation please refer: https://www.beaconstac.com/qr-code-generator-api )
 
 
+
+### Bulk QR Codes
+`BulkQRCode` objects allow you to create a collection of multiple QR Codes from a CSV file in a single request. You can list, retreive, create or download a Bulk QR Code collection.
+
+#### Bulk QR Code object
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `name` | `string` |  `true` | `false`  | The name of the Bulk QR code collection |
+| `media` | `integet` |  `false` | `true`  | Media ID |
+| `media_data` | `object` |  `false` | `false`  | Media data associated with media ID |
+| `attributes` | `object` |  `true` | `false`  | Attributes/Design data for the QR Codes being created |
+| `qr_type` | `integer` |  `false` | `true`  | QR type (`1`) |
+| `qr_data_type` | `integer` |  `true` | `false`  | QR data type (`1` Website, `2` SMS, `3` Phone, `4` email, `5` vCard, `6` text) |
+| `organization` | `integer` |  `true` | `true`  | Organization ID |
+| `storage_url` | `string` |  `false` | `true`  | QR code URL |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+
+#### List Bulk QR Code collections
+Returns a list of your QR Codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
+
+`GET https://api.beaconstac.com/api/2.0/bulkqrcodes/`
+
+Filter arguments:
+1. `name`: `exact`, `icontains`
+2. `qr_data_type`: `exact`
+
+Search Fields:
+1. `name`
+
+Ordering fields:
+1. `name`
+2. `created`
+3. `updated` - default
+
+#### Retrieve a Bulk QR Code collection
+Retrieves the details of an existing Bulk QR Code collection. You need only supply the unique Bulk QR Code identifier that was returned upon listing.
+
+`GET https://api.beaconstac.com/api/2.0/bulkqrcodes/{bulkqrcode_collection_id}`
+
+#### CSV file data format
+The examples for the CSV files can be viewed from the [Beaconstac dashboard](https://dashboard.beaconstac.com/bulk-qr-codes/add) or from the CSV Files in the links below:
+| QR Data type | Example CSV File |
+|---|---|
+| `1` (Website) | https://dashboard.beaconstac.com/assets/files/static-website-csv.csv |
+| `2` (Phone) | https://dashboard.beaconstac.com/assets/files/static-phone-csv.csv |
+| `3` (SMS) | https://dashboard.beaconstac.com/assets/files/static-sms-csv.csv |
+| `4` (Email) | https://dashboard.beaconstac.com/assets/files/static-email-csv.csv |
+| `5` (vCard) | https://dashboard.beaconstac.com/assets/files/static-vcard-csv.csv |
+| `6` (Text) | https://dashboard.beaconstac.com/assets/files/static-text-csv.csv |
+
+#### Create a Bulk QR Code collection
+Creates a new Bulk QR Code collection using data from CSV file. However, the request should contain the required fields. 
+
+`POST https://api.beaconstac.com/api/2.0/bulkqrcodes/`
+
+Example:
+Create a Bulk QR Code collection by using the cURL request:
+```json
+curl --location --request POST 'https://api.beaconstac.com/api/2.0/bulkqrcodes/' \
+--header 'Authorization: Token <AuthorizationToken>' \
+--header 'Content-Type: multipart/form-data' \
+--form 'file=<csv-file-path>' \
+--form 'name=BulkQRCollection' \
+--form 'qr_type=1' \
+--form 'size=512' \
+--form 'error_correction_level=0' \
+--form 'qr_data_type=3' \
+--form 'attributes={"color":"#ab578f",
+"gradientType":"radial",
+ "margin": 50,
+"dataPattern":"left-diamond",
+"eyeBallShape":"left-diamond",
+"eyeFrameShape":"left-leaf",
+"eyeBallColor":"#ea8745",
+"eyeFrameColor":"#ea4587",
+"logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/instagram.svg",
+"frameStyle":"banner-top"
+}' \
+--form 'organization=720'
+```
+
+#### Download Bulk QR code collection
+The Bulk QR Code collection can be downloaded using the link from the `storage_url` field. The link downloads a zipped collection of the images in formats: `png`, `jpeg`, `pdf`, `svg`.
+
+
 ### Geofence
 `Geofence` objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence.
 
