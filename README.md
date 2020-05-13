@@ -468,7 +468,13 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 #### List Bulk QR Code collections
 Returns a list of your QR Codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
 
-`GET https://api.beaconstac.com/api/2.0/bulkqrcodes/`
+Example:
+Use the below cURL command to list all Bulk QR Code collections in your account:
+
+```json
+curl --location --request GET 'https://api.beaconstac.com/api/2.0/bulkqrcodes/' \
+--header 'Authorization: Token <AuthorizationToken>'
+```
 
 Filter arguments:
 1. `name`: `exact`, `icontains`
@@ -485,18 +491,23 @@ Ordering fields:
 #### Retrieve a Bulk QR Code collection
 Retrieves the details of an existing Bulk QR Code collection. You need only supply the unique Bulk QR Code identifier that was returned upon listing.
 
-`GET https://api.beaconstac.com/api/2.0/bulkqrcodes/{bulkqrcode_collection_id}`
+Example:
+Use the below cURL command to retreive a Bulk QR Code collection
+```json
+curl --location --request GET 'https://api.beaconstac.com/api/2.0/bulkqrcodes/{bulk_qr_collection_id}/' \
+--header 'Authorization: Token <AuthorizationToken>'
+```
 
 #### CSV file data format
 The examples for the CSV files can be viewed from the [Beaconstac dashboard](https://dashboard.beaconstac.com/bulk-qr-codes/add) or from the CSV Files in the links below:
 | QR Data type | Example CSV File |
 |---|---|
-| `1` (Website) | https://dashboard.beaconstac.com/assets/files/static-website-csv.csv |
-| `2` (Phone) | https://dashboard.beaconstac.com/assets/files/static-phone-csv.csv |
-| `3` (SMS) | https://dashboard.beaconstac.com/assets/files/static-sms-csv.csv |
-| `4` (Email) | https://dashboard.beaconstac.com/assets/files/static-email-csv.csv |
-| `5` (vCard) | https://dashboard.beaconstac.com/assets/files/static-vcard-csv.csv |
-| `6` (Text) | https://dashboard.beaconstac.com/assets/files/static-text-csv.csv |
+| `1` (Website) | https://admin.beaconstac.com/assets/files/static-website-csv.csv |
+| `2` (Phone) | https://admin.beaconstac.com/assets/files/static-phone-csv.csv |
+| `3` (SMS) | https://admin.beaconstac.com/assets/files/static-sms-csv.csv |
+| `4` (Email) | https://admin.beaconstac.com/assets/files/static-email-csv.csv |
+| `5` (vCard) | https://admin.beaconstac.com/assets/files/static-vcard-csv.csv |
+| `6` (Text) | https://admin.beaconstac.com/assets/files/static-text-csv.csv |
 
 #### Create a Bulk QR Code collection
 Creates a new Bulk QR Code collection using data from CSV file. However, the request should contain the required fields. 
