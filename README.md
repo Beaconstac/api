@@ -448,7 +448,7 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 ### Bulk QR Codes
 `BulkQRCode` objects allow you to create a collection of multiple QR Codes from a CSV file in a single request. You can list, retreive, create or download a Bulk QR Code collection.
 
-Obtain your AuthorizationToken from the dashboard [Beaconstac dashboard](https://dashboard.beaconstac.com/account)
+Obtain your AuthorizationToken from the [Beaconstac dashboard](https://dashboard.beaconstac.com/account)
 
 #### Bulk QR Code object
 ***Attributes***
@@ -498,7 +498,7 @@ Example:
 
 Use the below cURL command to retreive a single Bulk QR Code collection by id.
 ```json
-curl --location --request GET 'https://api.beaconstac.com/api/2.0/bulkqrcodes/{{bulk_qr_collection_id}}/' \
+curl --location --request GET 'https://api.beaconstac.com/api/2.0/bulkqrcodes/101/' \
 --header 'Authorization: Token <AuthorizationToken>'
 ```
 
@@ -507,27 +507,29 @@ The examples for the CSV files can be viewed from the [Beaconstac dashboard](htt
 | QR Data type | Example CSV File |
 |---|---|
 | `1` (Website) | https://admin.beaconstac.com/assets/files/static-website-csv.csv |
-| `2` (Phone) | https://admin.beaconstac.com/assets/files/static-phone-csv.csv |
-| `3` (SMS) | https://admin.beaconstac.com/assets/files/static-sms-csv.csv |
-| `4` (Email) | https://admin.beaconstac.com/assets/files/static-email-csv.csv |
-| `5` (vCard) | https://admin.beaconstac.com/assets/files/static-vcard-csv.csv |
-| `6` (Text) | https://admin.beaconstac.com/assets/files/static-text-csv.csv |
+| `2` (Phone) | https://dashboard.beaconstac.com/assets/files/static-phone-csv.csv |
+| `3` (SMS) | https://dashboard.beaconstac.com/assets/files/static-sms-csv.csv |
+| `4` (Email) | https://dashboard.beaconstac.com/assets/files/static-email-csv.csv |
+| `5` (vCard) | https://dashboard.beaconstac.com/assets/files/static-vcard-csv.csv |
+| `6` (Text) | https://dashboard.beaconstac.com/assets/files/static-text-csv.csv |
 
 #### Create a Bulk QR Code collection
 Creates a new Bulk QR Code collection using data from CSV file. However, the request should contain the required fields. 
 
 Example:
+
 Create a Bulk QR Code collection by using the cURL request:
+
 ```json
 curl --location --request POST 'https://api.beaconstac.com/api/2.0/bulkqrcodes/' \
---header 'Authorization: Token <AuthorizationToken>' \
+--header 'Authorization: Token e62435a78e67ec98bba3b879ba00448650032557' \
 --header 'Content-Type: multipart/form-data' \
---form 'file=<csv-file-path>' \
---form 'name=BulkQRCollection' \
+--form 'file=@/Users/hariprasad/Desktop/bulk-qr-sample-csv/static-vcard-csv.csv' \
+--form 'name=myvCard-QRCodes' \
 --form 'qr_type=1' \
 --form 'size=512' \
 --form 'error_correction_level=0' \
---form 'qr_data_type=3' \
+--form 'qr_data_type=5' \
 --form 'attributes={"color":"#ab578f",
 "gradientType":"radial",
  "margin": 50,
@@ -542,24 +544,12 @@ curl --location --request POST 'https://api.beaconstac.com/api/2.0/bulkqrcodes/'
 --form 'organization=720'
 ```
 
-#### Download Bulk QR code collection
-The Bulk QR Code collection can be downloaded using the link from the `storage_url` ( Ex. `https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MTAtMjAxOS0wNy0yNVQxMTo0NToxMC4wNTE5MDUrMDA6MDA%3D.zip` ) field. The link downloads a zipped collection of the images in formats: `png`, `jpeg`, `pdf`, `svg`.
-
-
-#### Update an existing Bulk QR Code collection
-You can update an existing Bulk QR Code collection with different design data using the unique ID field of the Bulk QR Code object. (Note: The csv file attached with a collection cannot be updated)
-
-Example
-Example:
-Create a Bulk QR Code collection by using the cURL request:
+Response
 ```json
-curl --location --request PUT 'http://0.0.0.0:8000/api/2.0/bulkqrcodes/<collection_id>/' \
---header 'Authorization: Token <AuthorizationToken>' \
---header 'Content-Type: application/json' \
---header 'Content-Type: text/plain' \
---data-raw '{
+{
+    "id": 220,
     "attributes": {
-        "color": "#ab078f",
+        "color": "#ab578f",
         "gradientType": "radial",
         "margin": 50,
         "dataPattern": "left-diamond",
@@ -571,19 +561,102 @@ curl --location --request PUT 'http://0.0.0.0:8000/api/2.0/bulkqrcodes/<collecti
         "frameStyle": "banner-top"
     },
     "media_data": {
-        "id": 67520,
-        "name": "static-website-csv",
-        "url": "https://d1bqobzsowu5wu.cloudfront.net/720/0dec78ee2afd4ee18bcb043dd74542f9"
+        "id": 68976,
+        "name": "myvCard-QRCodes",
+        "url": "https://d1bqobzsowu5wu.cloudfront.net/720/6d69b10e8e794beb920c7a899cf6d044"
     },
-    "name": "LateTest11",
-    "storage_url": "https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MTAtMjAxOS0wNy0yNVQxMTo0NToxMC4wNTE5MDUrMDA6MDA%3D.zip",
+    "name": "myvCard-QRCodes",
+    "storage_url": "https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MjIwLTIwMjAtMDUtMTNUMTQ6MTY6NDAuNDY1ODI2KzAwOjAw.zip",
     "qr_type": 1,
-    "qr_data_type": 1,
-    "created": "2020-05-13T16:34:47.269849+05:30",
-    "updated": "2020-05-13T16:34:51.418123+05:30",
+    "qr_data_type": 5,
+    "created": "2020-05-13T19:46:40.465826+05:30",
+    "updated": "2020-05-13T19:46:50.948362+05:30",
     "organization": 720,
-    "media": 67520
+    "media": 68976
+}
+```
+
+The QR Code designs can be customized by varying the attributes of the Bulk QR Code object. More details can be accessed [here](https://www.beaconstac.com/qr-code-generator-api#docs)
+
+#### Download Bulk QR code collection
+The Bulk QR Code collection can be downloaded using the link from the `storage_url` ( Ex. `https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MjE5LTIwMjAtMDUtMTNUMTQ6MDA6MDkuODgwMTYzKzAwOjAw.zip` ) field. 
+
+The URL downloads a zipped collection of the images in 4 formats: `png`, `jpeg`, `pdf`, `svg`.
+
+
+#### Update an existing Bulk QR Code collection
+You can update an existing Bulk QR Code collection with different design data using the unique ID field of the Bulk QR Code object. (Note: The csv file attached with a collection cannot be updated)
+
+Example:
+
+Update a Bulk QR Code collection by using the cURL request:
+
+Request:
+```json
+curl --location --request PUT 'https://api.beaconstac.com/api/2.0/bulkqrcodes/220/' \
+--header 'Authorization: Token e62435a78e67ec98bba3b879ba00448650032557' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    "id": 220,
+    "attributes": {
+        "color": "#2595ff",
+        "gradientType": "radial",
+        "margin": 50,
+        "dataPattern": "left-diamond",
+        "eyeBallShape": "left-diamond",
+        "eyeFrameShape": "left-leaf",
+        "eyeBallColor": "#2595ff",
+        "eyeFrameColor": "#95ff25",
+        "logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/instagram.svg",
+        "frameStyle": "banner-bottom"
+    },
+    "media_data": {
+        "id": 68976,
+        "name": "myvCard-QRCodes",
+        "url": "https://d1bqobzsowu5wu.cloudfront.net/720/6d69b10e8e794beb920c7a899cf6d044"
+    },
+    "name": "myvCard-QRCodes",
+    "storage_url": "https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MjIwLTIwMjAtMDUtMTNUMTQ6MTY6NDAuNDY1ODI2KzAwOjAw.zip",
+    "qr_type": 1,
+    "qr_data_type": 5,
+    "created": "2020-05-13T19:46:40.465826+05:30",
+    "updated": "2020-05-13T19:46:50.948362+05:30",
+    "organization": 720,
+    "media": 68976
 }'
+```
+
+Response
+```json
+{
+    "id": 220,
+    "attributes": {
+        "color": "#2595ff",
+        "gradientType": "radial",
+        "margin": 50,
+        "dataPattern": "left-diamond",
+        "eyeBallShape": "left-diamond",
+        "eyeFrameShape": "left-leaf",
+        "eyeBallColor": "#2595ff",
+        "eyeFrameColor": "#95ff25",
+        "logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/instagram.svg",
+        "frameStyle": "banner-bottom"
+    },
+    "media_data": {
+        "id": 68977,
+        "name": "myvCard-QRCodes",
+        "url": "https://d1bqobzsowu5wu.cloudfront.net/720/45b9ef3414d541e88c6cae514aea454e"
+    },
+    "name": "myvCard-QRCodes",
+    "storage_url": "https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MjIwLTIwMjAtMDUtMTNUMTQ6MTY6NDAuNDY1ODI2KzAwOjAw.zip",
+    "qr_type": 1,
+    "qr_data_type": 5,
+    "created": "2020-05-13T19:46:40.465826+05:30",
+    "updated": "2020-05-13T19:49:44.578320+05:30",
+    "organization": 720,
+    "media": 68977
+}
 ```
 
 ----
