@@ -77,7 +77,7 @@ Some of the ways you can use filtering
 
 ----
 ## Core Resources
-----
+
 ### Beacon
 `Beacon` objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.
 
@@ -448,6 +448,8 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 ### Bulk QR Codes
 `BulkQRCode` objects allow you to create a collection of multiple QR Codes from a CSV file in a single request. You can list, retreive, create or download a Bulk QR Code collection.
 
+Obtain your AuthorizationToken from the dashboard [Beaconstac dashboard](https://dashboard.beaconstac.com/account)
+
 #### Bulk QR Code object
 ***Attributes***
 
@@ -469,6 +471,7 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 Returns a list of your QR Codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
 
 Example:
+
 Use the below cURL command to list all Bulk QR Code collections in your account:
 
 ```json
@@ -492,9 +495,10 @@ Ordering fields:
 Retrieves the details of an existing Bulk QR Code collection. You need only supply the unique Bulk QR Code identifier that was returned upon listing.
 
 Example:
-Use the below cURL command to retreive a Bulk QR Code collection
+
+Use the below cURL command to retreive a single Bulk QR Code collection by id.
 ```json
-curl --location --request GET 'https://api.beaconstac.com/api/2.0/bulkqrcodes/{bulk_qr_collection_id}/' \
+curl --location --request GET 'https://api.beaconstac.com/api/2.0/bulkqrcodes/{{bulk_qr_collection_id}}/' \
 --header 'Authorization: Token <AuthorizationToken>'
 ```
 
