@@ -23,10 +23,12 @@ You can find your developer token by using the following steps.
 2. [Beacon](#beacon)
 3. [NFC Tag](#nfc-tag)
 4. [QR Code](#qr-code)
-5. [Geofence](#geofence)
-6. [Place](#place)
-7. [User](#user)
+5. [Bulk QR Code](#bulk-qr-codes)
+6. [Geofence](#geofence)
+7. [Place](#place)
+8. [User](#user)
 
+----
 ## Reading the Documentation
 #### Filter fields
 The API supports filters on fields specified in each object collections' `List` request. To use the filter add the filter name along with the operator and then the value in the request params. 
@@ -73,7 +75,9 @@ Some of the ways you can use filtering
 1. `?ordering='name'` Will order by name by ascending order
 2. `?ordering='-name'` Will order by name in decending order
 
+----
 ## Core Resources
+----
 ### Beacon
 `Beacon` objects allow you to perform actions on your beacons. You can retrieve individual beacons as well as a list of all your beacons or update a beacon.
 
@@ -226,6 +230,7 @@ Changing campaign to a Markdown Card
     "place": 1929
 }
 ```
+----
 
 ### NFC Tag
 `NFCTag` objects allow you to perform actions on your NFC Tags. You can retrieve individual nfc tags as well as a list of all your tags or update a tag.
@@ -313,8 +318,7 @@ Changing campaign to a Markdown Card
     "place": 1929
 }
 ```
-
-
+----
 ### QR Code
 `QRCode` objects allow you to perform actions on your QR Codes. You can retrieve individual QR Codes as well as a list of all your qr codes or update a QR Code.
 
@@ -403,7 +407,7 @@ Changing campaign to a Markdown Card
 #### Create a QR Code
 Creates a new qr code. However, the request should contain the required fields. Please refer to the NFCTag object.
 
-`POST https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}`
+`POST https://api.beaconstac.com/api/2.0/qrcodes/`
 
 Example:
 Create a QRCode with campaign set to a Markdown Card
@@ -440,6 +444,134 @@ Download the QRCode of size 1024x1024 pixels in SVG format.
 ( For detailed QR Code API documentation please refer: https://www.beaconstac.com/qr-code-generator-api )
 
 
+----
+### Bulk QR Codes
+`BulkQRCode` objects allow you to create a collection of multiple QR Codes from a CSV file in a single request. You can list, retreive, create or download a Bulk QR Code collection.
+
+#### Bulk QR Code object
+***Attributes***
+
+| Field | Type | Required | Read only | Description |
+|---|---|---|---|---|
+| `id` | `integer` |  `false` | `true`  | Unique identifier for the object |
+| `name` | `string` |  `true` | `false`  | The name of the Bulk QR code collection |
+| `media` | `integet` |  `false` | `true`  | Media ID |
+| `media_data` | `object` |  `false` | `false`  | Media data associated with media ID |
+| `attributes` | `object` |  `true` | `false`  | Attributes/Design data for the QR Codes being created |
+| `qr_type` | `integer` |  `false` | `true`  | QR type (`1`) |
+| `qr_data_type` | `integer` |  `true` | `false`  | QR data type (`1` Website, `2` SMS, `3` Phone, `4` email, `5` vCard, `6` text) |
+| `organization` | `integer` |  `true` | `true`  | Organization ID |
+| `storage_url` | `string` |  `false` | `true`  | QR code URL |
+| `created` | `timestamp` |  `false` | `true`  | Created timestamp |
+| `updated` | `timestamp` |  `false` | `true`  | Last updated timestamp |
+
+#### List Bulk QR Code collections
+Returns a list of your QR Codes. The tags are returned sorted by `updated`, with the most recently updated qr codes appearing first.
+
+`GET https://api.beaconstac.com/api/2.0/bulkqrcodes/`
+
+Filter arguments:
+1. `name`: `exact`, `icontains`
+2. `qr_data_type`: `exact`
+
+Search Fields:
+1. `name`
+
+Ordering fields:
+1. `name`
+2. `created`
+3. `updated` - default
+
+#### Retrieve a Bulk QR Code collection
+Retrieves the details of an existing Bulk QR Code collection. You need only supply the unique Bulk QR Code identifier that was returned upon listing.
+
+`GET https://api.beaconstac.com/api/2.0/bulkqrcodes/{bulkqrcode_collection_id}`
+
+#### CSV file data format
+The examples for the CSV files can be viewed from the [Beaconstac dashboard](https://dashboard.beaconstac.com/bulk-qr-codes/add) or from the CSV Files in the links below:
+| QR Data type | Example CSV File |
+|---|---|
+| `1` (Website) | https://dashboard.beaconstac.com/assets/files/static-website-csv.csv |
+| `2` (Phone) | https://dashboard.beaconstac.com/assets/files/static-phone-csv.csv |
+| `3` (SMS) | https://dashboard.beaconstac.com/assets/files/static-sms-csv.csv |
+| `4` (Email) | https://dashboard.beaconstac.com/assets/files/static-email-csv.csv |
+| `5` (vCard) | https://dashboard.beaconstac.com/assets/files/static-vcard-csv.csv |
+| `6` (Text) | https://dashboard.beaconstac.com/assets/files/static-text-csv.csv |
+
+#### Create a Bulk QR Code collection
+Creates a new Bulk QR Code collection using data from CSV file. However, the request should contain the required fields. 
+
+Example:
+Create a Bulk QR Code collection by using the cURL request:
+```json
+curl --location --request POST 'https://api.beaconstac.com/api/2.0/bulkqrcodes/' \
+--header 'Authorization: Token <AuthorizationToken>' \
+--header 'Content-Type: multipart/form-data' \
+--form 'file=<csv-file-path>' \
+--form 'name=BulkQRCollection' \
+--form 'qr_type=1' \
+--form 'size=512' \
+--form 'error_correction_level=0' \
+--form 'qr_data_type=3' \
+--form 'attributes={"color":"#ab578f",
+"gradientType":"radial",
+ "margin": 50,
+"dataPattern":"left-diamond",
+"eyeBallShape":"left-diamond",
+"eyeFrameShape":"left-leaf",
+"eyeBallColor":"#ea8745",
+"eyeFrameColor":"#ea4587",
+"logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/instagram.svg",
+"frameStyle":"banner-top"
+}' \
+--form 'organization=720'
+```
+
+#### Download Bulk QR code collection
+The Bulk QR Code collection can be downloaded using the link from the `storage_url` ( Ex. `https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MTAtMjAxOS0wNy0yNVQxMTo0NToxMC4wNTE5MDUrMDA6MDA%3D.zip` ) field. The link downloads a zipped collection of the images in formats: `png`, `jpeg`, `pdf`, `svg`.
+
+
+#### Update an existing Bulk QR Code collection
+You can update an existing Bulk QR Code collection with different design data using the unique ID field of the Bulk QR Code object. (Note: The csv file attached with a collection cannot be updated)
+
+Example
+Example:
+Create a Bulk QR Code collection by using the cURL request:
+```json
+curl --location --request PUT 'http://0.0.0.0:8000/api/2.0/bulkqrcodes/<collection_id>/' \
+--header 'Authorization: Token <AuthorizationToken>' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    "attributes": {
+        "color": "#ab078f",
+        "gradientType": "radial",
+        "margin": 50,
+        "dataPattern": "left-diamond",
+        "eyeBallShape": "left-diamond",
+        "eyeFrameShape": "left-leaf",
+        "eyeBallColor": "#ea8745",
+        "eyeFrameColor": "#ea4587",
+        "logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/instagram.svg",
+        "frameStyle": "banner-top"
+    },
+    "media_data": {
+        "id": 67520,
+        "name": "static-website-csv",
+        "url": "https://d1bqobzsowu5wu.cloudfront.net/720/0dec78ee2afd4ee18bcb043dd74542f9"
+    },
+    "name": "LateTest11",
+    "storage_url": "https://d1bqobzsowu5wu.cloudfront.net/720/bulkqr/MTAtMjAxOS0wNy0yNVQxMTo0NToxMC4wNTE5MDUrMDA6MDA%3D.zip",
+    "qr_type": 1,
+    "qr_data_type": 1,
+    "created": "2020-05-13T16:34:47.269849+05:30",
+    "updated": "2020-05-13T16:34:51.418123+05:30",
+    "organization": 720,
+    "media": 67520
+}'
+```
+
+----
 ### Geofence
 `Geofence` objects allow you to perform actions on your geofences. You can retrieve individual geofences as well as a list of all your geofences or update a geofence.
 
@@ -556,6 +688,7 @@ Create Geofence with campaign to a Markdown Card
 }
 ```
 
+----
 ### Place
 Place objects allow you to view all places in your account and view beacons attached to them.
 
@@ -639,8 +772,7 @@ Create a new Place
 ```
 
 
-
-
+----
 ### User
 User objects allow you to perform actions on the users in your account. You can list of all your users, retrieve individual users, create a user or update a user.
 
@@ -751,12 +883,13 @@ Create a new user User in an organization.
 }
 ```
 
-
+----
 
 ## Partner API endpoints
 
 [Creating user accounts in the Beaconstac store](https://github.com/Beaconstac/api/blob/master/older/storeUserCreate.md)
 
+----
 ## Beaconstac Analytics
 
 ### Product
