@@ -105,7 +105,7 @@
      * Unfortunately Android sometimes fires click events without touch events (seen on Kindle Fire),
      * so we have to add more logic to determine the time of the last click.  Not perfect...
      *
-     * Older, simpler check: if((!e.simulated) || standAlone)
+     * older, simpler check: if((!e.simulated) || standAlone)
      */
     if((!e.simulated && (timeDiff < 500 || (timeDiff < 1500 && xyDiff[0] < 50 && xyDiff[1] < 50))) || standAlone) {
       e.preventDefault();

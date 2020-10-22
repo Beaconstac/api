@@ -3933,7 +3933,7 @@ function completed() {
 // Catch cases where $(document).ready() is called
 // after the browser event has already occurred.
 // Support: IE <=9 - 10 only
-// Older IE sometimes signals "interactive" too soon
+// older IE sometimes signals "interactive" too soon
 if ( document.readyState === "complete" ||
 	( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
 
@@ -4869,7 +4869,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	div.appendChild( input );
 
 	// Support: Android <=4.1 only
-	// Older WebKit doesn't clone checked state correctly in fragments
+	// older WebKit doesn't clone checked state correctly in fragments
 	support.checkClone = div.cloneNode( true ).cloneNode( true ).lastChild.checked;
 
 	// Support: IE <=11 only
