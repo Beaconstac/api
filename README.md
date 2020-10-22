@@ -400,7 +400,7 @@ Changing campaign to a Markdown Card
     },
     "name": "Corner",
     "url": "https://qr.tapnscan.me/f78WrG",
-    "organization": {{organization_id}}
+    "organization": 1284
 }
 ```
 
@@ -421,11 +421,11 @@ Example for creating QRCode with campaign set to a Markdown Card:
     },
     "name": "test 3",
     "qr_type": 2,
-    "organization": <YOUR_ORG_ID>,
+    "organization": 1284,
     "place": 23,
     "campaign": {
         "content_type": 2,
-        "markdown_card": <MARKDOWN_CARD_ID>
+        "markdown_card": 34918
     }
 }
 ```
@@ -441,11 +441,11 @@ Example for creating QRCode with campaign set to a Form:
     },
     "name": "test 3",
     "qr_type": 2,
-    "organization": <YOUR_ORG_ID>,
+    "organization": 1284,
     "place": 23,
     "campaign": {
         "content_type": 3,
-        "form": <FORM_ID>
+        "form": 36092
     }
 }
 ```
@@ -457,18 +457,18 @@ Create editable Dynamic vCard QR Codes for employees
 {
     "name": "Dynamic vCard QR Code",
     "qr_type": 2,
-    "organization": <YOUR_ORG_ID>,
+    "organization": 1284,
     "attributes": {
         "color": "#fb6e6e",
         "margin": 25,
-        "logoImage": <IMAGE_URL>
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
     },
     "campaign": {
         "content_type": 7,
         "vcard_plus": {
             "first_name": "John",
             "last_name": "Doe",
-            "user_image_url": <USER_IMAGE_URL>,
+            "user_image_url": "https://d3nvy39jvu7woe.cloudfront.net/static/images/default_vcard_image.png",
             "designation": "Android Developer",
             "company": "Mobstac Inc.",
             "summary": "Hello there!!!!",
@@ -482,9 +482,9 @@ Create editable Dynamic vCard QR Codes for employees
             "city": "Bengaluru",
             "zip": "560038",
             "country": "India",
-            "address_url": <ADDRESS_URL>,
+            "address_url": "https://www.google.com/maps/search/?api=1&query=12.9764566,77.6020364&query_place_id=ChIJt-8HuakWrjsRUNukdoGH8Es",
             "website": "https://www.example.com",
-            "logo_url": <LOGO_URL>,
+            "logo_url": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
             "customizations": {
                 "background_color": "#2594FF",
                 "user_info_color": "#FFFFFF"
@@ -505,11 +505,11 @@ a) Download PDF to user's device
 {
     "name": "my PDF QR Code",
     "qr_type": 1,
-    "organization": <YOUR_ORG_ID>,
+    "organization": 1284,
     "attributes": {
         "color": "#000000",
         "margin": 25,
-        "logoImage": <IMAGE_URL>
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
     },
     "campaign": {
         "content_type": 13,
@@ -532,11 +532,11 @@ b) View PDF directly on the browser
 {
     "name": "my PDF QR Code",
     "qr_type": 1,
-    "organization": <YOUR_ORG_ID>,
+    "organization": 1284,
     "attributes": {
         "color": "#000000",
         "margin": 25,
-        "logoImage": <IMAGE_URL>
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
     },
     "campaign": {
         "content_type": 13,
@@ -564,26 +564,27 @@ Make Coupon QR Codes to offer discounts and deals to your consumers to improve c
 {
     "name": "Coupon QR Code",
     "qr_type": 1,
-    "organization": <YOUR_ORG_ID>,
+    "organization": 1284,
     "attributes": {
         "color": "#000000",
         "margin": 25,
-        "logoImage": <IMAGE_URL>
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
     },
     "campaign": {
         "content_type": 10,
         "coupon": {
             "coupon_code": "ABCD1234",
             "header": "Flat 25% off",
-            "expires_at": <EXPIRY DATE IN ISO FORMAT>,
+            "expires_at": "2020-10-24T00:00:00+05:30",
+            "timezone": "America/New_York",
             "message": "Big sale at Beaconstac stores",
             "company_name": "Mobstac Inc.",
-            "terms_and_conditions": <COUPON T&C>,
+            "terms_and_conditions": "read T&C carefully",
             "description_header": "Big Holiday sale",
             "description_body": "Enjoy the biggest holiday sale",
-            "location": <ADDRESS_URL>,
+            "location": "https://www.google.com/maps/search/?api=1&query=12.9764566,77.6020364&query_place_id=ChIJt-8HuakWrjsRUNukdoGH8Es",
             "website": "https://www.example.com",
-            "logo_url": <LOGO_URL>,
+            "logo_url": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
             "customizations": {
                 "background_color": "#199087",
                 "coupon_color": "#FFFFFF",
