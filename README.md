@@ -400,17 +400,17 @@ Changing campaign to a Markdown Card
     },
     "name": "Corner",
     "url": "https://qr.tapnscan.me/f78WrG",
-    "place": 1929
+    "organization": 1284
 }
 ```
 
 #### Create a QR Code
-Creates a new qr code. However, the request should contain the required fields. Please refer to the NFCTag object.
+
+Creates a new QR Code. However, the request should contain the required fields. Please refer to the QRCode object.
 
 `POST https://api.beaconstac.com/api/2.0/qrcodes/`
 
-Example:
-Create a QRCode with campaign set to a Markdown Card
+Example for creating QRCode with campaign set to a Markdown Card:
 ```json
 {
     "attributes": {
@@ -422,7 +422,177 @@ Create a QRCode with campaign set to a Markdown Card
     "name": "test 3",
     "qr_type": 2,
     "organization": 1284,
-    "place": 23
+    "place": 23,
+    "campaign": {
+        "content_type": 2,
+        "markdown_card": 34918
+    }
+}
+```
+
+Example for creating QRCode with campaign set to a Form:
+```json
+{
+    "attributes": {
+        "color": "#000000",
+        "margin": "",
+        "backgroundImage": "",
+        "logoImage": "https://static.beaconstac.com/assets/img/qr-code-logos/calender.svg"
+    },
+    "name": "test 3",
+    "qr_type": 2,
+    "organization": 1284,
+    "place": 23,
+    "campaign": {
+        "content_type": 3,
+        "form": 36092
+    }
+}
+```
+
+Example for creating dynamic QRCode of type vCard:
+
+Create editable Dynamic vCard QR Codes for employees
+```json
+{
+    "name": "Dynamic vCard QR Code",
+    "qr_type": 2,
+    "organization": 1284,
+    "attributes": {
+        "color": "#fb6e6e",
+        "margin": 25,
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
+    },
+    "campaign": {
+        "content_type": 7,
+        "vcard_plus": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "user_image_url": "https://d3nvy39jvu7woe.cloudfront.net/static/images/default_vcard_image.png",
+            "designation": "Android Developer",
+            "company": "Mobstac Inc.",
+            "summary": "Hello there!!!!",
+            "phone": {
+                "mobile": "9876543210",
+                "work": "9012345678"
+            },
+            "email": "john_doe@example.com",
+            "address_line1": "#316 Mobstac",
+            "address_line2": "Indiranagar",
+            "city": "Bengaluru",
+            "zip": "560038",
+            "country": "India",
+            "address_url": "https://www.google.com/maps/search/?api=1&query=12.9764566,77.6020364&query_place_id=ChIJt-8HuakWrjsRUNukdoGH8Es",
+            "website": "https://www.example.com",
+            "logo_url": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
+            "customizations": {
+                "background_color": "#2594FF",
+                "user_info_color": "#FFFFFF"
+            }
+        }
+    }
+}
+
+```
+
+Example for creating dynamic QRCodes pointed to PDF files:
+
+Point your QR Code to PDF files so that users can easily access the contents from their phone.
+
+a) Download PDF to user's device
+
+```json
+{
+    "name": "my PDF QR Code",
+    "qr_type": 1,
+    "organization": 1284,
+    "attributes": {
+        "color": "#000000",
+        "margin": 25,
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
+    },
+    "campaign": {
+        "content_type": 13,
+        "pdf": {
+            "files": [
+                {
+                    "url": "https://drive.google.com/file/d/1f0WF96qlqYhMvYg1qCDUBi-5Jg-NX9E6/view?usp=sharing",
+                    "name": "Enterprise QR Code solution"
+                }
+            ],
+            "uploaded": false
+        }
+    }
+}
+```
+
+b) View PDF directly on the browser
+
+```json
+{
+    "name": "my PDF QR Code",
+    "qr_type": 1,
+    "organization": 1284,
+    "attributes": {
+        "color": "#000000",
+        "margin": 25,
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
+    },
+    "campaign": {
+        "content_type": 13,
+        "pdf": {
+            "files": [
+                {
+                    "url": "https://d1bqobzsowu5wu.cloudfront.net/15406/877ea8ec987e4587be463f23a1e39092",
+                    "name": "Enterprise QR Code Solution"
+                }
+            ],
+            "uploaded": true
+        }
+    }
+}
+```
+
+** Note: For best results on PDF QR Codes that can be directly viewed on the viewer's browser(type (b)), use PDF files uploadedto Beaconstac.
+
+
+Example for creating dynamic QRCode for coupons:
+
+Make Coupon QR Codes to offer discounts and deals to your consumers to improve conversions and generate leads. Place these in-store or on print or digital material to maximize your ROI.
+
+```json
+{
+    "name": "Coupon QR Code",
+    "qr_type": 1,
+    "organization": 1284,
+    "attributes": {
+        "color": "#000000",
+        "margin": 25,
+        "logoImage": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50"
+    },
+    "campaign": {
+        "content_type": 10,
+        "coupon": {
+            "coupon_code": "ABCD1234",
+            "header": "Flat 25% off",
+            "expires_at": "2020-10-24T00:00:00+05:30",
+            "timezone": "America/New_York",
+            "message": "Big sale at Beaconstac stores",
+            "company_name": "Mobstac Inc.",
+            "terms_and_conditions": "read T&C carefully",
+            "description_header": "Big Holiday sale",
+            "description_body": "Enjoy the biggest holiday sale",
+            "location": "https://www.google.com/maps/search/?api=1&query=12.9764566,77.6020364&query_place_id=ChIJt-8HuakWrjsRUNukdoGH8Es",
+            "website": "https://www.example.com",
+            "logo_url": "https://d1bqobzsowu5wu.cloudfront.net/15406/36caec11f02d460aad0604fa26799c50",
+            "customizations": {
+                "background_color": "#199087",
+                "coupon_color": "#FFFFFF",
+                "coupon_color": "#FFFFFF",
+                "header_color": "#59C65D"
+            }
+        }
+    }
 }
 ```
 
