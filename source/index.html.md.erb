@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
 
 includes:
   - errors
@@ -48,11 +49,11 @@ Beaconstac expects for the API key to be included in all API requests to the ser
 You must replace <code>YOUR_TOKEN</code> with your personal API key.
 </aside>
 
-# Beaconstac
+# API
 
 ## Campaign
 
-Campaign is type of marketing strategy which can in the form of custom url, markdown card, form and schedule.
+Campaign is a type of marketing strategy in the form of Custom Url, Landing Pages or Feedback Forms to facilitate engagement between users and your business.
 
 | **Attributes** |
 |---|
@@ -62,14 +63,161 @@ Campaign is type of marketing strategy which can in the form of custom url, mark
 | ***markdown_card***	`integer`	`required if content_type is 2`	<p> Markdown card associated with the campaign </p> |
 | ***form***	`integer`	`required if content_type is 3`	<p> Form associated with the campaign </p> |
 | ***schedule***	`integer`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***app_links***	`object`	`required if content_type is 5` <p> Schedule associated with the campaign </p> |
+| ***vcard_plus***	`object`	`required if content_type is 6` <p> Schedule associated with the campaign </p> |
+| ***social_media***	`object`	`required if content_type is 8` <p> Schedule associated with the campaign </p> |
+| ***facebook_page***	`object`	`required if content_type is 9` <p> Schedule associated with the campaign </p> |
+| ***coupon***	`object`	`required if content_type is 10` <p> Schedule associated with the campaign </p> |
+| ***business_card***	`object`	`required if content_type is 11` <p> Schedule associated with the campaign </p> |
+| ***pdf***	`object`	`required if content_type is 13` <p> Schedule associated with the campaign </p> |
+| ***restaurant_menu***	`object`	`required if content_type is 14` <p> Schedule associated with the campaign </p> |
+| ***phone***	`object`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***sms***	`object`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***email***	`object`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***start_date*** `timestamp` `` <p> Starts the campaign from the specified date</p> |
+| ***end_date*** `timestamp` `` <p> Ends the campaign on the specified date</p> |
+| ***age_gate*** `integer` `` <p> Prompts an age gate form when viewing the contents, restricting if viewer is younger than specified age</p> |
 | ***campaign_active***	`boolean`	`read only`	<p> Current campaign status </p> |
 | ***organization*** `integer` `required` `read only` <p> Id of the organization to which the campaign belongs to </p> |
 | ***created*** `timestamp` `read only` <p> Created timestamp of the campaign </p> |
 | ***updated*** `timestamp` `read only` <p> Last updated timestamp of the campaign </p> |
 
+
+Beaconstac API supports the following campaign types.
+
+
+### App Links
+
+Redirects users to appropriate URLs (App Store / Play Store) based on the Operating System of the device being used.
+
+| **Attributes** |
+|---|
+| ***android_url*** `URL` <p> URL (Google Play Store) for Android users to be redirected to </p> |
+| ***iphone_url*** `URL` <p> URL (App Store) for iOS users to be redirected to </p> |
+| ***ipad_url*** `URL` <p> URL (App Store) for iPad or Mac users to be redirected to (redirected to iphone_url if not present)</p> |
+| ***fallback_url*** `URL` `required` <p> General URL to be redirected to if device does not satisfy above conditions</p> |
+
+
+### vCard Plus
+
+Create vCards to allow anyone to view your contact information and add it to their device instantly.
+
+| **Attributes** |
+|---|
+| ***first_name*** `string` `required` <p> First name of the recipient </p> |
+| ***last_name*** `string` `required` <p> Last name of the recipient </p> |
+| ***user_image_url*** `URL` <p> URL for profile picture of the recipient  </p> |
+| ***company*** `string` <p> Name of the company the recipient works for  </p> |
+| ***designation*** `string` <p> Designation held by the recipient </p> |
+| ***summary*** `string` <p> Brief summary to be displayed on the page </p> |
+| ***phone*** `object` <p> Phone numbers associated with the recipient. Supported keys: `mobile`, `work`, `home` </p> |
+| ***email*** `string` <p> Recipient email address </p> |
+| ***website*** `URL` <p> Company/Recipient website URL </p> |
+| ***logo_url*** `URL` <p> Company/Recipient logo image </p> |
+| ***address_url*** `URL` <p> Recipient address from Google or Apple maps </p> |
+| ***address_line1*** `string` <p> Recipient address line 1 to be displayed </p> |
+| ***address_line2*** `string` <p> Recipient address line 1 to be displayed </p> |
+| ***city*** `string`  <p> Recipient city of residence </p> |
+| ***zip*** `string`  <p> Recipient area zip code </p> |
+| ***state*** `string`  <p> Recipient state of residence </p> |
+| ***country*** `string`  <p> Recipient country of residence </p> |
+| ***customizations*** `object`  <p> Landing page customizations </p> |
+
+**customization options (supports hex and rgb color formats):** `background_color`, `user_info_color`
+
+
+### Social Media
+
+Create a landing page to engage with your users through various social media platforms
+
+| **Attributes** |
+|---|
+| ***title*** `string` `required` <p> First name of the recipient </p> |
+| ***urls*** `object` `required` <p> Supports `whatsapp`, `facebook`, `instagram`, `linkedin`, `twitter` and `pinterest`  URLs</p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your brand </p> |
+| ***brand_image*** `URL` <p> Image URL associated with your brand </p> |
+| ***message*** `string` <p> Short display message  </p> |
+| ***sub_text*** `string` <p> Sub text for the message  </p> |
+| ***customizations*** `object` <p> Landing page customizations  </p> |
+
+**customization options (supports hex and rgb color formats):** `title_color`, `message_background_color`
+
+
+### Facebook page
+
+Create a landing page link your facebook page to grow followers and increase likes
+
+| **Attributes** |
+|---|
+| ***facebook_page_url*** `URL` `required` <p> URL associated with your Facebook page </p> |
+| ***like_button_type*** `string` <p> Type of like button () </p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your brand </p> |
+| ***header*** `string` <p> Header message for the page </p> |
+| ***sub_text*** `string` <p> Sub text for the header </p> |
+| ***base_image*** `URL` <p> Base image URL for the page </p> |
+
+
+
+### Coupon
+
+Create coupon codes campaigns that can be redeemed by users engaging with your business
+
+| **Attributes** |
+|---|
+| ***coupon_code*** `string` `required` <p> Coupon Code </p> |
+| ***expires_at*** `timestamp` `required`<p> Expiry date for coupon in ISO format </p> |
+| ***timezone*** `timestamp`<p> Expiry date for coupon in ISO format </p> |
+| ***header*** `string` `required`<p> Header message for the landing page </p> |
+| ***message*** `string` `required`<p> Display message for the page </p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your brand </p> |
+| ***website*** `URL` <p> Your brand website </p> |
+| ***description_header*** `string` <p> Header describing the coupon </p> |
+| ***description_body*** `string` <p> A brief description for the coupon </p> |
+| ***terms_and_conditions*** `string` <p> Terms and Conditions associated with this coupon </p> |
+| ***wallet_pass*** `object` <p> Wallet pass customizations </p> |
+| ***location*** `URL` <p> URL to locate your business </p> |
+| ***company_name*** `string` <p> Company name </p> |
+| ***custom_theme*** `integer` <p> Custom Theme object ID </p> |
+| ***theme_data*** `object` `read only` <p> Custom Theme data </p> |
+| ***customizations*** `object` <p> Landing page customizations </p> |
+
+
+| **Wallet pass options (shown on iOS devices only)** |
+|---|
+| ***barcode_format*** `string` <p> Type of barcode to be displaayed (options: `PKBarcodeFormatPDF417`, `PKBarcodeFormatQR`, `PKBarcodeFormatAztec`) </p> |
+
+**customization options (supports hex and rgb color formats):** `header_color`, `body_color`, `background_color`, `coupon_color`, `button_color`
+
+
+### Business Card
+
+Create a landing page to display your business details that help users connect with you seamlessly.
+
+| **Attributes** |
+|---|
+| ***business_name*** `string` `required` <p> Businesss Name </p> |
+| ***button_url*** `string` `required` <p> Button Url </p> |
+| ***button_title*** `string` `required` <p> Button Title </p> |
+| ***contact*** `string` `required` <p> Contact </p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your business </p> |
+| ***aaddress_url*** `URL` <p> Address URL for people to locate your business </p> |
+| ***website*** `URL` <p> Website URL of your business </p> |
+| ***headline*** `string` <p> A brief headline to summarise your business operaations </p> |
+| ***open_hours*** `object` <p> Opening and Closing time for the business for each day </p> |
+| ***customizations*** `object` <p> Landing page customizations </p> |
+
+| **Contact options** |
+|---|
+| ***name*** `string` `required` <p> Name of the contact person </p> |
+| ***phone*** `string` `required` <p> Phone number </p> |
+| ***email*** `string` `required` <p> email ID for viewers to engage with  </p> |
+
+**customization options (supports hex and rgb color formats):** `background_color`, `opacity`, `button_color`
+
+
 ## Campaign Notification
 
-Campaign notification is the brief overview of the campaign, used to alert the user. This can only be used with beacon and geofence objects.
+Campaign notification is the brief overview of the campaign, used to alert the user. This can only be used with Beacon and Geofence objects.
 
 | **Attributes** |
 |---|
@@ -985,6 +1133,8 @@ curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"
 Retrieves the details of an existing qr code. You need only supply the unique qr code identifier that was returned upon qr codes listing.
 
 ### Update QR code
+
+#### Dynamic QR Code
 
 ```shell
 curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"
