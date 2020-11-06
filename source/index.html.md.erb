@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - python
 
 includes:
   - errors
@@ -20,7 +21,7 @@ The Beaconstac API is organized around [REST](https://en.wikipedia.org/wiki/Repr
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://beaconstac.mobstac.com/api/2.0/"
+curl "https://api.beaconstac.com/api/2.0/"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -48,11 +49,11 @@ Beaconstac expects for the API key to be included in all API requests to the ser
 You must replace <code>YOUR_TOKEN</code> with your personal API key.
 </aside>
 
-# Beaconstac
+# API
 
 ## Campaign
 
-Campaign is type of marketing strategy which can in the form of custom url, markdown card, form and schedule.
+Campaign is a type of marketing strategy in the form of Custom Url, Landing Pages or Feedback Forms to facilitate engagement between users and your business.
 
 | **Attributes** |
 |---|
@@ -62,14 +63,4158 @@ Campaign is type of marketing strategy which can in the form of custom url, mark
 | ***markdown_card***	`integer`	`required if content_type is 2`	<p> Markdown card associated with the campaign </p> |
 | ***form***	`integer`	`required if content_type is 3`	<p> Form associated with the campaign </p> |
 | ***schedule***	`integer`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***app_links***	`object`	`required if content_type is 5` <p> Schedule associated with the campaign </p> |
+| ***vcard_plus***	`object`	`required if content_type is 6` <p> Schedule associated with the campaign </p> |
+| ***social_media***	`object`	`required if content_type is 8` <p> Schedule associated with the campaign </p> |
+| ***facebook_page***	`object`	`required if content_type is 9` <p> Schedule associated with the campaign </p> |
+| ***coupon***	`object`	`required if content_type is 10` <p> Schedule associated with the campaign </p> |
+| ***business_card***	`object`	`required if content_type is 11` <p> Schedule associated with the campaign </p> |
+| ***pdf***	`object`	`required if content_type is 13` <p> Schedule associated with the campaign </p> |
+| ***restaurant_menu***	`object`	`required if content_type is 14` <p> Schedule associated with the campaign </p> |
+| ***phone***	`object`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***sms***	`object`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***email***	`object`	`required if content_type is 4` <p> Schedule associated with the campaign </p> |
+| ***start_date*** `timestamp` `` <p> Starts the campaign from the specified date</p> |
+| ***end_date*** `timestamp` `` <p> Ends the campaign on the specified date</p> |
+| ***age_gate*** `integer` `` <p> Prompts an age gate form when viewing the contents, restricting if viewer is younger than specified age</p> |
 | ***campaign_active***	`boolean`	`read only`	<p> Current campaign status </p> |
 | ***organization*** `integer` `required` `read only` <p> Id of the organization to which the campaign belongs to </p> |
 | ***created*** `timestamp` `read only` <p> Created timestamp of the campaign </p> |
 | ***updated*** `timestamp` `read only` <p> Last updated timestamp of the campaign </p> |
 
+
+Beaconstac API supports the following campaign types.
+
+
+
+### Landing Page (Markdown Card)
+
+Create mobile-friendly landing pages for users to view/interact with your content.
+
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***title***	`string`	`required`	<p> Name of the Landing page </p> |
+| ***version***	`integer`	<p> Version of landing page (`1` or `2`) </p> |
+| ***default***	`boolean` `readonly`	<p> Indicates whether page is a default page </p> |
+| ***card_theme***	`integer`	<p> Theme for the page </p> |
+| ***custom_theme***	`integer`	<p> ID of the custom theme </p> |
+| ***custom_theme_data***	`object` `readonly`	<p> Details of the custom theme used </p> |
+| ***theme_data***	`object` `readonly`	<p> Details of the card theme used </p> |
+| ***markdown_body***	`string`	<p> Data to be displayed in markdown format </p> |
+| ***html_body***	`string`	<p> Data to be displayed in HTML format </p> |
+| ***css_body***	`string`	<p> CSS styling for the page </p> |
+| ***organization***	`integer` `required`	<p> ID of the organization the Landing page belongs to </p> |
+| ***maintainer***	`integer`	<p> ID of the user the Landing page is maintained by </p> |
+| ***created***	`timestamp`	`read only`<p> Creation timestamp </p> |
+| ***updated***	`timestamp`	`read only`<p> Updation timestamp </p> |
+
+
+#### Get all landing pages
+
+```shell
+curl "https://api.beaconstac.com/api/2.0/markdowncards/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 26290,
+            "card_theme_data": {
+                "id": 7,
+                "name": "Best offers V2",
+                "css_link": "https://d3nvy39jvu7woe.cloudfront.net/static/css/markdown_template_css/best_offers_v2.css",
+                "example_markdown": "![](https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/best_offers/default_image.jpeg)\n \n ## Half Price, Happy Hour\n ### Happy Hour Is Back\n \n [Know More](https://en.wikipedia.org/wiki/Cappuccino)\n \n [Call Us](tel:+12122475489) \n **Half off any Cappuccino blended beverage.\n Weekdays: 3pm to 5pm**. A cappuccino is an Italian coffee drink that is traditionally prepared with double espresso, hot milk, and steamed milk foam. Cream may be used instead of milk and is often topped with cinnamon. It is typically smaller in volume than a caffe latte, with a thicker layer of micro foam.",
+                "script_url": "https://d3nvy39jvu7woe.cloudfront.net/None",
+                "preview_image_url": "static/images/markdown_templates/best_offers/preview_image.jpg"
+            },
+            "version": 2,
+            "default": true,
+            "title": "Default markdown card",
+            "markdown_body": "![](https://d9ic2hg1x4ep8.cloudfront.net/default_images/coffee_default.jpeg)\n\n## Half Price, Happy Hour\n### Happy Hour Is Back\n\n[Know More](https://en.wikipedia.org/wiki/Cappuccino)\n\n[Call Us](tel:+12122475489)\n\n**Half off any Cappuccino blended beverage.\nWeekdays: 3pm to 5pm**. A cappuccino is an Italian coffee drink that is traditionally prepared with double espresso, hot milk, and steamed milk foam. Cream may be used instead of milk and is often topped with cinnamon. It is typically smaller in volume than a caffè latte, with a thicker layer of micro foam.",
+            "html_body": "<p><img alt=\"\" src=\"https://d9ic2hg1x4ep8.cloudfront.net/default_images/coffee_default.jpeg\" /></p>\n<h2>Half Price, Happy Hour</h2>\n<h3>Happy Hour Is Back</h3>\n<p><a href=\"https://en.wikipedia.org/wiki/Cappuccino\">Know More</a></p>\n<p><a href=\"tel:+12122475489\">Call Us</a></p>\n<p><strong>Half off any Cappuccino blended beverage.\nWeekdays: 3pm to 5pm</strong>. A cappuccino is an Italian coffee drink that is traditionally prepared with double espresso, hot milk, and steamed milk foam. Cream may be used instead of milk and is often topped with cinnamon. It is typically smaller in volume than a caffè latte, with a thicker layer of micro foam.</p>",
+            "css_body": "",
+            "fb_pixel_id": "",
+            "fb_pixel_event": "",
+            "google_conversion_id": "",
+            "theme": null,
+            "kit_type": "AK",
+            "meta": {},
+            "created": "2020-04-21T15:57:02.521336+05:30",
+            "modified": "2020-11-06T10:51:01.082796+05:30",
+            "organization": 15406,
+            "maintainer": 15189,
+            "card_theme": 7,
+            "custom_theme": null,
+            "theme_data": {},
+            "custom_theme_data": {}
+        },
+        {
+            "id": 34918,
+            "card_theme_data": {
+                "id": 6,
+                "name": "Broadcast information",
+                "css_link": "https://d3nvy39jvu7woe.cloudfront.net/static/css/markdown_template_css/broadcast_information.css",
+                "example_markdown": "# Sub Urban Museum\n #### Unwinding the history of Mesopotamia\n \n The history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.\n \n [READ MORE](https://www.google.com)\n",
+                "script_url": "https://d3nvy39jvu7woe.cloudfront.net/None",
+                "preview_image_url": "static/images/markdown_templates/broadcast_information/preview_image.jpg"
+            },
+            "version": 2,
+            "default": false,
+            "title": "loop",
+            "markdown_body": "# Sub Urban Museum\n#### Unwinding the history of Mesopotamia\n\nThe history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.\n\n[READ MORE](https://www.google.com)",
+            "html_body": "<h1 id=\"sub-urban-museum\" style=\"color: #9D9D9D\">Sub Urban Museum</h1>\n        <h4 id=\"unwinding-the-history-of-mesopotamia\">Unwinding the history of Mesopotamia</h4>\n        <p>The history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.</p>\n        <p><a href=\"https://www.google.com\">READ MORE</a></p>",
+            "css_body": "",
+            "fb_pixel_id": "",
+            "fb_pixel_event": "PageView",
+            "google_conversion_id": "",
+            "theme": "6",
+            "kit_type": "AK",
+            "meta": {
+                "creator_id": 15189,
+                "updater_id": 15189,
+                "creator_email": "hari.a+5678@mobstac.com",
+                "updater_email": "hari.a+5678@mobstac.com"
+            },
+            "created": "2020-08-21T18:55:28.359434+05:30",
+            "modified": "2020-08-21T18:55:28.367234+05:30",
+            "organization": 15406,
+            "maintainer": 15189,
+            "card_theme": 6,
+            "custom_theme": null,
+            "theme_data": {
+                "id": "6",
+                "font": "PT Sans",
+                "name": "Broadcast info",
+                "colors": {
+                    "text": "#ffffff",
+                    "buttonBackground": "#E9DD26",
+                    "buttonText": "#4a4a4a",
+                    "backgroundColor": "#282828"
+                },
+                "background": {
+                    "href": "https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/broadcast_information/background.jpg",
+                    "brightness": 0,
+                    "layout": ""
+                }
+            },
+            "custom_theme_data": {
+                "id": "6",
+                "font": "PT Sans",
+                "name": "Broadcast info",
+                "colors": {
+                    "text": "#ffffff",
+                    "buttonBackground": "#E9DD26",
+                    "buttonText": "#4a4a4a",
+                    "backgroundColor": "#282828"
+                },
+                "background": {
+                    "href": "https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/broadcast_information/background.jpg",
+                    "brightness": 0,
+                    "layout": ""
+                }
+            }
+        }
+    ]
+}
+```
+
+Returns a list of all landing pages. The landing pages are returned sorted by last updated.
+
+Filter arguments:
+
+1. `title`: `exact`, `icontains`
+
+Search Fields:
+
+1. `title`
+
+Ordering fields:
+
+1. `-modified`
+
+
+#### Retrieve a Landing Page
+
+```shell
+curl "https://api.beaconstac.com/api/2.0/markdowncards/{markdown_card_id}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 34918,
+    "card_theme_data": {
+        "id": 6,
+        "name": "Broadcast information",
+        "css_link": "https://d3nvy39jvu7woe.cloudfront.net/static/css/markdown_template_css/broadcast_information.css",
+        "example_markdown": "# Sub Urban Museum\n #### Unwinding the history of Mesopotamia\n \n The history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.\n \n [READ MORE](https://www.google.com)\n",
+        "script_url": "https://d3nvy39jvu7woe.cloudfront.net/None",
+        "preview_image_url": "static/images/markdown_templates/broadcast_information/preview_image.jpg"
+    },
+    "version": 2,
+    "default": false,
+    "title": "loop",
+    "markdown_body": "# Sub Urban Museum\n#### Unwinding the history of Mesopotamia\n\nThe history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.\n\n[READ MORE](https://www.google.com)",
+    "html_body": "<h1 id=\"sub-urban-museum\" style=\"color: #9D9D9D\">Sub Urban Museum</h1>\n        <h4 id=\"unwinding-the-history-of-mesopotamia\">Unwinding the history of Mesopotamia</h4>\n        <p>The history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.</p>\n        <p><a href=\"https://www.google.com\">READ MORE</a></p>",
+    "css_body": "",
+    "fb_pixel_id": "",
+    "fb_pixel_event": "PageView",
+    "google_conversion_id": "",
+    "theme": "6",
+    "kit_type": "AK",
+    "meta": {},
+    "created": "2020-08-21T18:55:28.359434+05:30",
+    "modified": "2020-08-21T18:55:28.367234+05:30",
+    "organization": 15406,
+    "maintainer": 15189,
+    "card_theme": 6,
+    "custom_theme": null,
+    "theme_data": {
+        "id": "6",
+        "font": "PT Sans",
+        "name": "Broadcast info",
+        "colors": {
+            "text": "#ffffff",
+            "buttonBackground": "#E9DD26",
+            "buttonText": "#4a4a4a",
+            "backgroundColor": "#282828"
+        },
+        "background": {
+            "href": "https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/broadcast_information/background.jpg",
+            "brightness": 0,
+            "layout": ""
+        }
+    },
+    "custom_theme_data": {
+        "id": "6",
+        "font": "PT Sans",
+        "name": "Broadcast info",
+        "colors": {
+            "text": "#ffffff",
+            "buttonBackground": "#E9DD26",
+            "buttonText": "#4a4a4a",
+            "backgroundColor": "#282828"
+        },
+        "background": {
+            "href": "https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/broadcast_information/background.jpg",
+            "brightness": 0,
+            "layout": ""
+        }
+    }
+}
+```
+
+Retrieves the details of an existing landing page. You need only supply the unique landing page identifier that was returned upon listing.
+
+
+
+#### Create new landing page
+
+```shell
+curl --location --request POST 'https://api.beaconstac.com/api/2.0/markdowncards/' \
+--header 'Authorization: Token YOUR_TOKEN' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "organization": 15406,
+    "title": "",
+    "markdown_body": "",
+    "html_body": "",
+    "css_body": ""
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 41818,
+    "card_theme_data": null,
+    "version": 2,
+    "default": false,
+    "title": "",
+    "markdown_body": "",
+    "html_body": "",
+    "css_body": "",
+    "fb_pixel_id": "",
+    "fb_pixel_event": "",
+    "google_conversion_id": "",
+    "theme": null,
+    "kit_type": "AK",
+    "meta": {},
+    "created": "2020-11-06T15:04:47.016755+05:30",
+    "modified": "2020-11-06T15:04:47.022575+05:30",
+    "organization": 15406,
+    "maintainer": 15189,
+    "card_theme": null,
+    "custom_theme": null,
+    "theme_data": {},
+    "custom_theme_data": {}
+}
+```
+
+#### Update Landing Page
+
+```shell
+curl "https://api.beaconstac.com/api/2.0/maarkdowncards/{landing_page_id}"
+  -X PUT
+  -H "Authorization: Token YOUR_TOKEN"
+  -d "{'id':landing_page_id, 'title':'new title'"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 41819,
+    "card_theme_data": {
+        "id": 6,
+        "name": "Broadcast information",
+        "css_link": "https://d3nvy39jvu7woe.cloudfront.net/static/css/markdown_template_css/broadcast_information.css",
+        "example_markdown": "# Sub Urban Museum\n #### Unwinding the history of Mesopotamia\n \n The history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.\n \n [READ MORE](https://www.google.com)\n",
+        "script_url": "https://d3nvy39jvu7woe.cloudfront.net/None",
+        "preview_image_url": "static/images/markdown_templates/broadcast_information/preview_image.jpg"
+    },
+    "version": 2,
+    "default": false,
+    "title": "t78",
+    "markdown_body": "# Sub Urban Museum\n#### Unwinding the history of Mesopotamia\n\nThe history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.\n\n[READ MORE](https://www.google.com)",
+    "html_body": "<h1 id=\"sub-urban-museum\" style=\"color: #9D9D9D\">Sub Urban Museum</h1>\n        <h4 id=\"unwinding-the-history-of-mesopotamia\">Unwinding the history of Mesopotamia</h4>\n        <p>The history of Mesopotamia ranges from the earliest human occupation in the Lower Paleolithic period up to the Late antiquity. This history is pieced together from evidence retrieved from archaeological excavations and, after the introduction of writing in the late 4th millennium BC, an increasing amount of historical sources.</p>\n        <p><a href=\"https://www.google.com\">READ MORE</a></p>",
+    "css_body": "",
+    "fb_pixel_id": "",
+    "fb_pixel_event": "PageView",
+    "google_conversion_id": "",
+    "theme": "6",
+    "kit_type": "AK",
+    "meta": {
+        "creator_id": 15189,
+        "updater_id": 15189,
+        "creator_email": "hari.a+5678@mobstac.com",
+        "updater_email": "hari.a+5678@mobstac.com"
+    },
+    "created": "2020-11-06T15:20:18.026375+05:30",
+    "modified": "2020-11-06T15:20:18.032442+05:30",
+    "organization": 15406,
+    "maintainer": 15189,
+    "card_theme": 6,
+    "custom_theme": null,
+    "theme_data": {
+        "id": "6",
+        "font": "PT Sans",
+        "name": "Broadcast info",
+        "colors": {
+            "text": "#ffffff",
+            "buttonBackground": "#E9DD26",
+            "buttonText": "#4a4a4a",
+            "backgroundColor": "#282828"
+        },
+        "background": {
+            "href": "https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/broadcast_information/background.jpg",
+            "brightness": 0,
+            "layout": ""
+        }
+    },
+    "custom_theme_data": {
+        "id": "6",
+        "font": "PT Sans",
+        "name": "Broadcast info",
+        "colors": {
+            "text": "#ffffff",
+            "buttonBackground": "#E9DD26",
+            "buttonText": "#4a4a4a",
+            "backgroundColor": "#282828"
+        },
+        "background": {
+            "href": "https://d3nvy39jvu7woe.cloudfront.net/static/images/markdown_templates/broadcast_information/background.jpg",
+            "brightness": 0,
+            "layout": ""
+        }
+    }
+}
+```
+
+Updates the specified landing page by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Landing Page object.
+
+
+### Forms
+
+Create Feedback Forms for collecting information for surveys, maarketing etc from your customers.
+
+
+| **Attributes** |
+|---|
+| ***id*** `integer` `read only` <p> Unique identifier of the object </p> |
+| ***title***	`string`	`required`	<p> Name of the Landing page </p> |
+| ***form_id***	`integer`	`read only` <p> Unique identity field for Form </p> |
+| ***default***	`boolean` `readonly`	<p> Indicates whether page is a default form </p> |
+| ***sms_structure***	`object`	<p> Structure to send SMS based on Thank You screen seen </p> |
+| ***email_structure***	`object`	<p> Structure to receive email based on Thank You screen seen </p> |
+| ***meta***	`object` `readonly`	<p> meta fields for Form </p> |
+| ***url***	`URL` `readonly`	<p> URL to preview the Form </p> |
+| ***form_response_count***	`integer`	`read only`<p> Total number of responses received by the Form </p> |
+| ***form_type***	`string`<p> type of the Feedback Form </p> |
+| ***form_structure***	`object`	<p> Complete structure of the Form </p> |
+| ***organization***	`integer` `required`	<p> ID of the organization the Landing page belongs to </p> |
+| ***maintainer***	`integer`	<p> ID of the user the Landing page is maintained by </p> |
+| ***created***	`timestamp`	`read only`<p> Creation timestamp </p> |
+| ***updated***	`timestamp`	`read only`<p> Updation timestamp </p> |
+
+
+#### Get all Feedback Forms
+
+```shell
+curl "https://api.beaconstac.com/api/2.0/forms/"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 49958,
+            "form_structure": {
+                "id": "EN78iMBv",
+                "type": "form",
+                "logic": [
+                    {
+                        "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                        "type": "field",
+                        "actions": [
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "6d60fc0e-6645-4966-84d8-10b90e37960e"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                        "type": "field",
+                        "actions": [
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "cca8c5c0-7536-4e95-bd88-4444066c2a39"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "1539a61e-73d8-48cb-a04d-3a61b082d689"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "80afef6d-fb4e-4dda-a973-99e9353dbb9a"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                        "type": "field",
+                        "actions": [
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "ce43e9ac-2e20-4318-9a45-e2143f29c13b"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                        "type": "field",
+                        "actions": [
+                            {
+                                "action": "add",
+                                "details": {
+                                    "value": {
+                                        "type": "constant",
+                                        "value": 1
+                                    },
+                                    "target": {
+                                        "type": "variable",
+                                        "value": "score"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "is",
+                                    "vars": [
+                                        {
+                                            "type": "field",
+                                            "value": "083443e3-69e4-4bd8-a84a-05e6d14dabed"
+                                        },
+                                        {
+                                            "type": "choice",
+                                            "value": "a0d57cef-6603-45b1-9cac-eb7e6387c76a"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                        "type": "field",
+                        "actions": [
+                            {
+                                "action": "jump",
+                                "details": {
+                                    "to": {
+                                        "type": "thankyou",
+                                        "value": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "greater_equal_than",
+                                    "vars": [
+                                        {
+                                            "type": "variable",
+                                            "value": "score"
+                                        },
+                                        {
+                                            "type": "constant",
+                                            "value": 1
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "action": "jump",
+                                "details": {
+                                    "to": {
+                                        "type": "thankyou",
+                                        "value": "8778f1ad-dfed-4e46-8c82-7c537acfcb63"
+                                    }
+                                },
+                                "condition": {
+                                    "op": "always",
+                                    "vars": []
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "theme": {
+                    "href": "https://api.typeform.com/themes/ZyKW7J"
+                },
+                "title": "[COVID-19] Clinics and hospitals-",
+                "_links": {
+                    "display": "https://eddypro.typeform.com/to/EN78iMBv"
+                },
+                "fields": [
+                    {
+                        "id": "LrVKT5W75DqM",
+                        "ref": "cf81e0bf-7f04-4d29-a2a2-c99b47c1cedd",
+                        "type": "statement",
+                        "title": "This self-declaration form is put together in alignment with World Health Organization's Covid-19 outbreak guidelines. \n\nKeep us informed so that we can help you stay safe in these challenging times",
+                        "properties": {
+                            "hide_marks": false,
+                            "button_text": "Continue"
+                        }
+                    },
+                    {
+                        "id": "mxq7yWTTFp2z",
+                        "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                        "type": "email",
+                        "title": "What's your email id?",
+                        "properties": {
+                            "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises"
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "sfcPRmbPXrBh",
+                        "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                        "type": "phone_number",
+                        "title": "What's your mobile number?",
+                        "properties": {
+                            "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises",
+                            "default_country_code": "US"
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "Uyt2dOSfDf9b",
+                        "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                        "type": "short_text",
+                        "title": "Which doctor are you here to consult today?",
+                        "properties": {
+                            "description": "(Doctor name)"
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "p4Dncq4aCPFL",
+                        "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                        "type": "multiple_choice",
+                        "title": "Have you travelled to an international or domestic location in the past 3 weeks?",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/fkaRQkYF6sdw",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "jzm8UyOGAr2S",
+                                    "ref": "6d60fc0e-6645-4966-84d8-10b90e37960e",
+                                    "label": "Yes"
+                                },
+                                {
+                                    "id": "rEZWuczwNMYI",
+                                    "ref": "0e002a1c-25aa-4eae-9563-66e2fe40665a",
+                                    "label": "No"
+                                }
+                            ],
+                            "randomize": false,
+                            "allow_other_choice": false,
+                            "vertical_alignment": true,
+                            "allow_multiple_selection": false
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "2f0xaRAQ105b",
+                        "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                        "type": "multiple_choice",
+                        "title": "What's your gender?",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "oTiJkMzdNzpz",
+                                    "ref": "fe283bb3-7f06-43d1-83e8-dd48e663e904",
+                                    "label": "Male"
+                                },
+                                {
+                                    "id": "W7pPmMR0yZZ2",
+                                    "ref": "bc0f3b2e-786d-41c4-b1e1-771878288ea5",
+                                    "label": "Female"
+                                }
+                            ],
+                            "randomize": false,
+                            "allow_other_choice": false,
+                            "vertical_alignment": true,
+                            "allow_multiple_selection": false
+                        },
+                        "validations": {
+                            "required": false
+                        }
+                    },
+                    {
+                        "id": "VagUfsjqqv8M",
+                        "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                        "type": "multiple_choice",
+                        "title": "Have you experienced any of these symptoms in the last 2 weeks?",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/Wy9iM7YpWDKf",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "dOp0UwxhLaNp",
+                                    "ref": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650",
+                                    "label": "Cold and cough"
+                                },
+                                {
+                                    "id": "myhzlcJkFZxZ",
+                                    "ref": "c7955809-de34-43df-b116-102e16c85a86",
+                                    "label": "Running nose"
+                                },
+                                {
+                                    "id": "MOJBX0LuA4MR",
+                                    "ref": "cca8c5c0-7536-4e95-bd88-4444066c2a39",
+                                    "label": "Shortness of breath"
+                                },
+                                {
+                                    "id": "zvCcGulPnG2i",
+                                    "ref": "1539a61e-73d8-48cb-a04d-3a61b082d689",
+                                    "label": "Sore throat"
+                                },
+                                {
+                                    "id": "AG5zZRIwyXAi",
+                                    "ref": "80afef6d-fb4e-4dda-a973-99e9353dbb9a",
+                                    "label": "Fever"
+                                },
+                                {
+                                    "id": "4Rh5FP3b2kPj",
+                                    "ref": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a",
+                                    "label": "Unsure"
+                                },
+                                {
+                                    "id": "4WdWqbjUgfyn",
+                                    "ref": "e1b0c83f-704a-4526-be14-0b31572b84c1",
+                                    "label": "None of the above"
+                                }
+                            ],
+                            "randomize": false,
+                            "allow_other_choice": false,
+                            "vertical_alignment": true,
+                            "allow_multiple_selection": false
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "MGyAC20eTLxR",
+                        "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                        "type": "multiple_choice",
+                        "title": "Do any of your family members have the above symptoms?",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/bYducJ2kQEzi",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "Xm7HLpweaBmZ",
+                                    "ref": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7",
+                                    "label": "Yes"
+                                },
+                                {
+                                    "id": "Hus3HyZbz7Vt",
+                                    "ref": "90e2efeb-a40d-4540-a1b7-b5c0bfd177d1",
+                                    "label": "No"
+                                }
+                            ],
+                            "randomize": false,
+                            "allow_other_choice": false,
+                            "vertical_alignment": true,
+                            "allow_multiple_selection": false
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "bRxcw7475rQC",
+                        "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                        "type": "multiple_choice",
+                        "title": "Have you been in contact with someone with flu in the past 2 weeks?",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/QkbPABHjUrqQ",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "choices": [
+                                {
+                                    "id": "WbdRVnK5smN1",
+                                    "ref": "a0d57cef-6603-45b1-9cac-eb7e6387c76a",
+                                    "label": "Yes"
+                                },
+                                {
+                                    "id": "0lOo7nJPjsSc",
+                                    "ref": "88a8788c-adcf-47ad-af25-890ae332da53",
+                                    "label": "No"
+                                },
+                                {
+                                    "id": "3oxXV0eAn4x5",
+                                    "ref": "0b3f78b9-569e-4bb1-9fb9-c62ca505f466",
+                                    "label": "Not sure"
+                                }
+                            ],
+                            "randomize": false,
+                            "allow_other_choice": false,
+                            "vertical_alignment": true,
+                            "allow_multiple_selection": false
+                        },
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "TTsgOiIXpWfq",
+                        "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                        "type": "statement",
+                        "title": "I declare all above to be true. I am aware that I may be held liable for knowingly providing incorrect information",
+                        "properties": {
+                            "hide_marks": false,
+                            "button_text": "Continue"
+                        }
+                    }
+                ],
+                "settings": {
+                    "meta": {
+                        "allow_indexing": false
+                    },
+                    "is_trial": false,
+                    "language": "en",
+                    "is_public": true,
+                    "progress_bar": "percentage",
+                    "notifications": {
+                        "self": {
+                            "enabled": true,
+                            "message": "Your typeform {{form:title}} has a new response:\n{{form:all_answers}}\n\nTeam Beaconstac\n",
+                            "subject": "Typeform: New response for {{form:title}}",
+                            "recipients": [
+                                "hari.a+5678@mobstac.com"
+                            ]
+                        },
+                        "respondent": {
+                            "enabled": true,
+                            "message": "Hello,\nWe’ve received your submission.\n{{form:all_answers}}\nThank you & have a nice day!",
+                            "subject": "Typeform: Thank you for filling out {{form:title}}",
+                            "recipient": "{{field:bb5aa51c-e8d4-4f47-8371-3856c6dea423}}"
+                        }
+                    },
+                    "show_progress_bar": true,
+                    "are_uploads_public": false,
+                    "show_typeform_branding": false
+                },
+                "variables": {
+                    "score": 0
+                },
+                "workspace": {
+                    "href": "https://api.typeform.com/workspaces/11932656"
+                },
+                "welcome_screens": [
+                    {
+                        "id": "63wzoZe1KYAZ",
+                        "ref": "c4474bbc-156f-4e1d-b585-057bd0461eaf",
+                        "title": "We are dedicated to prevent the spread of the novel coronavirus.\n\nFill in the form to get access & enjoy a risk-free time inside!",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/ctp4n62CsDMm",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "button_text": "GET STARTED",
+                            "show_button": true
+                        }
+                    }
+                ],
+                "thankyou_screens": [
+                    {
+                        "id": "Y3kFCjKvnSCW",
+                        "ref": "8778f1ad-dfed-4e46-8c82-7c537acfcb63",
+                        "title": "Present this screen at the entrance to get access",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/btDfqrgjA7wN",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "button_mode": "reload",
+                            "button_text": "again",
+                            "share_icons": false,
+                            "show_button": true
+                        }
+                    },
+                    {
+                        "id": "dfF2JIC8jbHQ",
+                        "ref": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b",
+                        "title": "Based on your answers, we have a few additional queries, please speak with our representative",
+                        "attachment": {
+                            "href": "https://images.typeform.com/images/yvbArZPNmXj5",
+                            "type": "image"
+                        },
+                        "properties": {
+                            "button_mode": "reload",
+                            "button_text": "again",
+                            "share_icons": false,
+                            "show_button": true
+                        }
+                    },
+                    {
+                        "id": "DefaultTyScreen",
+                        "ref": "default_tys",
+                        "title": "Done! Your information was sent perfectly.",
+                        "properties": {
+                            "share_icons": false,
+                            "show_button": false
+                        }
+                    }
+                ]
+            },
+            "default": false,
+            "title": "[COVID-19] Clinics and hospitals-",
+            "url": "https://eddypro.typeform.com/to/EN78iMBv",
+            "form_id": "EN78iMBv",
+            "form_type": "TY",
+            "sms_structure": {},
+            "email_structure": {},
+            "meta": {},
+            "created": "2020-08-10T13:02:37.625442+05:30",
+            "updated": "2020-08-10T13:02:37.625457+05:30",
+            "organization": 15406,
+            "maintainer": null,
+            "beacons": [],
+            "form_response_count": 0
+        },
+        {
+            "id": 36089,
+            "form_structure": {
+                "id": "bDhj3L",
+                "theme": {
+                    "href": "https://api.typeform.com/themes/paovnB"
+                },
+                "title": "My First Form",
+                "_links": {
+                    "display": "https://eddypro.typeform.com/to/bDhj3L"
+                },
+                "fields": [
+                    {
+                        "id": "OSCqemyVcxLI",
+                        "ref": "short_text_1_1587465774379",
+                        "type": "short_text",
+                        "title": "Name",
+                        "validations": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "id": "DE0VQqzvlzXq",
+                        "ref": "number_2_1587465774379",
+                        "type": "number",
+                        "title": "Age",
+                        "validations": {
+                            "required": false
+                        }
+                    },
+                    {
+                        "id": "cWc1GdugqN8u",
+                        "ref": "statement_3_1587465774379",
+                        "type": "statement",
+                        "title": "Bloom",
+                        "properties": {
+                            "hide_marks": false,
+                            "button_text": "Continue"
+                        }
+                    },
+                    {
+                        "id": "KNWUvR8axps7",
+                        "ref": "dropdown_4_1587465774379",
+                        "type": "dropdown",
+                        "title": "Choose one",
+                        "properties": {
+                            "choices": [
+                                {
+                                    "label": "Generic"
+                                },
+                                {
+                                    "label": "Random"
+                                },
+                                {
+                                    "label": "Unique"
+                                },
+                                {
+                                    "label": "Blah"
+                                }
+                            ],
+                            "randomize": false,
+                            "alphabetical_order": false
+                        },
+                        "validations": {
+                            "required": false
+                        }
+                    },
+                    {
+                        "id": "J4riKwVFzXVA",
+                        "ref": "website_5_1587465774379",
+                        "type": "website",
+                        "title": "Website",
+                        "properties": {
+                            "description": "your website"
+                        },
+                        "validations": {
+                            "required": false
+                        }
+                    }
+                ],
+                "settings": {
+                    "meta": {
+                        "allow_indexing": false
+                    },
+                    "is_trial": false,
+                    "language": "en",
+                    "is_public": true,
+                    "progress_bar": "percentage",
+                    "notifications": {
+                        "self": {
+                            "enabled": true,
+                            "message": "Your typeform {{form:title}} has a new response\n\n{{form:all_answers}}",
+                            "subject": "Typeform: new response for {{form:title}}",
+                            "recipients": [
+                                "hari.a+5678@mobstac.com",
+                                "hari97atri@gmail.com"
+                            ]
+                        }
+                    },
+                    "show_progress_bar": true,
+                    "show_typeform_branding": false
+                },
+                "workspace": {
+                    "href": "https://api.typeform.com/workspaces/11932656"
+                },
+                "thankyou_screens": [
+                    {
+                        "ref": "default_tys",
+                        "title": "Done! Your information was sent perfectly.",
+                        "properties": {
+                            "share_icons": false,
+                            "show_button": false
+                        }
+                    }
+                ]
+            },
+            "default": false,
+            "title": "My First Form",
+            "url": "https://eddypro.typeform.com/to/bDhj3L",
+            "form_id": "bDhj3L",
+            "form_type": "TY",
+            "sms_structure": {},
+            "email_structure": {},
+            "meta": {},
+            "created": "2020-04-21T16:10:11.337751+05:30",
+            "updated": "2020-04-21T16:12:54.996821+05:30",
+            "organization": 15406,
+            "maintainer": null,
+            "beacons": [],
+            "form_response_count": 2
+        }
+    ]
+}
+```
+
+Returns a list of all Feedback forms. The Forms are returned sorted by last updated.
+
+Filter arguments:
+
+1. `title`: `exact`, `icontains`
+1. `url`: `exact`, `icontains`
+
+Search Fields:
+
+1. `title`
+1. `url`
+1. `form_id`
+1. `form_type`
+
+Ordering fields:
+
+1. `created`
+2. `updated`
+3. `url`
+4. `title`
+
+
+#### Retrieve a Landing Page
+
+```shell
+curl "https://api.beaconstac.com/api/2.0/markdowncards/{form_id}"
+  -H "Authorization: Token YOUR_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 49958,
+    "form_structure": {
+        "id": "EN78iMBv",
+        "type": "form",
+        "logic": [
+            {
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6d60fc0e-6645-4966-84d8-10b90e37960e"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "cca8c5c0-7536-4e95-bd88-4444066c2a39"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "1539a61e-73d8-48cb-a04d-3a61b082d689"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "80afef6d-fb4e-4dda-a973-99e9353dbb9a"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "ce43e9ac-2e20-4318-9a45-e2143f29c13b"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "083443e3-69e4-4bd8-a84a-05e6d14dabed"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "a0d57cef-6603-45b1-9cac-eb7e6387c76a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b"
+                            }
+                        },
+                        "condition": {
+                            "op": "greater_equal_than",
+                            "vars": [
+                                {
+                                    "type": "variable",
+                                    "value": "score"
+                                },
+                                {
+                                    "type": "constant",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "8778f1ad-dfed-4e46-8c82-7c537acfcb63"
+                            }
+                        },
+                        "condition": {
+                            "op": "always",
+                            "vars": []
+                        }
+                    }
+                ]
+            }
+        ],
+        "theme": {
+            "href": "https://api.typeform.com/themes/ZyKW7J"
+        },
+        "title": "[COVID-19] Clinics and hospitals-",
+        "_links": {
+            "display": "https://eddypro.typeform.com/to/EN78iMBv"
+        },
+        "fields": [
+            {
+                "id": "LrVKT5W75DqM",
+                "ref": "cf81e0bf-7f04-4d29-a2a2-c99b47c1cedd",
+                "type": "statement",
+                "title": "This self-declaration form is put together in alignment with World Health Organization's Covid-19 outbreak guidelines. \n\nKeep us informed so that we can help you stay safe in these challenging times",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            },
+            {
+                "id": "mxq7yWTTFp2z",
+                "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                "type": "email",
+                "title": "What's your email id?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "sfcPRmbPXrBh",
+                "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                "type": "phone_number",
+                "title": "What's your mobile number?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises",
+                    "default_country_code": "US"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "Uyt2dOSfDf9b",
+                "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                "type": "short_text",
+                "title": "Which doctor are you here to consult today?",
+                "properties": {
+                    "description": "(Doctor name)"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "p4Dncq4aCPFL",
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "multiple_choice",
+                "title": "Have you travelled to an international or domestic location in the past 3 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/fkaRQkYF6sdw",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "jzm8UyOGAr2S",
+                            "ref": "6d60fc0e-6645-4966-84d8-10b90e37960e",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "rEZWuczwNMYI",
+                            "ref": "0e002a1c-25aa-4eae-9563-66e2fe40665a",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "2f0xaRAQ105b",
+                "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                "type": "multiple_choice",
+                "title": "What's your gender?",
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "oTiJkMzdNzpz",
+                            "ref": "fe283bb3-7f06-43d1-83e8-dd48e663e904",
+                            "label": "Male"
+                        },
+                        {
+                            "id": "W7pPmMR0yZZ2",
+                            "ref": "bc0f3b2e-786d-41c4-b1e1-771878288ea5",
+                            "label": "Female"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": false
+                }
+            },
+            {
+                "id": "VagUfsjqqv8M",
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "multiple_choice",
+                "title": "Have you experienced any of these symptoms in the last 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/Wy9iM7YpWDKf",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "dOp0UwxhLaNp",
+                            "ref": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650",
+                            "label": "Cold and cough"
+                        },
+                        {
+                            "id": "myhzlcJkFZxZ",
+                            "ref": "c7955809-de34-43df-b116-102e16c85a86",
+                            "label": "Running nose"
+                        },
+                        {
+                            "id": "MOJBX0LuA4MR",
+                            "ref": "cca8c5c0-7536-4e95-bd88-4444066c2a39",
+                            "label": "Shortness of breath"
+                        },
+                        {
+                            "id": "zvCcGulPnG2i",
+                            "ref": "1539a61e-73d8-48cb-a04d-3a61b082d689",
+                            "label": "Sore throat"
+                        },
+                        {
+                            "id": "AG5zZRIwyXAi",
+                            "ref": "80afef6d-fb4e-4dda-a973-99e9353dbb9a",
+                            "label": "Fever"
+                        },
+                        {
+                            "id": "4Rh5FP3b2kPj",
+                            "ref": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a",
+                            "label": "Unsure"
+                        },
+                        {
+                            "id": "4WdWqbjUgfyn",
+                            "ref": "e1b0c83f-704a-4526-be14-0b31572b84c1",
+                            "label": "None of the above"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "MGyAC20eTLxR",
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "multiple_choice",
+                "title": "Do any of your family members have the above symptoms?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/bYducJ2kQEzi",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "Xm7HLpweaBmZ",
+                            "ref": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "Hus3HyZbz7Vt",
+                            "ref": "90e2efeb-a40d-4540-a1b7-b5c0bfd177d1",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "bRxcw7475rQC",
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "multiple_choice",
+                "title": "Have you been in contact with someone with flu in the past 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/QkbPABHjUrqQ",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "WbdRVnK5smN1",
+                            "ref": "a0d57cef-6603-45b1-9cac-eb7e6387c76a",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "0lOo7nJPjsSc",
+                            "ref": "88a8788c-adcf-47ad-af25-890ae332da53",
+                            "label": "No"
+                        },
+                        {
+                            "id": "3oxXV0eAn4x5",
+                            "ref": "0b3f78b9-569e-4bb1-9fb9-c62ca505f466",
+                            "label": "Not sure"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "TTsgOiIXpWfq",
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "statement",
+                "title": "I declare all above to be true. I am aware that I may be held liable for knowingly providing incorrect information",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            }
+        ],
+        "settings": {
+            "meta": {
+                "allow_indexing": false
+            },
+            "is_trial": false,
+            "language": "en",
+            "is_public": true,
+            "progress_bar": "percentage",
+            "notifications": {
+                "self": {
+                    "enabled": true,
+                    "message": "Your typeform {{form:title}} has a new response:\n{{form:all_answers}}\n\nTeam Beaconstac\n",
+                    "subject": "Typeform: New response for {{form:title}}",
+                    "recipients": [
+                        "hari.a+5678@mobstac.com"
+                    ]
+                },
+                "respondent": {
+                    "enabled": true,
+                    "message": "Hello,\nWe’ve received your submission.\n{{form:all_answers}}\nThank you & have a nice day!",
+                    "subject": "Typeform: Thank you for filling out {{form:title}}",
+                    "recipient": "{{field:bb5aa51c-e8d4-4f47-8371-3856c6dea423}}"
+                }
+            },
+            "show_progress_bar": true,
+            "are_uploads_public": false,
+            "show_typeform_branding": false
+        },
+        "variables": {
+            "score": 0
+        },
+        "workspace": {
+            "href": "https://api.typeform.com/workspaces/11932656"
+        },
+        "welcome_screens": [
+            {
+                "id": "63wzoZe1KYAZ",
+                "ref": "c4474bbc-156f-4e1d-b585-057bd0461eaf",
+                "title": "We are dedicated to prevent the spread of the novel coronavirus.\n\nFill in the form to get access & enjoy a risk-free time inside!",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/ctp4n62CsDMm",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_text": "GET STARTED",
+                    "show_button": true
+                }
+            }
+        ],
+        "thankyou_screens": [
+            {
+                "id": "Y3kFCjKvnSCW",
+                "ref": "8778f1ad-dfed-4e46-8c82-7c537acfcb63",
+                "title": "Present this screen at the entrance to get access",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/btDfqrgjA7wN",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "id": "dfF2JIC8jbHQ",
+                "ref": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b",
+                "title": "Based on your answers, we have a few additional queries, please speak with our representative",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/yvbArZPNmXj5",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "id": "DefaultTyScreen",
+                "ref": "default_tys",
+                "title": "Done! Your information was sent perfectly.",
+                "properties": {
+                    "share_icons": false,
+                    "show_button": false
+                }
+            }
+        ]
+    },
+    "default": false,
+    "title": "[COVID-19] Clinics and hospitals-",
+    "url": "https://eddypro.typeform.com/to/EN78iMBv",
+    "form_id": "EN78iMBv",
+    "form_type": "TY",
+    "sms_structure": {},
+    "email_structure": {},
+    "meta": {},
+    "created": "2020-08-10T13:02:37.625442+05:30",
+    "updated": "2020-08-10T13:02:37.625457+05:30",
+    "organization": 15406,
+    "maintainer": null,
+    "beacons": [],
+    "form_response_count": 0
+}
+```
+
+Retrieves the details of an existing Feedback Form. You need only supply the unique Form identifier that was returned upon listing.
+
+
+
+#### Create new Feedback Form
+
+```shell
+curl --location --request POST 'https://api.beaconstac.com/api/2.0/forms/' \
+--header 'Authorization: Token e00a6e1c0068b9f04ac56ca5a6b2cbd483d5fb3e' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "form_structure": {
+        "type": "form",
+        "logic": [
+            {
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6d60fc0e-6645-4966-84d8-10b90e37960e"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "cca8c5c0-7536-4e95-bd88-4444066c2a39"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "1539a61e-73d8-48cb-a04d-3a61b082d689"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "80afef6d-fb4e-4dda-a973-99e9353dbb9a"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "ce43e9ac-2e20-4318-9a45-e2143f29c13b"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "083443e3-69e4-4bd8-a84a-05e6d14dabed"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "a0d57cef-6603-45b1-9cac-eb7e6387c76a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b"
+                            }
+                        },
+                        "condition": {
+                            "op": "greater_equal_than",
+                            "vars": [
+                                {
+                                    "type": "variable",
+                                    "value": "score"
+                                },
+                                {
+                                    "type": "constant",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "8778f1ad-dfed-4e46-8c82-7c537acfcb63"
+                            }
+                        },
+                        "condition": {
+                            "op": "always",
+                            "vars": []
+                        }
+                    }
+                ]
+            }
+        ],
+        "theme": {
+            "href": "https://api.typeform.com/themes/ZyKW7J"
+        },
+        "title": "Test Form",
+        "_links": {
+            "display": "https://eddypro.typeform.com/to/EN78iMBv"
+        },
+        "fields": [
+            {
+                "ref": "cf81e0bf-7f04-4d29-a2a2-c99b47c1cedd",
+                "type": "statement",
+                "title": "This self-declaration form is put together in alignment with World Health Organization'\''s Covid-19 outbreak guidelines. \n\nKeep us informed so that we can help you stay safe in these challenging times",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            },
+            {
+                "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                "type": "email",
+                "title": "What'\''s your email id?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                "type": "phone_number",
+                "title": "What'\''s your mobile number?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises",
+                    "default_country_code": "US"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                "type": "short_text",
+                "title": "Which doctor are you here to consult today?",
+                "properties": {
+                    "description": "(Doctor name)"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "multiple_choice",
+                "title": "Have you travelled to an international or domestic location in the past 3 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/fkaRQkYF6sdw",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "ref": "6d60fc0e-6645-4966-84d8-10b90e37960e",
+                            "label": "Yes"
+                        },
+                        {
+                            "ref": "0e002a1c-25aa-4eae-9563-66e2fe40665a",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                "type": "multiple_choice",
+                "title": "What'\''s your gender?",
+                "properties": {
+                    "choices": [
+                        {
+                            "ref": "fe283bb3-7f06-43d1-83e8-dd48e663e904",
+                            "label": "Male"
+                        },
+                        {
+                            "ref": "bc0f3b2e-786d-41c4-b1e1-771878288ea5",
+                            "label": "Female"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": false
+                }
+            },
+            {
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "multiple_choice",
+                "title": "Have you experienced any of these symptoms in the last 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/Wy9iM7YpWDKf",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "ref": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650",
+                            "label": "Cold and cough"
+                        },
+                        {
+                            "ref": "c7955809-de34-43df-b116-102e16c85a86",
+                            "label": "Running nose"
+                        },
+                        {
+                            "ref": "cca8c5c0-7536-4e95-bd88-4444066c2a39",
+                            "label": "Shortness of breath"
+                        },
+                        {
+                            "ref": "1539a61e-73d8-48cb-a04d-3a61b082d689",
+                            "label": "Sore throat"
+                        },
+                        {
+                            "ref": "80afef6d-fb4e-4dda-a973-99e9353dbb9a",
+                            "label": "Fever"
+                        },
+                        {
+                            "ref": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a",
+                            "label": "Unsure"
+                        },
+                        {
+                            "ref": "e1b0c83f-704a-4526-be14-0b31572b84c1",
+                            "label": "None of the above"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "multiple_choice",
+                "title": "Do any of your family members have the above symptoms?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/bYducJ2kQEzi",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "ref": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7",
+                            "label": "Yes"
+                        },
+                        {
+                            "ref": "90e2efeb-a40d-4540-a1b7-b5c0bfd177d1",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "multiple_choice",
+                "title": "Have you been in contact with someone with flu in the past 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/QkbPABHjUrqQ",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "ref": "a0d57cef-6603-45b1-9cac-eb7e6387c76a",
+                            "label": "Yes"
+                        },
+                        {
+                            "ref": "88a8788c-adcf-47ad-af25-890ae332da53",
+                            "label": "No"
+                        },
+                        {
+                            "ref": "0b3f78b9-569e-4bb1-9fb9-c62ca505f466",
+                            "label": "Not sure"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "statement",
+                "title": "I declare all above to be true. I am aware that I may be held liable for knowingly providing incorrect information",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            }
+        ],
+        "settings": {
+            "meta": {
+                "allow_indexing": false
+            },
+            "is_trial": false,
+            "language": "en",
+            "is_public": true,
+            "progress_bar": "percentage",
+            "notifications": {
+                "self": {
+                    "enabled": true,
+                    "message": "Your typeform {{form:title}} has a new response:\n{{form:all_answers}}\n\nTeam Beaconstac\n",
+                    "subject": "Typeform: New response for {{form:title}}",
+                    "recipients": [
+                        "hari.a+5678@mobstac.com"
+                    ]
+                },
+                "respondent": {
+                    "enabled": true,
+                    "message": "Hello,\nWe’ve received your submission.\n{{form:all_answers}}\nThank you & have a nice day!",
+                    "subject": "Typeform: Thank you for filling out {{form:title}}",
+                    "recipient": "{{field:bb5aa51c-e8d4-4f47-8371-3856c6dea423}}"
+                }
+            },
+            "show_progress_bar": true,
+            "are_uploads_public": false,
+            "show_typeform_branding": false
+        },
+        "variables": {
+            "score": 0
+        },
+        "workspace": {
+            "href": "https://api.typeform.com/workspaces/11932656"
+        },
+        "welcome_screens": [
+            {
+                "ref": "c4474bbc-156f-4e1d-b585-057bd0461eaf",
+                "title": "We are dedicated to prevent the spread of the novel coronavirus.\n\nFill in the form to get access & enjoy a risk-free time inside!",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/ctp4n62CsDMm",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_text": "GET STARTED",
+                    "show_button": true
+                }
+            }
+        ],
+        "thankyou_screens": [
+            {
+                "ref": "8778f1ad-dfed-4e46-8c82-7c537acfcb63",
+                "title": "Present this screen at the entrance to get access",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/btDfqrgjA7wN",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "ref": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b",
+                "title": "Based on your answers, we have a few additional queries, please speak with our representative",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/yvbArZPNmXj5",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "ref": "default_tys",
+                "title": "Done! Your information was sent perfectly.",
+                "properties": {
+                    "share_icons": false,
+                    "show_button": false
+                }
+            }
+        ]
+    },
+    "default": false,
+    "title": "Test Form",
+    "url": "https://eddypro.typeform.com/to/EN78iMBv",
+    "form_id": "EN78iMBv",
+    "form_type": "TY",
+    "sms_structure": {},
+    "email_structure": {},
+    "meta": {},
+    "created": "2020-08-10T13:02:37.625442+05:30",
+    "updated": "2020-08-10T13:02:37.625457+05:30",
+    "organization": 15406,
+    "beacons": [],
+    "form_response_count": 0
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 54024,
+    "form_structure": {
+        "id": "jLMqrBWb",
+        "type": "form",
+        "logic": [
+            {
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6d60fc0e-6645-4966-84d8-10b90e37960e"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "cca8c5c0-7536-4e95-bd88-4444066c2a39"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "1539a61e-73d8-48cb-a04d-3a61b082d689"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "80afef6d-fb4e-4dda-a973-99e9353dbb9a"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "ce43e9ac-2e20-4318-9a45-e2143f29c13b"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "083443e3-69e4-4bd8-a84a-05e6d14dabed"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "a0d57cef-6603-45b1-9cac-eb7e6387c76a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b"
+                            }
+                        },
+                        "condition": {
+                            "op": "greater_equal_than",
+                            "vars": [
+                                {
+                                    "type": "variable",
+                                    "value": "score"
+                                },
+                                {
+                                    "type": "constant",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "8778f1ad-dfed-4e46-8c82-7c537acfcb63"
+                            }
+                        },
+                        "condition": {
+                            "op": "always",
+                            "vars": []
+                        }
+                    }
+                ]
+            }
+        ],
+        "theme": {
+            "href": "https://api.typeform.com/themes/ZyKW7J"
+        },
+        "title": "Test Form",
+        "_links": {
+            "display": "https://eddypro.typeform.com/to/jLMqrBWb"
+        },
+        "fields": [
+            {
+                "id": "iujQmehHWkpv",
+                "ref": "cf81e0bf-7f04-4d29-a2a2-c99b47c1cedd",
+                "type": "statement",
+                "title": "This self-declaration form is put together in alignment with World Health Organization's Covid-19 outbreak guidelines. \n\nKeep us informed so that we can help you stay safe in these challenging times",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            },
+            {
+                "id": "I7nuPFZhjE1K",
+                "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                "type": "email",
+                "title": "What's your email id?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "hJseJYIAeZEI",
+                "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                "type": "phone_number",
+                "title": "What's your mobile number?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises",
+                    "default_country_code": "US"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "dTLRFH28YFK2",
+                "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                "type": "short_text",
+                "title": "Which doctor are you here to consult today?",
+                "properties": {
+                    "description": "(Doctor name)"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "EbrryKpXStuY",
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "multiple_choice",
+                "title": "Have you travelled to an international or domestic location in the past 3 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/r2CKCdiPMd9V",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "ohcRUpEmwijj",
+                            "ref": "6d60fc0e-6645-4966-84d8-10b90e37960e",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "hpka5skZ1nIr",
+                            "ref": "0e002a1c-25aa-4eae-9563-66e2fe40665a",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "KH9u7f7VFoTV",
+                "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                "type": "multiple_choice",
+                "title": "What's your gender?",
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "360nrWWKRZnJ",
+                            "ref": "fe283bb3-7f06-43d1-83e8-dd48e663e904",
+                            "label": "Male"
+                        },
+                        {
+                            "id": "TMEsbKqUfsak",
+                            "ref": "bc0f3b2e-786d-41c4-b1e1-771878288ea5",
+                            "label": "Female"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": false
+                }
+            },
+            {
+                "id": "OqjVKoTyVFDu",
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "multiple_choice",
+                "title": "Have you experienced any of these symptoms in the last 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/yRu69EkHMZNg",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "WhzCOEpomwRb",
+                            "ref": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650",
+                            "label": "Cold and cough"
+                        },
+                        {
+                            "id": "gcM6gKsyLxf8",
+                            "ref": "c7955809-de34-43df-b116-102e16c85a86",
+                            "label": "Running nose"
+                        },
+                        {
+                            "id": "zU9elRGay8F9",
+                            "ref": "cca8c5c0-7536-4e95-bd88-4444066c2a39",
+                            "label": "Shortness of breath"
+                        },
+                        {
+                            "id": "kLKdXzrGoC3N",
+                            "ref": "1539a61e-73d8-48cb-a04d-3a61b082d689",
+                            "label": "Sore throat"
+                        },
+                        {
+                            "id": "FXddbPLMtE1a",
+                            "ref": "80afef6d-fb4e-4dda-a973-99e9353dbb9a",
+                            "label": "Fever"
+                        },
+                        {
+                            "id": "b14kG1ZtduJz",
+                            "ref": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a",
+                            "label": "Unsure"
+                        },
+                        {
+                            "id": "cax9N9NoPPuw",
+                            "ref": "e1b0c83f-704a-4526-be14-0b31572b84c1",
+                            "label": "None of the above"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "ETpJlnONBDGJ",
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "multiple_choice",
+                "title": "Do any of your family members have the above symptoms?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/8CBTm5GvHrww",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "5Rn7zBmmPNHd",
+                            "ref": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "YcK1JVDjXohR",
+                            "ref": "90e2efeb-a40d-4540-a1b7-b5c0bfd177d1",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "GZykpXs0OZ5P",
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "multiple_choice",
+                "title": "Have you been in contact with someone with flu in the past 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/dUh7kZPXXGvc",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "annon5z1FXhZ",
+                            "ref": "a0d57cef-6603-45b1-9cac-eb7e6387c76a",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "2FUSodzYL2A5",
+                            "ref": "88a8788c-adcf-47ad-af25-890ae332da53",
+                            "label": "No"
+                        },
+                        {
+                            "id": "nb2bUDb9uTvz",
+                            "ref": "0b3f78b9-569e-4bb1-9fb9-c62ca505f466",
+                            "label": "Not sure"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "jLVj77j8yzTP",
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "statement",
+                "title": "I declare all above to be true. I am aware that I may be held liable for knowingly providing incorrect information",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            }
+        ],
+        "settings": {
+            "meta": {
+                "allow_indexing": false
+            },
+            "is_trial": false,
+            "language": "en",
+            "is_public": true,
+            "progress_bar": "percentage",
+            "notifications": {
+                "self": {
+                    "enabled": true,
+                    "message": "Your typeform {{form:title}} has a new response:\n{{form:all_answers}}\n\nTeam Beaconstac\n",
+                    "subject": "Typeform: New response for {{form:title}}",
+                    "recipients": [
+                        "hari.a+5678@mobstac.com"
+                    ]
+                },
+                "respondent": {
+                    "enabled": true,
+                    "message": "Hello,\nWe’ve received your submission.\n{{form:all_answers}}\nThank you & have a nice day!",
+                    "subject": "Typeform: Thank you for filling out {{form:title}}",
+                    "recipient": "{{field:bb5aa51c-e8d4-4f47-8371-3856c6dea423}}"
+                }
+            },
+            "show_progress_bar": true,
+            "are_uploads_public": false,
+            "show_time_to_complete": true,
+            "show_typeform_branding": false
+        },
+        "variables": {
+            "score": 0
+        },
+        "workspace": {
+            "href": "https://api.typeform.com/workspaces/11932656"
+        },
+        "welcome_screens": [
+            {
+                "id": "fj9xH9ygOieI",
+                "ref": "c4474bbc-156f-4e1d-b585-057bd0461eaf",
+                "title": "We are dedicated to prevent the spread of the novel coronavirus.\n\nFill in the form to get access & enjoy a risk-free time inside!",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/d32SKu3vqLBg",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_text": "GET STARTED",
+                    "show_button": true
+                }
+            }
+        ],
+        "thankyou_screens": [
+            {
+                "id": "LIe8AepMKkEW",
+                "ref": "8778f1ad-dfed-4e46-8c82-7c537acfcb63",
+                "title": "Present this screen at the entrance to get access",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/XEgYmdcrYX3p",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "id": "YJ9uZJcxDxum",
+                "ref": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b",
+                "title": "Based on your answers, we have a few additional queries, please speak with our representative",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/pT3fchZA2qfi",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "id": "DefaultTyScreen",
+                "ref": "default_tys",
+                "title": "Done! Your information was sent perfectly.",
+                "properties": {
+                    "share_icons": false,
+                    "show_button": false
+                }
+            }
+        ]
+    },
+    "default": false,
+    "title": "Test Form",
+    "url": "https://eddypro.typeform.com/to/jLMqrBWb",
+    "form_id": "jLMqrBWb",
+    "form_type": "TY",
+    "sms_structure": {},
+    "email_structure": {},
+    "meta": {
+        "creator_id": 15189,
+        "updater_id": 15189,
+        "creator_email": "hari.a+5678@mobstac.com",
+        "updater_email": "hari.a+5678@mobstac.com"
+    },
+    "created": "2020-11-06T16:45:21.449705+05:30",
+    "updated": "2020-11-06T16:45:21.457306+05:30",
+    "organization": 15406,
+    "maintainer": 15189,
+    "beacons": [],
+    "form_response_count": 0
+}
+```
+
+Create Feedback Form in your account.
+
+
+#### Update Landing Page
+
+```shell
+curl "https://api.beaconstac.com/api/2.0/formss/{form_id}"
+  -X PUT
+  -H "Authorization: Token YOUR_TOKEN"
+  -d "{'id':form_id, 'title':'new title'"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 54024,
+    "form_structure": {
+        "id": "jLMqrBWb",
+        "type": "form",
+        "logic": [
+            {
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6d60fc0e-6645-4966-84d8-10b90e37960e"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "cca8c5c0-7536-4e95-bd88-4444066c2a39"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "1539a61e-73d8-48cb-a04d-3a61b082d689"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "80afef6d-fb4e-4dda-a973-99e9353dbb9a"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "5a0f2b02-2302-4029-bfaf-ddb3d9446713"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "ce43e9ac-2e20-4318-9a45-e2143f29c13b"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "add",
+                        "details": {
+                            "value": {
+                                "type": "constant",
+                                "value": 1
+                            },
+                            "target": {
+                                "type": "variable",
+                                "value": "score"
+                            }
+                        },
+                        "condition": {
+                            "op": "is",
+                            "vars": [
+                                {
+                                    "type": "field",
+                                    "value": "083443e3-69e4-4bd8-a84a-05e6d14dabed"
+                                },
+                                {
+                                    "type": "choice",
+                                    "value": "a0d57cef-6603-45b1-9cac-eb7e6387c76a"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "field",
+                "actions": [
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b"
+                            }
+                        },
+                        "condition": {
+                            "op": "greater_equal_than",
+                            "vars": [
+                                {
+                                    "type": "variable",
+                                    "value": "score"
+                                },
+                                {
+                                    "type": "constant",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "action": "jump",
+                        "details": {
+                            "to": {
+                                "type": "thankyou",
+                                "value": "8778f1ad-dfed-4e46-8c82-7c537acfcb63"
+                            }
+                        },
+                        "condition": {
+                            "op": "always",
+                            "vars": []
+                        }
+                    }
+                ]
+            }
+        ],
+        "theme": {
+            "href": "https://api.typeform.com/themes/ZyKW7J"
+        },
+        "title": "Test Form",
+        "_links": {
+            "display": "https://eddypro.typeform.com/to/jLMqrBWb"
+        },
+        "fields": [
+            {
+                "id": "iujQmehHWkpv",
+                "ref": "cf81e0bf-7f04-4d29-a2a2-c99b47c1cedd",
+                "type": "statement",
+                "title": "This self-declaration form is put together in alignment with World Health Organization's Covid-19 outbreak guidelines. \n\nKeep us informed so that we can help you stay safe in these challenging times",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            },
+            {
+                "id": "I7nuPFZhjE1K",
+                "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                "type": "email",
+                "title": "What's your email id?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "hJseJYIAeZEI",
+                "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                "type": "phone_number",
+                "title": "What's your mobile number?",
+                "properties": {
+                    "description": "This will help us keep you informed in the event a COVID-19 positive case is discovered in our premises",
+                    "default_country_code": "US"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "dTLRFH28YFK2",
+                "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                "type": "short_text",
+                "title": "Which doctor are you here to consult today?",
+                "properties": {
+                    "description": "(Doctor name)"
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "EbrryKpXStuY",
+                "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                "type": "multiple_choice",
+                "title": "Have you travelled to an international or domestic location in the past 3 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/r2CKCdiPMd9V",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "ohcRUpEmwijj",
+                            "ref": "6d60fc0e-6645-4966-84d8-10b90e37960e",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "hpka5skZ1nIr",
+                            "ref": "0e002a1c-25aa-4eae-9563-66e2fe40665a",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "KH9u7f7VFoTV",
+                "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                "type": "multiple_choice",
+                "title": "What's your gender?",
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "360nrWWKRZnJ",
+                            "ref": "fe283bb3-7f06-43d1-83e8-dd48e663e904",
+                            "label": "Male"
+                        },
+                        {
+                            "id": "TMEsbKqUfsak",
+                            "ref": "bc0f3b2e-786d-41c4-b1e1-771878288ea5",
+                            "label": "Female"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": false
+                }
+            },
+            {
+                "id": "OqjVKoTyVFDu",
+                "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                "type": "multiple_choice",
+                "title": "Have you experienced any of these symptoms in the last 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/yRu69EkHMZNg",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "WhzCOEpomwRb",
+                            "ref": "6c24ccce-a159-4cf6-866c-9cd4d3bb4650",
+                            "label": "Cold and cough"
+                        },
+                        {
+                            "id": "gcM6gKsyLxf8",
+                            "ref": "c7955809-de34-43df-b116-102e16c85a86",
+                            "label": "Running nose"
+                        },
+                        {
+                            "id": "zU9elRGay8F9",
+                            "ref": "cca8c5c0-7536-4e95-bd88-4444066c2a39",
+                            "label": "Shortness of breath"
+                        },
+                        {
+                            "id": "kLKdXzrGoC3N",
+                            "ref": "1539a61e-73d8-48cb-a04d-3a61b082d689",
+                            "label": "Sore throat"
+                        },
+                        {
+                            "id": "FXddbPLMtE1a",
+                            "ref": "80afef6d-fb4e-4dda-a973-99e9353dbb9a",
+                            "label": "Fever"
+                        },
+                        {
+                            "id": "b14kG1ZtduJz",
+                            "ref": "e4af5729-08f4-433b-9e5c-c7fbf64cba7a",
+                            "label": "Unsure"
+                        },
+                        {
+                            "id": "cax9N9NoPPuw",
+                            "ref": "e1b0c83f-704a-4526-be14-0b31572b84c1",
+                            "label": "None of the above"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "ETpJlnONBDGJ",
+                "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                "type": "multiple_choice",
+                "title": "Do any of your family members have the above symptoms?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/8CBTm5GvHrww",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "5Rn7zBmmPNHd",
+                            "ref": "b7cb8a79-e557-4a3c-990c-9ac835c8c7c7",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "YcK1JVDjXohR",
+                            "ref": "90e2efeb-a40d-4540-a1b7-b5c0bfd177d1",
+                            "label": "No"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "GZykpXs0OZ5P",
+                "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                "type": "multiple_choice",
+                "title": "Have you been in contact with someone with flu in the past 2 weeks?",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/dUh7kZPXXGvc",
+                    "type": "image"
+                },
+                "properties": {
+                    "choices": [
+                        {
+                            "id": "annon5z1FXhZ",
+                            "ref": "a0d57cef-6603-45b1-9cac-eb7e6387c76a",
+                            "label": "Yes"
+                        },
+                        {
+                            "id": "2FUSodzYL2A5",
+                            "ref": "88a8788c-adcf-47ad-af25-890ae332da53",
+                            "label": "No"
+                        },
+                        {
+                            "id": "nb2bUDb9uTvz",
+                            "ref": "0b3f78b9-569e-4bb1-9fb9-c62ca505f466",
+                            "label": "Not sure"
+                        }
+                    ],
+                    "randomize": false,
+                    "allow_other_choice": false,
+                    "vertical_alignment": true,
+                    "allow_multiple_selection": false
+                },
+                "validations": {
+                    "required": true
+                }
+            },
+            {
+                "id": "jLVj77j8yzTP",
+                "ref": "00a0cdbb-12a2-4ce1-9e0d-806996936828",
+                "type": "statement",
+                "title": "I declare all above to be true. I am aware that I may be held liable for knowingly providing incorrect information",
+                "properties": {
+                    "hide_marks": false,
+                    "button_text": "Continue"
+                }
+            }
+        ],
+        "settings": {
+            "meta": {
+                "allow_indexing": false
+            },
+            "is_trial": false,
+            "language": "en",
+            "is_public": true,
+            "progress_bar": "percentage",
+            "notifications": {
+                "self": {
+                    "enabled": true,
+                    "message": "Your typeform {{form:title}} has a new response:\n{{form:all_answers}}\n\nTeam Beaconstac\n",
+                    "subject": "Typeform: New response for {{form:title}}",
+                    "recipients": [
+                        "hari.a+5678@mobstac.com"
+                    ]
+                },
+                "respondent": {
+                    "enabled": true,
+                    "message": "Hello,\nWe’ve received your submission.\n{{form:all_answers}}\nThank you & have a nice day!",
+                    "subject": "Typeform: Thank you for filling out {{form:title}}",
+                    "recipient": "{{field:bb5aa51c-e8d4-4f47-8371-3856c6dea423}}"
+                }
+            },
+            "show_progress_bar": true,
+            "are_uploads_public": false,
+            "show_time_to_complete": true,
+            "show_typeform_branding": false
+        },
+        "variables": {
+            "score": 0
+        },
+        "workspace": {
+            "href": "https://api.typeform.com/workspaces/11932656"
+        },
+        "welcome_screens": [
+            {
+                "id": "fj9xH9ygOieI",
+                "ref": "c4474bbc-156f-4e1d-b585-057bd0461eaf",
+                "title": "We are dedicated to prevent the spread of the novel coronavirus.\n\nFill in the form to get access & enjoy a risk-free time inside!",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/d32SKu3vqLBg",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_text": "GET STARTED",
+                    "show_button": true
+                }
+            }
+        ],
+        "thankyou_screens": [
+            {
+                "id": "LIe8AepMKkEW",
+                "ref": "8778f1ad-dfed-4e46-8c82-7c537acfcb63",
+                "title": "Present this screen at the entrance to get access",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/XEgYmdcrYX3p",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "id": "YJ9uZJcxDxum",
+                "ref": "f4b1a41d-c28a-4b8c-941b-a681f4c25e2b",
+                "title": "Based on your answers, we have a few additional queries, please speak with our representative",
+                "attachment": {
+                    "href": "https://images.typeform.com/images/pT3fchZA2qfi",
+                    "type": "image"
+                },
+                "properties": {
+                    "button_mode": "reload",
+                    "button_text": "again",
+                    "share_icons": false,
+                    "show_button": true
+                }
+            },
+            {
+                "id": "DefaultTyScreen",
+                "ref": "default_tys",
+                "title": "Done! Your information was sent perfectly.",
+                "properties": {
+                    "share_icons": false,
+                    "show_button": false
+                }
+            }
+        ]
+    },
+    "default": false,
+    "title": "Test Form",
+    "url": "https://eddypro.typeform.com/to/jLMqrBWb",
+    "form_id": "jLMqrBWb",
+    "form_type": "TY",
+    "sms_structure": {},
+    "email_structure": {},
+    "meta": {
+        "creator_id": 15189,
+        "updater_id": 15189,
+        "creator_email": "hari.a+5678@mobstac.com",
+        "updater_email": "hari.a+5678@mobstac.com"
+    },
+    "created": "2020-11-06T16:45:21.449705+05:30",
+    "updated": "2020-11-06T16:45:21.457306+05:30",
+    "organization": 15406,
+    "maintainer": 15189,
+    "beacons": [],
+    "form_response_count": 0
+}
+```
+
+Updates the specified Feedback Form by setting the values of the parameters passed. Any parameters not provided will be left unchanged. However, the request should contain the required fields. Please refer to the Landing Page object.
+
+
+#### Get Form responses
+
+```shell
+curl --location --request GET 'https://api.beaconstac.com/api/2.0/forms/{form_id}/responses/?page_size={responses_per_page}&since={start_timestamp}&until={end_timestamp}&timezone={timezone}&organization={organization_id}' \
+--header 'Authorization: Token YOUR_TOKEN'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "count": 3,
+    "previous": null,
+    "next": "https://api.beaconstac.com/api/2.0/forms/54024/responses/?page_size=2&since=1587468650975&until=1604687400000&timezone=Asia%2FKolkata&organization=15406&before=5h7knpm1q0dqd5h70p1k2w7x274jil0b",
+    "results": [
+        {
+            "landing_id": "t7dbyzr0sinwnkqm35sxt7degyy1ka7r",
+            "token": "t7dbyzr0sinwnkqm35sxt7degyy1ka7r",
+            "response_id": "t7dbyzr0sinwnkqm35sxt7degyy1ka7r",
+            "landed_at": "2020-11-06T11:41:55Z",
+            "submitted_at": "2020-11-06T11:42:46Z",
+            "metadata": {
+                "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:82.0) Gecko/20100101 Firefox/82.0",
+                "platform": "other",
+                "referer": "https://eddypro.typeform.com/to/jLMqrBWb?typeform-embed=embed-fullpage",
+                "network_id": "61c96e4853",
+                "browser": "default"
+            },
+            "hidden": {},
+            "calculated": {
+                "score": 0
+            },
+            "answers": [
+                {
+                    "field": {
+                        "id": "I7nuPFZhjE1K",
+                        "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                        "type": "email"
+                    },
+                    "type": "email",
+                    "email": "qwerty@mobstac.com"
+                },
+                {
+                    "field": {
+                        "id": "hJseJYIAeZEI",
+                        "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                        "type": "phone_number"
+                    },
+                    "type": "phone_number",
+                    "phone_number": "+919876543210"
+                },
+                {
+                    "field": {
+                        "id": "dTLRFH28YFK2",
+                        "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                        "type": "short_text"
+                    },
+                    "type": "text",
+                    "text": "Qwerty"
+                },
+                {
+                    "field": {
+                        "id": "EbrryKpXStuY",
+                        "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "hpka5skZ1nIr",
+                        "label": "No"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "KH9u7f7VFoTV",
+                        "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "TMEsbKqUfsak",
+                        "label": "Female"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "OqjVKoTyVFDu",
+                        "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "cax9N9NoPPuw",
+                        "label": "None of the above"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "ETpJlnONBDGJ",
+                        "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "YcK1JVDjXohR",
+                        "label": "No"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "GZykpXs0OZ5P",
+                        "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "2FUSodzYL2A5",
+                        "label": "No"
+                    }
+                }
+            ],
+            "variables": [
+                {
+                    "key": "score",
+                    "type": "number",
+                    "number": 0
+                }
+            ]
+        },
+        {
+            "landing_id": "5h7knpm1q0dqd5h70p1k2w7x274jil0b",
+            "token": "5h7knpm1q0dqd5h70p1k2w7x274jil0b",
+            "response_id": "5h7knpm1q0dqd5h70p1k2w7x274jil0b",
+            "landed_at": "2020-11-06T11:40:22Z",
+            "submitted_at": "2020-11-06T11:41:47Z",
+            "metadata": {
+                "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:82.0) Gecko/20100101 Firefox/82.0",
+                "platform": "other",
+                "referer": "https://eddypro.typeform.com/to/jLMqrBWb?typeform-embed=embed-fullpage",
+                "network_id": "61c96e4853",
+                "browser": "default"
+            },
+            "hidden": {},
+            "calculated": {
+                "score": 2
+            },
+            "answers": [
+                {
+                    "field": {
+                        "id": "I7nuPFZhjE1K",
+                        "ref": "bb5aa51c-e8d4-4f47-8371-3856c6dea423",
+                        "type": "email"
+                    },
+                    "type": "email",
+                    "email": "test@beaconstac.com"
+                },
+                {
+                    "field": {
+                        "id": "hJseJYIAeZEI",
+                        "ref": "ea4ee3b0-5dc3-4c66-9071-b2dde0dea41a",
+                        "type": "phone_number"
+                    },
+                    "type": "phone_number",
+                    "phone_number": "+914321567890"
+                },
+                {
+                    "field": {
+                        "id": "dTLRFH28YFK2",
+                        "ref": "094fd986-95bf-4ff5-9a42-4ad25145fe11",
+                        "type": "short_text"
+                    },
+                    "type": "text",
+                    "text": "Test"
+                },
+                {
+                    "field": {
+                        "id": "EbrryKpXStuY",
+                        "ref": "5e18502f-3a4e-4894-9f03-dce6d78e0bb5",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "hpka5skZ1nIr",
+                        "label": "No"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "KH9u7f7VFoTV",
+                        "ref": "b99521ba-9e6f-4357-8ed5-acf6740833d7",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "TMEsbKqUfsak",
+                        "label": "Female"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "OqjVKoTyVFDu",
+                        "ref": "5a0f2b02-2302-4029-bfaf-ddb3d9446713",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "WhzCOEpomwRb",
+                        "label": "Cold and cough"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "ETpJlnONBDGJ",
+                        "ref": "ce43e9ac-2e20-4318-9a45-e2143f29c13b",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "5Rn7zBmmPNHd",
+                        "label": "Yes"
+                    }
+                },
+                {
+                    "field": {
+                        "id": "GZykpXs0OZ5P",
+                        "ref": "083443e3-69e4-4bd8-a84a-05e6d14dabed",
+                        "type": "multiple_choice"
+                    },
+                    "type": "choice",
+                    "choice": {
+                        "id": "nb2bUDb9uTvz",
+                        "label": "Not sure"
+                    }
+                }
+            ],
+            "variables": [
+                {
+                    "key": "score",
+                    "type": "number",
+                    "number": 2
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+### App Links
+
+Redirects users to appropriate URLs (App Store / Play Store) based on the Operating System of the device being used.
+
+| **Attributes** |
+|---|
+| ***android_url*** `URL` <p> URL (Google Play Store) for Android users to be redirected to </p> |
+| ***iphone_url*** `URL` <p> URL (App Store) for iOS users to be redirected to </p> |
+| ***ipad_url*** `URL` <p> URL (App Store) for iPad or Mac users to be redirected to (redirected to iphone_url if not present)</p> |
+| ***fallback_url*** `URL` `required` <p> General URL to be redirected to if device does not satisfy above conditions</p> |
+
+
+### vCard Plus
+
+Create vCards to allow anyone to view your contact information and add it to their device instantly.
+
+| **Attributes** |
+|---|
+| ***first_name*** `string` `required` <p> First name of the recipient </p> |
+| ***last_name*** `string` `required` <p> Last name of the recipient </p> |
+| ***user_image_url*** `URL` <p> URL for profile picture of the recipient  </p> |
+| ***company*** `string` <p> Name of the company the recipient works for  </p> |
+| ***designation*** `string` <p> Designation held by the recipient </p> |
+| ***summary*** `string` <p> Brief summary to be displayed on the page </p> |
+| ***phone*** `object` <p> Phone numbers associated with the recipient. Supported keys: `mobile`, `work`, `home` </p> |
+| ***email*** `string` <p> Recipient email address </p> |
+| ***website*** `URL` <p> Company/Recipient website URL </p> |
+| ***logo_url*** `URL` <p> Company/Recipient logo image </p> |
+| ***address_url*** `URL` <p> Recipient address from Google or Apple maps </p> |
+| ***address_line1*** `string` <p> Recipient address line 1 to be displayed </p> |
+| ***address_line2*** `string` <p> Recipient address line 1 to be displayed </p> |
+| ***city*** `string`  <p> Recipient city of residence </p> |
+| ***zip*** `string`  <p> Recipient area zip code </p> |
+| ***state*** `string`  <p> Recipient state of residence </p> |
+| ***country*** `string`  <p> Recipient country of residence </p> |
+| ***customizations*** `object`  <p> Landing page customizations </p> |
+
+**customization options (supports hex and rgb color formats):** `background_color`, `user_info_color`
+
+
+### Social Media
+
+Create a landing page to engage with your users through various social media platforms
+
+| **Attributes** |
+|---|
+| ***title*** `string` `required` <p> First name of the recipient </p> |
+| ***urls*** `object` `required` <p> Supports `whatsapp`, `facebook`, `instagram`, `linkedin`, `twitter` and `pinterest`  URLs</p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your brand </p> |
+| ***brand_image*** `URL` <p> Image URL associated with your brand </p> |
+| ***message*** `string` <p> Short display message  </p> |
+| ***sub_text*** `string` <p> Sub text for the message  </p> |
+| ***customizations*** `object` <p> Landing page customizations  </p> |
+
+**customization options (supports hex and rgb color formats):** `title_color`, `message_background_color`
+
+
+### Facebook page
+
+Create a landing page link your facebook page to grow followers and increase likes
+
+| **Attributes** |
+|---|
+| ***facebook_page_url*** `URL` `required` <p> URL associated with your Facebook page </p> |
+| ***like_button_type*** `string` <p> Type of like button () </p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your brand </p> |
+| ***header*** `string` <p> Header message for the page </p> |
+| ***sub_text*** `string` <p> Sub text for the header </p> |
+| ***base_image*** `URL` <p> Base image URL for the page </p> |
+
+
+
+### Coupon
+
+Create coupon codes campaigns that can be redeemed by users engaging with your business
+
+| **Attributes** |
+|---|
+| ***coupon_code*** `string` `required` <p> Coupon Code </p> |
+| ***expires_at*** `timestamp` `required`<p> Expiry date for coupon in ISO format </p> |
+| ***timezone*** `timestamp`<p> Expiry date for coupon in ISO format </p> |
+| ***header*** `string` `required`<p> Header message for the landing page </p> |
+| ***message*** `string` `required`<p> Display message for the page </p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your brand </p> |
+| ***website*** `URL` <p> Your brand website </p> |
+| ***description_header*** `string` <p> Header describing the coupon </p> |
+| ***description_body*** `string` <p> A brief description for the coupon </p> |
+| ***terms_and_conditions*** `string` <p> Terms and Conditions associated with this coupon </p> |
+| ***wallet_pass*** `object` <p> Wallet pass customizations </p> |
+| ***location*** `URL` <p> URL to locate your business </p> |
+| ***company_name*** `string` <p> Company name </p> |
+| ***custom_theme*** `integer` <p> Custom Theme object ID </p> |
+| ***theme_data*** `object` `read only` <p> Custom Theme data </p> |
+| ***customizations*** `object` <p> Landing page customizations </p> |
+
+
+| **Wallet pass options (shown on iOS devices only)** |
+|---|
+| ***barcode_format*** `string` <p> Type of barcode to be displaayed (options: `PKBarcodeFormatPDF417`, `PKBarcodeFormatQR`, `PKBarcodeFormatAztec`) </p> |
+
+**customization options (supports hex and rgb color formats):** `header_color`, `body_color`, `background_color`, `coupon_color`, `button_color`
+
+
+### Business Card
+
+Create a landing page to display your business details that help users connect with you seamlessly.
+
+| **Attributes** |
+|---|
+| ***business_name*** `string` `required` <p> Businesss Name </p> |
+| ***button_url*** `string` `required` <p> Button Url </p> |
+| ***button_title*** `string` `required` <p> Button Title </p> |
+| ***contact*** `string` `required` <p> Contact </p> |
+| ***logo_url*** `URL` <p> Logo URL associated with your business </p> |
+| ***aaddress_url*** `URL` <p> Address URL for people to locate your business </p> |
+| ***website*** `URL` <p> Website URL of your business </p> |
+| ***headline*** `string` <p> A brief headline to summarise your business operaations </p> |
+| ***open_hours*** `object` <p> Opening and Closing time for the business for each day </p> |
+| ***customizations*** `object` <p> Landing page customizations </p> |
+
+| **Contact options** |
+|---|
+| ***name*** `string` `required` <p> Name of the contact person </p> |
+| ***phone*** `string` `required` <p> Phone number </p> |
+| ***email*** `string` `required` <p> email ID for viewers to engage with  </p> |
+
+**customization options (supports hex and rgb color formats):** `background_color`, `opacity`, `button_color`
+
+
 ## Campaign Notification
 
-Campaign notification is the brief overview of the campaign, used to alert the user. This can only be used with beacon and geofence objects.
+Campaign notification is the brief overview of the campaign, used to alert the user. This can only be used with Beacon and Geofence objects.
 
 | **Attributes** |
 |---|
@@ -128,7 +4273,7 @@ Beacon objects allow you to perform actions on your beacons. You can retrieve in
 ### Get all beacons
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/beacons/"
+curl "https://api.beaconstac.com/api/2.0/beacons/"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -303,7 +4448,7 @@ Ordering fields:
 ### Retrieve a beacon
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}"
+curl "https://api.beaconstac.com/api/2.0/beacons/{beacon_id}"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -414,7 +4559,7 @@ Retrieves the details of an existing beacon. You need only supply the unique bea
 ### Update Beacon
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/beacons/{beacon_id}"
+curl "https://api.beaconstac.com/api/2.0/beacons/{beacon_id}"
   -X PUT
   -H "Authorization: Token YOUR_TOKEN"
   -d "{'id':beacon_id, 'campaign':{'id':campaign_id}}"
@@ -551,7 +4696,7 @@ NFCTag objects allow you to perform actions on your nfc tags. You can retrieve i
 ### Get all NFC tags
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/nfctags/"
+curl "https://api.beaconstac.com/api/2.0/nfctags/"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -671,7 +4816,7 @@ Ordering fields:
 ### Retrieve a NFC tag
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}"
+curl "https://api.beaconstac.com/api/2.0/nfctags/{nfctag_id}"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -722,7 +4867,7 @@ Retrieves the details of an existing nfc tag. You need only supply the unique nf
 ### Update NFC tag
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/nfctags/{nfctag_id}"
+curl "https://api.beaconstac.com/api/2.0/nfctags/{nfctag_id}"
   -X PUT
   -H "Authorization: Token YOUR_TOKEN"
   -d "{'id':nfctag_id, 'campaign':{'id':campaign_id}}"
@@ -799,7 +4944,7 @@ QRCode objects allow you to perform actions on your qr codes. You can retrieve i
 ### Get all QR codes
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/"
+curl "https://api.beaconstac.com/api/2.0/qrcodes/"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -931,7 +5076,7 @@ Ordering fields:
 ### Retrieve a QR code
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"
+curl "https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -986,8 +5131,10 @@ Retrieves the details of an existing qr code. You need only supply the unique qr
 
 ### Update QR code
 
+#### Dynamic QR Code
+
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}"
+curl "https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}"
   -X PUT
   -H "Authorization: Token YOUR_TOKEN"
   -d "{'id':qrcode_id, 'campaign':{'id':campaign_id}}"
@@ -1046,7 +5193,7 @@ Updates the specified qr code by setting the values of the parameters passed. An
 ### Create QR code
 
 curl -X POST \
-  https://beaconstac.mobstac.com/api/2.0/qrcodes/ \
+  https://api.beaconstac.com/api/2.0/qrcodes/ \
   -H 'Content-Type: application/json' \
   -d '{
 	"attributes": {
@@ -1114,7 +5261,7 @@ Creates a new qr code. However, the request should contain the required fields.
 ### Download a QR code
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/qrcodes/{qrcode_id}/?size={size}&canvas_type={canvas_type}"
+curl "https://api.beaconstac.com/api/2.0/qrcodes/{qrcode_id}/?size={size}&canvas_type={canvas_type}"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -1159,7 +5306,7 @@ Geofence objects allow you to perform actions on your geofences. You can retriev
 ### Get all geofences
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/geofences/"
+curl "https://api.beaconstac.com/api/2.0/geofences/"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -1318,7 +5465,7 @@ Returns a list of your geofences. The geofences are returned sorted by updated, 
 ### Retrieve a Geofence
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}"
+curl "https://api.beaconstac.com/api/2.0/geofences/{geofence_id}"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -1388,7 +5535,7 @@ Retrieves the details of an existing geofence. You need only supply the unique g
 ### Update Geofence
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/geofences/{geofence_id}"
+curl "https://api.beaconstac.com/api/2.0/geofences/{geofence_id}"
   -X PUT
   -H "Authorization: Token YOUR_TOKEN"
   -d "{'id':geofence_id, 'campaign':{'id':campaign_id}}"
@@ -1461,7 +5608,7 @@ Updates the specified geofence by setting the values of the parameters passed. A
 
 ```shell
 curl -X POST \
-  https://beaconstac.mobstac.com/api/2.0/geofences/ \
+  https://api.beaconstac.com/api/2.0/geofences/ \
   -H 'Content-Type: application/json' \
   -d '{
     "campaign": {
@@ -1534,7 +5681,7 @@ Place objects allow you to view all places in your account and view beacons atta
 ### Get all places
 
 ```shell
-curl "https://beaconstac.mobstac.com/api/2.0/places/"
+curl "https://api.beaconstac.com/api/2.0/places/"
   -H "Authorization: Token YOUR_TOKEN"
 ```
 
@@ -1623,7 +5770,7 @@ from, to parameters should be in EPOCH milliseconds.
 ## Product overview
 
 ```shell
-curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getOverview"
+curl "https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getOverview"
   -H "Authorization: Token YOUR_TOKEN"
   -d '{
           "product_type": {type},
@@ -1666,7 +5813,7 @@ Get analytics overview for the product type over the time interval.
 ## Product performance
 
 ```shell
-curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getPerformance"
+curl "https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getPerformance"
   -H "Authorization: Token YOUR_TOKEN"
   -d '{
           "product_type": {type},
@@ -1762,7 +5909,7 @@ Get analytics performace for the product.
 ## Product impression detail
 
 ```shell
-curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDetail"
+curl "https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDetail"
   -H "Authorization: Token YOUR_TOKEN"
   -d '{
           "product_type": {type},
@@ -1819,7 +5966,7 @@ Get impressions details generated by the product. If no `place` is provided data
 ## Product impression distribution
 
 ```shell
-curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution"
+curl "https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Products.getImpressionDistribution"
   -H "Authorization: Token YOUR_TOKEN"
   -d '{
           "product_type": {type},
@@ -1869,7 +6016,7 @@ Get impression distribution generated by the product. If no `place` is provided 
 ## Generate product CSV data
 
 ```shell
-curl "https://beaconstac.mobstac.com/reporting/2.0/?organization={organization_id}&method=Csv.getProductData"
+curl "https://api.beaconstac.com/reporting/2.0/?organization={organization_id}&method=Csv.getProductData"
   -H "Authorization: Token YOUR_TOKEN"
   -d '{
           "product_type": {type},
